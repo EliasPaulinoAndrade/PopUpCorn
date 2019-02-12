@@ -9,7 +9,6 @@
 import Foundation
 
 struct Genre: Codable {
-    var id: String?
+    var id: Int?
     var name: String?
-
 }

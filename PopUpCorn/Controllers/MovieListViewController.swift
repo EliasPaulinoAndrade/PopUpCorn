@@ -15,7 +15,7 @@ class MovieListViewController: UIViewController {
 
         let mdb = PUTMDBService.init()
 
-        mdb.upComingMovies(sucessCompletion: { (page) in
+        mdb.genres(sucessCompletion: { (page) in
 
         }) { (error) in
 

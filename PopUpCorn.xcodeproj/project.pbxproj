@@ -25,7 +25,7 @@
 		E3374C8822124E0300D2C02C /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3374C8722124E0300D2C02C /* Movie.swift */; };
 		E3374C8A2212518900D2C02C /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3374C892212518900D2C02C /* Page.swift */; };
 		E3374C8C221252B400D2C02C /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3374C8B221252B400D2C02C /* Genre.swift */; };
-		E3374C8E221253F000D2C02C /* PUTTMDBEndPointType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3374C8D221253F000D2C02C /* PUTTMDBEndPointType.swift */; };
+		E3374C8E221253F000D2C02C /* PUTTMDBEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3374C8D221253F000D2C02C /* PUTTMDBEndPoint.swift */; };
 		F61E6669CE03F25FC7476E66 /* Pods_PopUpCorn.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A41B9FC352158C247928E54 /* Pods_PopUpCorn.framework */; };
 /* End PBXBuildFile section */
 
@@ -77,7 +77,7 @@
 		E3374C8722124E0300D2C02C /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		E3374C892212518900D2C02C /* Page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
 		E3374C8B221252B400D2C02C /* Genre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genre.swift; sourceTree = "<group>"; };
-		E3374C8D221253F000D2C02C /* PUTTMDBEndPointType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PUTTMDBEndPointType.swift; sourceTree = "<group>"; };
+		E3374C8D221253F000D2C02C /* PUTTMDBEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PUTTMDBEndPoint.swift; sourceTree = "<group>"; };
 		FC65AD63EA2D65B43D250D38 /* Pods_PopUpCornUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PopUpCornUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -201,7 +201,7 @@
 			isa = PBXGroup;
 			children = (
 				E3374C732212239700D2C02C /* PUTMDBService.swift */,
-				E3374C8D221253F000D2C02C /* PUTTMDBEndPointType.swift */,
+				E3374C8D221253F000D2C02C /* PUTTMDBEndPoint.swift */,
 				E3374C752212240600D2C02C /* tmdb.plist */,
 			);
 			path = TMDB;
@@ -468,7 +468,7 @@
 				E3374C462212220600D2C02C /* ViewController.swift in Sources */,
 				E3374C7C2212248F00D2C02C /* PUListType.swift in Sources */,
 				E3374C7A2212247300D2C02C /* PUPlistService.swift in Sources */,
-				E3374C8E221253F000D2C02C /* PUTTMDBEndPointType.swift in Sources */,
+				E3374C8E221253F000D2C02C /* PUTTMDBEndPoint.swift in Sources */,
 				E3374C742212239700D2C02C /* PUTMDBService.swift in Sources */,
 				E3374C8422124D2600D2C02C /* MovieListViewController.swift in Sources */,
 				E3374C8A2212518900D2C02C /* Page.swift in Sources */,

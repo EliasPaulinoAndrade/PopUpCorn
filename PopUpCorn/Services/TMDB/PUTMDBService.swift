@@ -30,12 +30,12 @@ struct PUTMDBService {
     ///   - moviesURL: the TMDB URL that returs movies
     ///   - sucessCompletion: this completion is called when all ocurred well
     ///   - errorCompletion: this completion is called when something bad or some error happend in the request
-    func movies(
-        fromURL moviesURL: URL,
-        sucessCompletion: @escaping (Page) -> Void,
+    func dataTask<T: Decodable>(
+        fromURL url: URL,
+        sucessCompletion: @escaping (T) -> Void,
         errorCompletion: @escaping (Error?) -> Void) {
 
-        URLSession.shared.dataTask(with: moviesURL) { (data, _, error) in
+        URLSession.shared.dataTask(with: url) { (data, _, error) in
             if let error = error {
                 errorCompletion(error)
                 return
@@ -45,7 +45,7 @@ struct PUTMDBService {
                 let jsonDecoder = JSONDecoder.init()
 
                 do {
-                    let movies = try jsonDecoder.decode(Page.self, from: data)
+                    let movies = try jsonDecoder.decode(T.self, from: data)
                     sucessCompletion(movies)
                 } catch {
                     errorCompletion(error)
@@ -56,6 +56,12 @@ struct PUTMDBService {
         }.resume()
     }
 
+    /// Get upcoming movies from the API
+    ///
+    /// - Parameters:
+    ///   - pageNumber: the movies page number, default is the first page.
+    ///   - sucessCompletion: sucess completion
+    ///   - errorCompletion: error completion, some error happend or something was wrong
     func upComingMovies(
         inPageNumber pageNumber: Int? = 1,
         sucessCompletion: @escaping (Page) -> Void,
@@ -68,18 +74,49 @@ struct PUTMDBService {
             return
         }
 
-        let upComingStringURL = PUTTMDBEndPointType.Movie
-                                                   .upComing
-                                                   .with(
-                                                        baseURL: baseUrl,
-                                                        pageNumber: "\(pageNumber)",
-                                                        andApiKey: apiKey
-                                                    )
+        let upComingStringURL = PUTTMDBEndPoint.Movie
+                                               .upComing
+                                               .with(
+                                                    baseURL: baseUrl,
+                                                    pageNumber: "\(pageNumber)",
+                                                    andApiKey: apiKey
+                                                )
 
         if let url = URL.init(string: upComingStringURL) {
-            movies(fromURL: url, sucessCompletion: sucessCompletion, errorCompletion: errorCompletion)
+            dataTask(fromURL: url, sucessCompletion: sucessCompletion, errorCompletion: errorCompletion)
         } else {
             errorCompletion(nil)
         }
     }
+
+    /// Get movie genres list from the API
+    ///
+    /// - Parameters:
+    ///   - sucessCompletion: the sucess completion with a Genre array
+    ///   - errorCompletion: error completion, some error happend or something was wrong
+    func genres(
+        sucessCompletion: @escaping ([Genre]) -> Void,
+        errorCompletion: @escaping (Error?) -> Void) {
+
+        guard let baseUrl = self.baseUrl,
+              let apiKey = self.apiKey else {
+                errorCompletion(nil)
+                return
+        }
+
+        let genresStringURL = PUTTMDBEndPoint.Genre.allGenres.with(baseURL: baseUrl, andApiKey: apiKey)
+
+        if let url = URL.init(string: genresStringURL) {
+            dataTask(fromURL: url, sucessCompletion: { (genreDictionary: [String: [Genre]]) in
+                if let genres = genreDictionary["genres"] {
+                    sucessCompletion(genres)
+                } else {
+                    errorCompletion(nil)
+                }
+            }, errorCompletion: errorCompletion)
+        } else {
+            errorCompletion(nil)
+        }
+    }
+    
 }
