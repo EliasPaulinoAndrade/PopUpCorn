@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// A struct the manage the endpoint enums from the TMDB API
 struct PUTTMDBEndPoint {
 
     enum Genre: String {

@@ -10,13 +10,22 @@ import UIKit
 
 class MovieListViewController: UIViewController {
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         let mdb = PUTMDBService.init()
 
-        mdb.genres(sucessCompletion: { (page) in
+        mdb.popularMovies(sucessCompletion: { (page) in
 
+            if let movie = page.results.first {
+                mdb.image(fromMovie: movie, progressCompletion: { (image) in
+                    
+                }, errorCompletion: { (error) in
+                    
+                })
+            }
+            
         }) { (error) in
 
         }
