@@ -7,9 +7,12 @@
 //
 
 import Foundation
+import UIKit
 
 protocol PUToggleButtonViewDelegate: AnyObject {
 
     func didSelectButton(currentState: PUToggleButtonState)
-    
+    func imageForFirstButton() -> UIImage?
+    func imageForSecondButton() -> UIImage?
+    func tintColor() -> UIColor
 }

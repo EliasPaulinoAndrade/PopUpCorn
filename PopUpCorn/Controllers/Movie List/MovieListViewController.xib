@@ -14,6 +14,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MovieListViewController" customModule="PopUpCorn" customModuleProvider="target">
             <connections>
                 <outlet property="moviesCollectionView" destination="buT-Er-MlR" id="lUq-yu-pev"/>
+                <outlet property="toggleButton" destination="Y4K-0a-9rq" id="1MB-6g-kRl"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -33,11 +34,11 @@
                     </collectionViewFlowLayout>
                 </collectionView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y4K-0a-9rq" customClass="PUToggleButtonView" customModule="PopUpCorn" customModuleProvider="target">
-                    <rect key="frame" x="235" y="30" width="130" height="40"/>
+                    <rect key="frame" x="215" y="30" width="150" height="40"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="ahy-Xe-VGc"/>
-                        <constraint firstAttribute="width" constant="130" id="dsf-8v-R8H"/>
+                        <constraint firstAttribute="width" constant="150" id="dsf-8v-R8H"/>
                     </constraints>
                 </view>
             </subviews>

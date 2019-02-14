@@ -16,7 +16,7 @@ class PUBaseZibOwnerView: UIView {
         super.init(frame: frame)
         initCommon()
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         initCommon()

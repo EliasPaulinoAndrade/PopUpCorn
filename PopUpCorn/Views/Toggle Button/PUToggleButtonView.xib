@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -15,7 +14,9 @@
             <connections>
                 <outlet property="containerView" destination="iN0-l3-epB" id="QpP-Er-U5L"/>
                 <outlet property="firstButton" destination="vNR-V7-7wR" id="uEu-EG-4nl"/>
+                <outlet property="firstButtonImageView" destination="cCj-Y7-3v0" id="AP2-kE-BsY"/>
                 <outlet property="secondButton" destination="tbd-Wj-c8k" id="SnM-LK-sAi"/>
+                <outlet property="secondButtonImageView" destination="uVP-Ee-aNV" id="4ev-sF-5Ya"/>
                 <outlet property="selectedIndicatorLeft" destination="yIj-dj-MGR" id="IVX-yP-twS"/>
                 <outlet property="selectedIndicatorView" destination="WWZ-9n-OKG" id="Y1d-DQ-D6G"/>
             </connections>
@@ -27,7 +28,7 @@
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WWZ-9n-OKG">
                     <rect key="frame" x="0.0" y="0.0" width="184.5" height="97"/>
-                    <color key="backgroundColor" name="red"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tbd-Wj-c8k">
                     <rect key="frame" x="184.5" y="0.0" width="184.5" height="97"/>
@@ -103,8 +104,5 @@
     <resources>
         <image name="gridicon" width="40" height="40"/>
         <image name="onlyoneicon" width="40" height="40"/>
-        <namedColor name="red">
-            <color red="0.54509803921568623" green="0.11372549019607843" blue="0.098039215686274508" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
     </resources>
 </document>

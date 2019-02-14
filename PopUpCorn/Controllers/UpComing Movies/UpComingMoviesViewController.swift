@@ -10,6 +10,7 @@ import UIKit
 
 class UpComingMoviesViewController: UIViewController {
 
+    private var searchMoviesViewControler = SearchMoviesViewController.init()
     private var movieListViewController = MovieListViewController.init()
     private var tmdbService = PUTMDBService.init()
     private var moviePage: Page?
@@ -20,23 +21,24 @@ class UpComingMoviesViewController: UIViewController {
         self.title = This.CONSTTitle
         movieListViewController.delegate = self
 
-        formatMovieList()
-        requestMovieList()
+        self.addChild(movieListViewController, inView: self.view)
 
+        formatNavigationBar()
+        requestMovieList()
     }
 
-    func formatMovieList() {
-        addChild(movieListViewController)
-        view.addSubview(movieListViewController.view)
+    func formatNavigationBar() {
+        let navigationBarButton = UIBarButtonItem.init(
+            barButtonSystemItem: UIBarButtonItem.SystemItem.search,
+            target: self,
+            action: #selector(searchButtonWasTapped(sender:))
+        )
 
-        movieListViewController.view.translatesAutoresizingMaskIntoConstraints = false
+        self.navigationItem.rightBarButtonItem = navigationBarButton
+    }
 
-        movieListViewController.view.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        movieListViewController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        movieListViewController.view.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        movieListViewController.view.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-
-        movieListViewController.didMove(toParent: self)
+    @objc func searchButtonWasTapped(sender: UIBarButtonItem) {
+        navigationController?.pushViewController(searchMoviesViewControler, animated: true)
     }
 
     func requestMovieList() {

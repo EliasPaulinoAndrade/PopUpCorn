@@ -1,5 +1,5 @@
 //
-//  PUToggleState.swift
+//  MovieListControllerState.swift
 //  PopUpCorn
 //
 //  Created by Elias Paulino on 14/02/19.
@@ -8,7 +8,6 @@
 
 import Foundation
 
-enum PUToggleButtonState {
-
-    case first, second
+enum MovieListControllerState {
+    case expanded, normal
 }

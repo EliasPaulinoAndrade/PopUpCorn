@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         window = UIWindow.init(frame: UIScreen.main.bounds)
 
-        let navigationManager = NavigationFlowManager.init()
+        let navigationManager = NavigationFlowManager.shared
 
         window?.rootViewController = navigationManager.firtViewController()
         window?.makeKeyAndVisible()

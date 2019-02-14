@@ -12,20 +12,28 @@ class MovieListViewController: UIViewController {
 
     @IBOutlet weak var moviesCollectionView: UICollectionView!
 
+    @IBOutlet weak var toggleButton: PUToggleButtonView!
+
     weak var delegate: MovieListViewControllerDelegate?
+
+    var state = MovieListControllerState.expanded
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         moviesCollectionView.delegate = self
         moviesCollectionView.dataSource = self
+        toggleButton.delegate = self
 
-        registerMovieCell()
+        registerMovieCells()
     }
 
-    func registerMovieCell() {
-        let movieCellNib = UINib.init(nibName: This.CONSTMovieCellNibName, bundle: Bundle.main)
-        moviesCollectionView.register(movieCellNib, forCellWithReuseIdentifier: This.CONSTMovieCellReuseIdentifier)
+    func registerMovieCells() {
+        let expandedMovieCellNib = UINib.init(nibName: This.CONSTExpandedMovieCellNibName, bundle: Bundle.main)
+        moviesCollectionView.register(expandedMovieCellNib, forCellWithReuseIdentifier: This.CONSTExpandedMovieCellReuseIdentifier)
+
+        let normalMovieCellNib = UINib.init(nibName: This.CONSTNormalMovieCellNibName, bundle: Bundle.main)
+        moviesCollectionView.register(normalMovieCellNib, forCellWithReuseIdentifier: This.CONSTNormalMovieCellReuseIdentifier)
     }
 
     func reloadData() {
@@ -41,21 +49,24 @@ extension MovieListViewController: UICollectionViewDelegateFlowLayout, UICollect
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: This.CONSTMovieCellReuseIdentifier, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: state == .expanded ?
+                This.CONSTExpandedMovieCellReuseIdentifier :
+                This.CONSTNormalMovieCellReuseIdentifier ,
+            for: indexPath
+        )
 
-        if let movieCell = cell as? PUExpandedMovieCollectionViewCell,
-           let movie = delegate?.movies(self)[indexPath.row] {
+        guard let movie = delegate?.movies(self)[indexPath.row] else {
+            return cell
+        }
 
-            movieCell.titleLabel.text = movie.title
-            movieCell.posterImageView.image = nil
-
+        if let movieCell = cell as? PUMovieCollectionViewCellProtocol {
+            movieCell.setup(withMovie: movie)
             delegate?.imageForMovie(self,
                 atPosition: indexPath.row,
                 completion: { (movieImage) in
 
-                    DispatchQueue.main.async {
-                        movieCell.posterImageView.image = movieImage
-                    }
+                    movieCell.set(image: movieImage)
                 }
             )
         }
@@ -65,18 +76,53 @@ extension MovieListViewController: UICollectionViewDelegateFlowLayout, UICollect
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 
-        let cellWidth = collectionView.bounds.width
+        switch state {
+        case .expanded:
+            let cellWidth = collectionView.bounds.width
+            let cellHeight = cellWidth * 1.1
 
-        let cellHeight = cellWidth * 1.1
+            return CGSize.init(width: cellWidth, height: cellHeight)
+        case .normal:
+            let cellWidth = collectionView.bounds.width/3 - 10
+            let cellHeight = cellWidth * 1.5
 
-        return CGSize.init(width: cellWidth, height: cellHeight)
+            return CGSize.init(width: cellWidth, height: cellHeight)
+        }
+    }
+}
+
+extension MovieListViewController: PUToggleButtonViewDelegate {
+
+    func didSelectButton(currentState: PUToggleButtonState) {
+
+        if currentState == .first {
+            self.state = .expanded
+        } else if currentState == .second {
+            self.state = .normal
+        }
+
+        self.reloadData()
+    }
+
+    func imageForFirstButton() -> UIImage? {
+        return UIImage.init(named: "expanded")
+    }
+
+    func imageForSecondButton() -> UIImage? {
+        return UIImage.init(named: "grid")
+    }
+
+    func tintColor() -> UIColor {
+        return UIColor.puRed
     }
 }
 
 private extension MovieListViewController {
     typealias This = MovieListViewController
 
-    static let CONSTMovieCellNibName = "PUExpandedMovieCollectionViewCell"
-    static let CONSTMovieCellReuseIdentifier = "movie_cell_identifier"
+    static let CONSTExpandedMovieCellNibName = "PUExpandedMovieCollectionViewCell"
+    static let CONSTNormalMovieCellNibName = "PUNormalMovieCollectionViewCell"
+    static let CONSTExpandedMovieCellReuseIdentifier = "expanded_movie_cell_identifier"
+    static let CONSTNormalMovieCellReuseIdentifier = "normal_movie_cell_identifier"
     static let CONSTTitle = "UpComing"
 }

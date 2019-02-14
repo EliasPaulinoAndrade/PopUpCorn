@@ -27,9 +27,19 @@ class PUToggleButtonView: PUBaseZibOwnerView {
 
     @IBOutlet weak var selectedIndicatorLeft: NSLayoutConstraint!
 
+    @IBOutlet weak var firstButtonImageView: UIImageView!
+
+    @IBOutlet weak var secondButtonImageView: UIImageView!
+
     var isFistButtonSelected: Bool = true
 
-    weak var delegate: PUToggleButtonViewDelegate?
+    weak var delegate: PUToggleButtonViewDelegate? {
+        didSet {
+            firstButtonImageView.image = delegate?.imageForFirstButton()
+            secondButtonImageView.image = delegate?.imageForSecondButton()
+            selectedIndicatorView.backgroundColor = delegate?.tintColor()
+        }
+    }
 
     func change(toState state: PUToggleButtonState) {
 

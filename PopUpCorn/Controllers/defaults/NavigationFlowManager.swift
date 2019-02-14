@@ -9,15 +9,13 @@
 import Foundation
 import UIKit
 
-struct NavigationFlowManager {
+class NavigationFlowManager {
+
+    static let shared = NavigationFlowManager.init()
+
+    private init() {}
 
     var upComingMoviesController: UpComingMoviesViewController = {
-        let upComingMoviesController = UpComingMoviesViewController.init()
-
-        return upComingMoviesController
-    }()
-
-    var popularMoviesController: UpComingMoviesViewController = {
         let upComingMoviesController = UpComingMoviesViewController.init()
 
         return upComingMoviesController
@@ -35,25 +33,13 @@ struct NavigationFlowManager {
         return navigationViewController
     }()
 
-    var tabBarController: UITabBarController = {
-        let tabBarController = UITabBarController.init()
-
-        tabBarController.tabBar.isTranslucent = false
-        tabBarController.tabBar.barTintColor = UIColor.puLightPurple
-        tabBarController.tabBar.tintColor = UIColor.puLightRed
-
-        return tabBarController
-    }()
-
     func firtViewController() -> UIViewController {
 
-        let tabViewController = tabBarController
         let navigationViewController = navigationController
         let movieListViewController = upComingMoviesController
 
-        tabViewController.viewControllers = [navigationViewController]
         navigationViewController.viewControllers = [movieListViewController]
 
-        return tabViewController
+        return navigationController
     }
 }
