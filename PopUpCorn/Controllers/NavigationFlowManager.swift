@@ -17,6 +17,12 @@ struct NavigationFlowManager {
         return upComingMoviesController
     }()
 
+    var popularMoviesController: UpComingMoviesViewController = {
+        let upComingMoviesController = UpComingMoviesViewController.init()
+
+        return upComingMoviesController
+    }()
+
     var navigationController: UINavigationController = {
         let navigationViewController = UINavigationController.init()
 

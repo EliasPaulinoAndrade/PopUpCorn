@@ -67,7 +67,6 @@ extension MovieListViewController: UICollectionViewDelegateFlowLayout, UICollect
 
         let cellWidth = collectionView.bounds.width
 
-        //ajeitar aqui
         let cellHeight = cellWidth * 1.1
 
         return CGSize.init(width: cellWidth, height: cellHeight)

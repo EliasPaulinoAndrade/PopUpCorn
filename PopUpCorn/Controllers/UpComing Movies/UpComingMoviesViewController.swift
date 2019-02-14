@@ -22,6 +22,7 @@ class UpComingMoviesViewController: UIViewController {
 
         formatMovieList()
         requestMovieList()
+
     }
 
     func formatMovieList() {
