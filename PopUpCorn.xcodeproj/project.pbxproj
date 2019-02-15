@@ -45,6 +45,11 @@
 		E38268EA22160823001C792E /* PUMovieCollectionViewCellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38268E922160823001C792E /* PUMovieCollectionViewCellProtocol.swift */; };
 		E38268EF22161D1B001C792E /* SearchMoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38268EE22161D1B001C792E /* SearchMoviesViewController.swift */; };
 		E38268F222161E0F001C792E /* UIViewController+addChild.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38268F122161E0F001C792E /* UIViewController+addChild.swift */; };
+		E38268F422162FFF001C792E /* PUTMDBQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38268F322162FFF001C792E /* PUTMDBQuery.swift */; };
+		E38268F6221630F0001C792E /* PUTMDBModelQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38268F5221630F0001C792E /* PUTMDBModelQuery.swift */; };
+		E38268F82216330A001C792E /* PUTMDBImageQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38268F72216330A001C792E /* PUTMDBImageQuery.swift */; };
+		E38268FA22163449001C792E /* PUTMDBCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38268F922163449001C792E /* PUTMDBCredentials.swift */; };
+		E38268FD22163C63001C792E /* PUTMDBPreviewableImageQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38268FC22163C63001C792E /* PUTMDBPreviewableImageQuery.swift */; };
 		F61E6669CE03F25FC7476E66 /* Pods_PopUpCorn.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A41B9FC352158C247928E54 /* Pods_PopUpCorn.framework */; };
 /* End PBXBuildFile section */
 
@@ -116,6 +121,11 @@
 		E38268E922160823001C792E /* PUMovieCollectionViewCellProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PUMovieCollectionViewCellProtocol.swift; sourceTree = "<group>"; };
 		E38268EE22161D1B001C792E /* SearchMoviesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMoviesViewController.swift; sourceTree = "<group>"; };
 		E38268F122161E0F001C792E /* UIViewController+addChild.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+addChild.swift"; sourceTree = "<group>"; };
+		E38268F322162FFF001C792E /* PUTMDBQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PUTMDBQuery.swift; sourceTree = "<group>"; };
+		E38268F5221630F0001C792E /* PUTMDBModelQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PUTMDBModelQuery.swift; sourceTree = "<group>"; };
+		E38268F72216330A001C792E /* PUTMDBImageQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PUTMDBImageQuery.swift; sourceTree = "<group>"; };
+		E38268F922163449001C792E /* PUTMDBCredentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PUTMDBCredentials.swift; sourceTree = "<group>"; };
+		E38268FC22163C63001C792E /* PUTMDBPreviewableImageQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PUTMDBPreviewableImageQuery.swift; sourceTree = "<group>"; };
 		FC65AD63EA2D65B43D250D38 /* Pods_PopUpCornUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PopUpCornUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -239,9 +249,11 @@
 		E3374C722212231900D2C02C /* TMDB */ = {
 			isa = PBXGroup;
 			children = (
+				E38268FB22163951001C792E /* Queries */,
 				E3374C732212239700D2C02C /* PUTMDBService.swift */,
 				E3374C8D221253F000D2C02C /* PUTTMDBEndPoint.swift */,
 				E3374C752212240600D2C02C /* tmdb.plist */,
+				E38268F922163449001C792E /* PUTMDBCredentials.swift */,
 			);
 			path = TMDB;
 			sourceTree = "<group>";
@@ -386,6 +398,17 @@
 				E3374CA32213B39900D2C02C /* NavigationFlowManager.swift */,
 			);
 			path = defaults;
+			sourceTree = "<group>";
+		};
+		E38268FB22163951001C792E /* Queries */ = {
+			isa = PBXGroup;
+			children = (
+				E38268F5221630F0001C792E /* PUTMDBModelQuery.swift */,
+				E38268F322162FFF001C792E /* PUTMDBQuery.swift */,
+				E38268F72216330A001C792E /* PUTMDBImageQuery.swift */,
+				E38268FC22163C63001C792E /* PUTMDBPreviewableImageQuery.swift */,
+			);
+			path = Queries;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -613,16 +636,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E38268F6221630F0001C792E /* PUTMDBModelQuery.swift in Sources */,
 				E38268F222161E0F001C792E /* UIViewController+addChild.swift in Sources */,
 				E3374C9F22138D7B00D2C02C /* PUExpandedMovieCollectionViewCell.swift in Sources */,
 				E38268DE2215FF57001C792E /* PUToggleButtonViewDelegate.swift in Sources */,
 				E3374C9522137EEA00D2C02C /* PUCacheCenter.swift in Sources */,
+				E38268FD22163C63001C792E /* PUTMDBPreviewableImageQuery.swift in Sources */,
 				E3374CBB22149FEC00D2C02C /* PUBaseZibOwnerView.swift in Sources */,
 				E38268EF22161D1B001C792E /* SearchMoviesViewController.swift in Sources */,
 				E38268EA22160823001C792E /* PUMovieCollectionViewCellProtocol.swift in Sources */,
 				E3374C7C2212248F00D2C02C /* PUListType.swift in Sources */,
 				E38268E52216022F001C792E /* PUNormalMovieCollectionViewCell.swift in Sources */,
 				E3374C7A2212247300D2C02C /* PUPlistService.swift in Sources */,
+				E38268F422162FFF001C792E /* PUTMDBQuery.swift in Sources */,
+				E38268F82216330A001C792E /* PUTMDBImageQuery.swift in Sources */,
 				E3374C8E221253F000D2C02C /* PUTTMDBEndPoint.swift in Sources */,
 				E3374C742212239700D2C02C /* PUTMDBService.swift in Sources */,
 				E3374CA82214319500D2C02C /* UpComingMoviesViewController.swift in Sources */,
@@ -634,6 +661,7 @@
 				E3374CAA221431C200D2C02C /* MovieListViewControllerDelegate.swift in Sources */,
 				E3374CA42213B39900D2C02C /* NavigationFlowManager.swift in Sources */,
 				E3374C9322137E5D00D2C02C /* PUCacheService.swift in Sources */,
+				E38268FA22163449001C792E /* PUTMDBCredentials.swift in Sources */,
 				E38268E822160577001C792E /* MovieListControllerState.swift in Sources */,
 				E3374C442212220600D2C02C /* AppDelegate.swift in Sources */,
 				E3374CB822149EF100D2C02C /* PUToggleButtonView.swift in Sources */,

@@ -68,11 +68,9 @@ extension UpComingMoviesViewController: MovieListViewControllerDelegate {
         }
 
         tmdbService.image(fromMovie: movie, withID: position,
-            progressCompletion: { (movieImage, id) in
-                if let moviePosition = id, moviePosition == position {
-                    DispatchQueue.main.async {
-                        completion(movieImage)
-                    }
+            progressCompletion: { (movieImage) in
+                DispatchQueue.main.async {
+                    completion(movieImage)
                 }
             },
             errorCompletion: { (_) in

@@ -11,51 +11,24 @@ import UIKit
 
 /// A service for TMDB API integration
 struct PUTMDBService {
-    var apiKey: String?
-    var baseUrl: String?
-    var imageBaseUrl: String?
-    var cacheService = PUCacheService.init()
+    var credentials: PUTMDBCredentials?
+
+    private var genres: [Genre]?
 
     /// initialize the service getting the api atributtes from TMDB plist
     init() {
         let plistService = PUPlistService.init()
         let tmdbAtributtes = plistService.tmdbAtributtes
 
-        self.apiKey = tmdbAtributtes.apiKey
-        self.baseUrl = tmdbAtributtes.baseUrl.normal
-        self.imageBaseUrl = tmdbAtributtes.baseUrl.image
-    }
-
-    /// Get a movies page from a given URL from TBDB API.
-    ///
-    /// - Parameters:
-    ///   - moviesURL: the TMDB URL that returs movies
-    ///   - sucessCompletion: this completion is called when all ocurred well
-    ///   - errorCompletion: this completion is called when something bad or some error happend in the request
-    func dataTask<T: Decodable>(
-        fromURL url: URL,
-        sucessCompletion: @escaping (T) -> Void,
-        errorCompletion: @escaping (Error?) -> Void) {
-
-        URLSession.shared.dataTask(with: url) { (data, _, error) in
-            if let error = error {
-                errorCompletion(error)
-                return
-            }
-
-            if let data = data {
-                let jsonDecoder = JSONDecoder.init()
-
-                do {
-                    let movies = try jsonDecoder.decode(T.self, from: data)
-                    sucessCompletion(movies)
-                } catch {
-                    errorCompletion(error)
-                }
-            } else {
-                errorCompletion(nil)
-            }
-        }.resume()
+        if let apiKey = tmdbAtributtes.apiKey,
+           let baseUrl = tmdbAtributtes.baseUrl.normal,
+           let imageBaseUrl = tmdbAtributtes.baseUrl.image {
+            self.credentials = PUTMDBCredentials.init(
+                withApiKey: apiKey,
+                baseUrl: baseUrl,
+                andImageBaseUrl: imageBaseUrl
+            )
+        }
     }
 
     /// Get upcoming movies from the API
@@ -70,8 +43,8 @@ struct PUTMDBService {
         errorCompletion: @escaping (Error?) -> Void) {
 
         guard let pageNumber = pageNumber,
-              let baseUrl = self.baseUrl,
-              let apiKey = self.apiKey else {
+              let baseUrl = self.credentials?.baseUrl,
+              let apiKey = self.credentials?.apiKey else {
             errorCompletion(nil)
             return
         }
@@ -85,7 +58,8 @@ struct PUTMDBService {
                                                 )
 
         if let url = URL.init(string: upComingStringURL) {
-            dataTask(fromURL: url, sucessCompletion: sucessCompletion, errorCompletion: errorCompletion)
+            let modelQuery = PUTMDBModelQuery<Page>()
+            modelQuery.run(fromURL: url, sucessCompletion: sucessCompletion, errorCompletion: errorCompletion)
         } else {
             errorCompletion(nil)
         }
@@ -103,8 +77,8 @@ struct PUTMDBService {
         errorCompletion: @escaping (Error?) -> Void) {
 
         guard let pageNumber = pageNumber,
-            let baseUrl = self.baseUrl,
-            let apiKey = self.apiKey else {
+            let baseUrl = self.credentials?.baseUrl,
+            let apiKey = self.credentials?.apiKey else {
                 errorCompletion(nil)
                 return
         }
@@ -118,7 +92,9 @@ struct PUTMDBService {
                                 )
 
         if let url = URL.init(string: upComingStringURL) {
-            dataTask(fromURL: url, sucessCompletion: sucessCompletion, errorCompletion: errorCompletion)
+
+            let modelQuery = PUTMDBModelQuery<Page>()
+            modelQuery.run(fromURL: url, sucessCompletion: sucessCompletion, errorCompletion: errorCompletion)
         } else {
             errorCompletion(nil)
         }
@@ -133,8 +109,8 @@ struct PUTMDBService {
         sucessCompletion: @escaping ([Genre]) -> Void,
         errorCompletion: @escaping (Error?) -> Void) {
 
-        guard let baseUrl = self.baseUrl,
-              let apiKey = self.apiKey else {
+        guard let baseUrl = self.credentials?.baseUrl,
+              let apiKey = self.credentials?.apiKey else {
                 errorCompletion(nil)
                 return
         }
@@ -142,7 +118,9 @@ struct PUTMDBService {
         let genresStringURL = PUTTMDBEndPoint.Genre.allGenres.with(baseURL: baseUrl, andApiKey: apiKey)
 
         if let url = URL.init(string: genresStringURL) {
-            dataTask(fromURL: url, sucessCompletion: { (genreDictionary: [String: [Genre]]) in
+
+            let modelQuery = PUTMDBModelQuery<[String: [Genre]]>()
+            modelQuery.run(fromURL: url, sucessCompletion: { (genreDictionary :[String : [Genre]]) in
                 if let genres = genreDictionary["genres"] {
                     sucessCompletion(genres)
                 } else {
@@ -152,33 +130,6 @@ struct PUTMDBService {
         } else {
             errorCompletion(nil)
         }
-    }
-
-    /// Get a image from a given URL
-    ///
-    /// - Parameters:
-    ///   - url: the url
-    ///   - sucessCompletion: sucess completion
-    ///   - errorCompletion: error completion
-    func image(
-        fromURL url: URL,
-        sucessCompletion: @escaping (UIImage) -> Void,
-        errorCompletion: @escaping (Error?) -> Void) {
-
-        URLSession.shared.downloadTask(with: url) { (url, _, error) in
-            if let error = error {
-                errorCompletion(error)
-                return
-            }
-
-            if let imageUrl = url,
-               let image = try? UIImage.init(url: imageUrl),
-               let safeImage = image {
-                sucessCompletion(safeImage)
-            } else {
-                errorCompletion(nil)
-            }
-        }.resume()
     }
 
     /// Get a movie poster image from the API. First a preview image is loaded and sent to the progress completion, after that
@@ -191,18 +142,12 @@ struct PUTMDBService {
     func image(
         fromMovie movie: Movie,
         withID id: Int?,
-        progressCompletion: @escaping (UIImage, Int?) -> Void,
+        progressCompletion: @escaping (UIImage) -> Void,
         errorCompletion: @escaping (Error?) -> Void) {
 
-        guard let imageBaseUrl = self.imageBaseUrl,
+        guard let imageBaseUrl = self.credentials?.imageBaseUrl,
               let imagePath = movie.posterPath else {
             errorCompletion(nil)
-            return
-        }
-
-        /// the image is already in the cache
-        if let movieImage = cacheService.get(imageWithKey: imagePath) {
-            progressCompletion(movieImage, id)
             return
         }
 
@@ -210,26 +155,16 @@ struct PUTMDBService {
         let imageStringUrl = PUTTMDBEndPoint.Image.bigImage.with(imageBaseURL: imageBaseUrl, andImageName: imagePath)
 
         if let previewImageUrl = URL.init(string: previewImageStringUrl),
-           let detailtImageUrl = URL.init(string: imageStringUrl) {
+           let detailImageUrl = URL.init(string: imageStringUrl) {
 
-            /// get the preview image
-            image(fromURL: previewImageUrl, sucessCompletion: { (previewImage) in
+            let imageQuery = PUTMDBPreviewableImageQuery.init()
 
-                progressCompletion(previewImage, id)
-
-                /// the the detail image
-                self.image(fromURL: detailtImageUrl, sucessCompletion: { (detailImage) in
-
-                    /// save the detail image to the image cache
-                    self.cacheService.add(image: detailImage, withKey: imagePath)
-                    progressCompletion(detailImage, id)
-
-                }, errorCompletion: { (error) in
-                    errorCompletion(error)
-                })
-            }, errorCompletion: { (error) in
-                errorCompletion(error)
-            })
+            imageQuery.run(
+                fromPreviewURL: previewImageUrl,
+                imageUrl: detailImageUrl,
+                progressCompletion: progressCompletion,
+                errorCompletion: errorCompletion
+            )
         } else {
             errorCompletion(nil)
         }
