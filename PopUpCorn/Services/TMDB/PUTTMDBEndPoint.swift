@@ -33,20 +33,29 @@ struct PUTTMDBEndPoint {
     enum Movie: String {
         case upComing = "movie/upcoming"
         case popular = "movie/popular"
+        case search = "search/movie"
 
         func with(
             baseURL: String,
             pageNumber: String,
             language: String = "en-US",
+            query: String? = nil,
             andApiKey apiKey: String) -> String {
 
             var urlString = "\(baseURL)\(self.rawValue)"
 
-            PUTTMDBEndPoint.insert(parameters: [
+            var paramenters = [
                 "api_key": apiKey,
                 "language": language,
                 "page": pageNumber
-                ], inStringURL: &urlString)
+            ]
+
+            if let queryString = query {
+                paramenters["query"] = queryString
+                paramenters["include_adult"] = "false"
+            }
+
+            PUTTMDBEndPoint.insert(parameters: paramenters, inStringURL: &urlString)
             return urlString
         }
     }

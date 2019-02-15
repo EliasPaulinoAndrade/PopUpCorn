@@ -24,7 +24,7 @@ class UpComingMoviesViewController: UIViewController {
         self.addChild(movieListViewController, inView: self.view)
 
         formatNavigationBar()
-        requestMovieList()
+        requestInitialMovieList()
     }
 
     func formatNavigationBar() {
@@ -41,7 +41,7 @@ class UpComingMoviesViewController: UIViewController {
         navigationController?.pushViewController(searchMoviesViewControler, animated: true)
     }
 
-    func requestMovieList() {
+    func requestInitialMovieList() {
         tmdbService.upComingMovies(
             sucessCompletion: { (moviePage) in
                 self.moviePage = moviePage
@@ -57,8 +57,28 @@ class UpComingMoviesViewController: UIViewController {
 }
 
 extension UpComingMoviesViewController: MovieListViewControllerDelegate {
+
     func movies(_ movieList: MovieListViewController) -> [Movie] {
         return moviePage?.movies ?? []
+    }
+
+    func needLoadMoreMovies(_ movieList: MovieListViewController) {
+        guard let currentPageNumber = moviePage?.number else {
+            return
+        }
+
+        tmdbService.upComingMovies(inPageNumber: currentPageNumber, sucessCompletion: { (page) in
+
+            self.moviePage?.movies.append(contentsOf: page.movies)
+            self.moviePage?.number = currentPageNumber + 1
+
+            DispatchQueue.main.async {
+                self.movieListViewController.reloadData()
+            }
+
+            }, errorCompletion: { (_) in
+
+        })
     }
 
     func imageForMovie(_ movieList: MovieListViewController, atPosition position: Int, completion: @escaping (UIImage?) -> Void) {

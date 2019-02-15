@@ -31,6 +31,36 @@ struct PUTMDBService {
         }
     }
 
+    func searchMovies(inPageNumber pageNumber: Int? = 1,
+                      withStringQuery stringQuery: String,
+                      sucessCompletion: @escaping (Page) -> Void,
+                      errorCompletion: @escaping (Error?) -> Void) {
+
+        guard let pageNumber = pageNumber,
+            let baseUrl = self.credentials?.baseUrl,
+            let apiKey = self.credentials?.apiKey else {
+
+                errorCompletion(nil)
+                return
+        }
+
+        let upComingStringURL = PUTTMDBEndPoint.Movie
+                                               .search
+                                               .with(
+                                                    baseURL: baseUrl,
+                                                    pageNumber: "\(pageNumber)",
+                                                    query: stringQuery,
+                                                    andApiKey: apiKey
+                                                )
+
+        if let url = URL.init(string: upComingStringURL) {
+            let modelQuery = PUTMDBModelQuery<Page>()
+            modelQuery.run(fromURL: url, sucessCompletion: sucessCompletion, errorCompletion: errorCompletion)
+        } else {
+            errorCompletion(nil)
+        }
+    }
+
     /// Get upcoming movies from the API
     ///
     /// - Parameters:
@@ -45,6 +75,7 @@ struct PUTMDBService {
         guard let pageNumber = pageNumber,
               let baseUrl = self.credentials?.baseUrl,
               let apiKey = self.credentials?.apiKey else {
+
             errorCompletion(nil)
             return
         }

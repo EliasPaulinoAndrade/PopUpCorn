@@ -89,6 +89,16 @@ extension MovieListViewController: UICollectionViewDelegateFlowLayout, UICollect
             return CGSize.init(width: cellWidth, height: cellHeight)
         }
     }
+
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        guard let moviesCount = delegate?.movies(self).count else {
+            return
+        }
+
+        if indexPath.row == (moviesCount - 2) {
+            delegate?.needLoadMoreMovies(self)
+        }
+    }
 }
 
 extension MovieListViewController: PUToggleButtonViewDelegate {
