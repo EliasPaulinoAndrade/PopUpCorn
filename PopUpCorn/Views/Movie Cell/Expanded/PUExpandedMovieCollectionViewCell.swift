@@ -35,4 +35,8 @@ class PUExpandedMovieCollectionViewCell: UICollectionViewCell, PUMovieCollection
     func set(image: UIImage?) {
         posterImageView.image = image
     }
+
+    func set(genre: String?) {
+        genresLabel.text = genre
+    }
 }

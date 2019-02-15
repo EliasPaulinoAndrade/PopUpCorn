@@ -98,6 +98,31 @@ extension UpComingMoviesViewController: MovieListViewControllerDelegate {
             }
         )
     }
+
+    func genresForMovie(_ movieList: MovieListViewController, atPosition position: Int, completion: @escaping (String) -> Void) {
+
+        guard let movie = self.moviePage?.movies[position] else {
+            completion(String())
+            return
+        }
+
+        tmdbService.genres(sucessCompletion: { (genres) in
+            let genreDict = genres.genreDictionary()
+            var genresString = String()
+
+            for genreID in movie.genreIDs {
+                if let genreName = genreDict[genreID]?.name {
+                    genresString.append("\(genreName) ")
+                }
+            }
+
+            completion(genresString)
+
+        }, errorCompletion: { (_) in
+
+            completion(String())
+        })
+    }
 }
 
 private extension UpComingMoviesViewController {

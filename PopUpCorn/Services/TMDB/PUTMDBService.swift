@@ -13,7 +13,7 @@ import UIKit
 struct PUTMDBService {
     var credentials: PUTMDBCredentials?
 
-    private var genres: [Genre]?
+    var data = PUTMDBServiceData.shared
 
     /// initialize the service getting the api atributtes from TMDB plist
     init() {
@@ -146,6 +146,11 @@ struct PUTMDBService {
                 return
         }
 
+        if let genres = self.data.genres {
+            sucessCompletion(genres)
+            return
+        }
+
         let genresStringURL = PUTTMDBEndPoint.Genre.allGenres.with(baseURL: baseUrl, andApiKey: apiKey)
 
         if let url = URL.init(string: genresStringURL) {
@@ -153,6 +158,8 @@ struct PUTMDBService {
             let modelQuery = PUTMDBModelQuery<[String: [Genre]]>()
             modelQuery.run(fromURL: url, sucessCompletion: { (genreDictionary :[String : [Genre]]) in
                 if let genres = genreDictionary["genres"] {
+
+                    self.data.genres = genres
                     sucessCompletion(genres)
                 } else {
                     errorCompletion(nil)

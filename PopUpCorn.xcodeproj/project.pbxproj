@@ -50,6 +50,8 @@
 		E38268F82216330A001C792E /* PUTMDBImageQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38268F72216330A001C792E /* PUTMDBImageQuery.swift */; };
 		E38268FA22163449001C792E /* PUTMDBCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38268F922163449001C792E /* PUTMDBCredentials.swift */; };
 		E38268FD22163C63001C792E /* PUTMDBPreviewableImageQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38268FC22163C63001C792E /* PUTMDBPreviewableImageQuery.swift */; };
+		E38268FF221657AB001C792E /* PUTMDBServiceData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38268FE221657AB001C792E /* PUTMDBServiceData.swift */; };
+		E3826901221659E7001C792E /* Array+genreDict.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3826900221659E7001C792E /* Array+genreDict.swift */; };
 		F61E6669CE03F25FC7476E66 /* Pods_PopUpCorn.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A41B9FC352158C247928E54 /* Pods_PopUpCorn.framework */; };
 /* End PBXBuildFile section */
 
@@ -126,6 +128,8 @@
 		E38268F72216330A001C792E /* PUTMDBImageQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PUTMDBImageQuery.swift; sourceTree = "<group>"; };
 		E38268F922163449001C792E /* PUTMDBCredentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PUTMDBCredentials.swift; sourceTree = "<group>"; };
 		E38268FC22163C63001C792E /* PUTMDBPreviewableImageQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PUTMDBPreviewableImageQuery.swift; sourceTree = "<group>"; };
+		E38268FE221657AB001C792E /* PUTMDBServiceData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PUTMDBServiceData.swift; sourceTree = "<group>"; };
+		E3826900221659E7001C792E /* Array+genreDict.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+genreDict.swift"; sourceTree = "<group>"; };
 		FC65AD63EA2D65B43D250D38 /* Pods_PopUpCornUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PopUpCornUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -251,6 +255,7 @@
 			children = (
 				E38268FB22163951001C792E /* Queries */,
 				E3374C732212239700D2C02C /* PUTMDBService.swift */,
+				E38268FE221657AB001C792E /* PUTMDBServiceData.swift */,
 				E3374C8D221253F000D2C02C /* PUTTMDBEndPoint.swift */,
 				E3374C752212240600D2C02C /* tmdb.plist */,
 				E38268F922163449001C792E /* PUTMDBCredentials.swift */,
@@ -274,6 +279,7 @@
 				E3374C982213844400D2C02C /* UIImage+initFromURL.swift */,
 				E3374CA1221390D300D2C02C /* UIColor+pucolors.swift */,
 				E38268F122161E0F001C792E /* UIViewController+addChild.swift */,
+				E3826900221659E7001C792E /* Array+genreDict.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -643,7 +649,9 @@
 				E3374C9522137EEA00D2C02C /* PUCacheCenter.swift in Sources */,
 				E38268FD22163C63001C792E /* PUTMDBPreviewableImageQuery.swift in Sources */,
 				E3374CBB22149FEC00D2C02C /* PUBaseZibOwnerView.swift in Sources */,
+				E3826901221659E7001C792E /* Array+genreDict.swift in Sources */,
 				E38268EF22161D1B001C792E /* SearchMoviesViewController.swift in Sources */,
+				E38268FF221657AB001C792E /* PUTMDBServiceData.swift in Sources */,
 				E38268EA22160823001C792E /* PUMovieCollectionViewCellProtocol.swift in Sources */,
 				E3374C7C2212248F00D2C02C /* PUListType.swift in Sources */,
 				E38268E52216022F001C792E /* PUNormalMovieCollectionViewCell.swift in Sources */,

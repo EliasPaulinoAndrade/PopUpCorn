@@ -45,6 +45,7 @@ class SearchMoviesViewController: UIViewController {
 }
 
 extension SearchMoviesViewController: MovieListViewControllerDelegate {
+    
     func movies(_ movieList: MovieListViewController) -> [Movie] {
         return moviesPage?.movies ?? []
     }
@@ -86,6 +87,10 @@ extension SearchMoviesViewController: MovieListViewControllerDelegate {
         }, errorCompletion: { (_) in
 
         })
+    }
+    
+    func genresForMovie(_ movieList: MovieListViewController, atPosition position: Int, completion: @escaping (String) -> Void) {
+        
     }
 }
 

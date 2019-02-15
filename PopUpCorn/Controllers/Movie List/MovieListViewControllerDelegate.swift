@@ -17,5 +17,10 @@ protocol MovieListViewControllerDelegate: AnyObject {
         atPosition position: Int,
         completion: @escaping (UIImage?) -> Void)
 
+    func genresForMovie(
+        _ movieList: MovieListViewController,
+        atPosition position: Int,
+        completion: @escaping (String) -> Void)
+
     func needLoadMoreMovies(_ movieList: MovieListViewController)
 }

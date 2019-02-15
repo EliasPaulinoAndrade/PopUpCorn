@@ -65,8 +65,20 @@ extension MovieListViewController: UICollectionViewDelegateFlowLayout, UICollect
             delegate?.imageForMovie(self,
                 atPosition: indexPath.row,
                 completion: { (movieImage) in
+                    DispatchQueue.main.async {
+                        movieCell.set(image: movieImage)
+                    }
+                }
+            )
+        }
 
-                    movieCell.set(image: movieImage)
+        if let expandedMovieCell = cell as? PUExpandedMovieCollectionViewCell {
+            delegate?.genresForMovie(self,
+                 atPosition: indexPath.row,
+                 completion: { (genresString) in
+                    DispatchQueue.main.async {
+                        expandedMovieCell.set(genre: genresString)
+                    }
                 }
             )
         }
