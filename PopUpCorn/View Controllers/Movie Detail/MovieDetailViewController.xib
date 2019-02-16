@@ -45,7 +45,7 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zcC-TL-HVR">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="456.5"/>
                             <subviews>
-                                <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" image="placeholderImage" translatesAutoresizingMaskIntoConstraints="NO" id="CHy-sN-ogL" customClass="PUTMDBImageView" customModule="PopUpCorn" customModuleProvider="target">
+                                <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="CHy-sN-ogL" customClass="PUTMDBImageView" customModule="PopUpCorn" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="350"/>
                                     <color key="backgroundColor" name="red"/>
                                     <constraints>
@@ -155,7 +155,7 @@
                 <constraint firstItem="9xR-sh-tFp" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="hFP-xJ-XBt"/>
                 <constraint firstItem="9xR-sh-tFp" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="hHB-2A-R4A"/>
                 <constraint firstItem="l7Q-sl-zDg" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="vK9-C3-ULm"/>
-                <constraint firstItem="Iyx-sj-fhY" firstAttribute="top" secondItem="nXj-94-PgL" secondAttribute="centerY" id="zyt-Dk-2Ng"/>
+                <constraint firstItem="Iyx-sj-fhY" firstAttribute="top" secondItem="nXj-94-PgL" secondAttribute="centerY" priority="999" id="zyt-Dk-2Ng"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <point key="canvasLocation" x="138.40000000000001" y="152.47376311844079"/>

@@ -104,10 +104,10 @@ extension SearchMoviesViewController: UISearchControllerDelegate, UISearchBarDel
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let searchText = searchBar.text,
             !searchText.isEmpty else {
-                
+
                 return
         }
-        
+
         movieRequesterController.resetPagination()
         movieListViewController.reloadData()
         movieRequesterController.needMoreMovies()

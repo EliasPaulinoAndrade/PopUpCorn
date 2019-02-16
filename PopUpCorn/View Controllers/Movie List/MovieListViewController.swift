@@ -39,6 +39,14 @@ class MovieListViewController: UIViewController {
     func reloadData() {
         self.moviesCollectionView.reloadData()
     }
+
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        moviesCollectionView.collectionViewLayout.invalidateLayout()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        moviesCollectionView.collectionViewLayout.invalidateLayout()
+    }
 }
 
 extension MovieListViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
@@ -73,15 +81,29 @@ extension MovieListViewController: UICollectionViewDelegateFlowLayout, UICollect
 
         switch state {
         case .expanded:
-            let cellWidth = collectionView.bounds.width
-            let cellHeight = cellWidth * 1.1
+            if view.isStanding {
+                let cellWidth = collectionView.bounds.width
+                let cellHeight = cellWidth * 1.1
+                return CGSize.init(width: cellWidth, height: cellHeight)
+            } else {
+                let cellWidth = collectionView.bounds.width/2 - 10
+                let cellHeight = cellWidth * 1.1
 
-            return CGSize.init(width: cellWidth, height: cellHeight)
+                return CGSize.init(width: cellWidth, height: cellHeight)
+            }
+
         case .normal:
-            let cellWidth = collectionView.bounds.width/3 - 10
-            let cellHeight = cellWidth * 1.7
+            if view.isStanding {
+                let cellWidth = collectionView.bounds.width/3 - 10
+                let cellHeight = cellWidth * 1.7
 
-            return CGSize.init(width: cellWidth, height: cellHeight)
+                return CGSize.init(width: cellWidth, height: cellHeight)
+            } else {
+                let cellWidth = collectionView.bounds.width/5 - 10
+                let cellHeight = cellWidth * 1.7
+
+                return CGSize.init(width: cellWidth, height: cellHeight)
+            }
         }
     }
 
@@ -110,18 +132,10 @@ extension MovieListViewController: PUToggleButtonViewDelegate {
             self.state = .normal
         }
 
-        guard let firstVisibleCell = self.moviesCollectionView.visibleCells.first else {
-            self.reloadData()
-            return
-        }
-
-        let firstCellIndex = self.moviesCollectionView.indexPath(for: firstVisibleCell)
-
         self.reloadData()
 
-        if let oldVisibleCellIndex = firstCellIndex {
-            self.moviesCollectionView.scrollToItem(at: oldVisibleCellIndex, at: .top, animated: true)
-        }
+        let firstCellIndexPath = IndexPath.init(row: 0, section: 0)
+        self.moviesCollectionView.scrollToItem(at: firstCellIndexPath, at: .top, animated: false)
     }
 
     func imageForFirstButton() -> UIImage? {
@@ -134,10 +148,6 @@ extension MovieListViewController: PUToggleButtonViewDelegate {
 
     func tintColor() -> UIColor {
         return UIColor.puRed
-    }
-    
-    private func firstVisibleCellInCollectionView() {
-        
     }
 }
 

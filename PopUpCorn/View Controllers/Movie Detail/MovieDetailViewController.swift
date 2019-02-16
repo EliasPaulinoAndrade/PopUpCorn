@@ -15,7 +15,13 @@ class MovieDetailViewController: UIViewController {
     @IBOutlet weak var releaseLabel: UILabel!
     @IBOutlet weak var genresLabel: UILabel!
     @IBOutlet weak var overviewLabel: UILabel!
-    @IBOutlet weak var headerView: UIView!
+    @IBOutlet weak var headerView: UIView! {
+        didSet {
+            headerView.clipsToBounds = true
+            headerView.layer.masksToBounds = false
+            headerView.layer.cornerRadius = Dimens.Radius.shortCorner
+        }
+    }
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var imageHeightConstraint: NSLayoutConstraint!
 
@@ -40,6 +46,23 @@ class MovieDetailViewController: UIViewController {
         self.detailImageView.image = nil
         navigationController?.navigationBar.prefersLargeTitles = false
         formatMovie()
+        formatScreenByOrientation()
+    }
+
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        if view.isStanding {
+            scrollView.contentOffset.y = Constants.imageDefaultHeight
+        } else {
+            scrollView.contentOffset.y = 0.0
+        }
+    }
+
+    func formatScreenByOrientation() {
+        if view.isStanding {
+            scrollView.contentOffset.y = 0.0
+        } else {
+            scrollView.contentOffset.y = Constants.imageDefaultHeight
+        }
     }
 
     func formatMovie() {
