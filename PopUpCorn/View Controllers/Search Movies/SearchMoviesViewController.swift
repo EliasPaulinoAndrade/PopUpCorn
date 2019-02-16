@@ -40,13 +40,19 @@ class SearchMoviesViewController: UIViewController {
         self.movieListViewController.delegate = self
         self.movieRequesterController.delegate = self
         self.errorPresenterController.reloadDelegate = self
+    }
 
+    override func viewWillAppear(_ animated: Bool) {
         formatNavigationBar()
     }
 
     func formatNavigationBar() {
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
+        searchController.becomeFirstResponder()
+        searchController.searchBar.becomeFirstResponder()
+        searchController.searchBar.resignFirstResponder()
+        searchController.resignFirstResponder()
     }
 }
 
@@ -92,6 +98,7 @@ extension SearchMoviesViewController: MovieListViewControllerDelegate {
         let detailableMovie = DetailableMovie.init(title: movieTitle, release: movieRelease, image: movieImagePath, genres: nil, overview: movieOverview)
 
         movieDetailViewController.movie = detailableMovie
+        searchController.isActive = false
         navigationController?.pushViewController(movieDetailViewController, animated: true)
     }
 }
@@ -110,7 +117,7 @@ extension SearchMoviesViewController: UISearchResultsUpdating, UISearchControlle
     }
 
     func willPresentSearchController(_ searchController: UISearchController) {
-
+        
     }
 
     func didPresentSearchController(_ searchController: UISearchController) {

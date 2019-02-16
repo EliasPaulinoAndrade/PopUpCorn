@@ -32,8 +32,4 @@ class PUNormalMovieCollectionViewCell: UICollectionViewCell, PUMovieCollectionVi
             movieImageView.setImage(fromPath: moviePosterPath, placeHolderImage: UIImage.init())
         }
     }
-
-    func set(image: UIImage?) {
-        movieImageView.image = image
-    }
 }

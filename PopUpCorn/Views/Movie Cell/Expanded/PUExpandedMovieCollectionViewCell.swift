@@ -49,10 +49,6 @@ class PUExpandedMovieCollectionViewCell: UICollectionViewCell, PUMovieCollection
 
         genresRequesterController.needGenres(withIDs: movie.genresIDs)
     }
-
-    func set(genre: String?) {
-        genresLabel.text = genre
-    }
 }
 
 extension PUExpandedMovieCollectionViewCell: GenreRequesterControllerDelegate {
