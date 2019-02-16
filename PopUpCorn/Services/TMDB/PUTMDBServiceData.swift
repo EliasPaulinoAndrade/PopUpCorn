@@ -13,4 +13,8 @@ class PUTMDBServiceData {
     var genres: [Genre]?
 
     private init() { }
+
+    func invalidateGenges() {
+        self.genres = nil
+    }
 }
