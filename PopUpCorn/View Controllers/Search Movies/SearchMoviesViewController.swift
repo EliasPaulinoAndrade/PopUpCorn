@@ -13,8 +13,7 @@ import UIKit
 class SearchMoviesViewController: UIViewController {
 
     private var movieListViewController = MovieListViewController.init()
-    private var tmdbService = PUTMDBService.init()
-    private var moviesPage: Page?
+    private var movieRequesterController = MovieRequesterController.init()
 
     private lazy var searchController: UISearchController = {
         let searchController = UISearchController.init(searchResultsController: nil)
@@ -34,6 +33,7 @@ class SearchMoviesViewController: UIViewController {
         self.title = Constants.title
         self.addChild(movieListViewController, inView: self.view)
         self.movieListViewController.delegate = self
+        self.movieRequesterController.delegate = self
 
         formatNavigationBar()
     }
@@ -47,46 +47,11 @@ class SearchMoviesViewController: UIViewController {
 extension SearchMoviesViewController: MovieListViewControllerDelegate {
 
     func movies(_ movieList: MovieListViewController) -> [Movie] {
-        return moviesPage?.movies ?? []
-    }
-
-    func imageForMovie(_ movieList: MovieListViewController, atPosition position: Int, completion: @escaping (UIImage?) -> Void) {
-        guard let movie = self.moviesPage?.movies[position] else {
-            return
-        }
-
-        tmdbService.image(fromMovie: movie,
-            progressCompletion: { (movieImage) in
-                DispatchQueue.main.async {
-                    completion(movieImage)
-                }
-            },
-            errorCompletion: { (_) in
-                completion(nil)
-            }
-        )
+        return movieRequesterController.movies
     }
 
     func needLoadMoreMovies(_ movieList: MovieListViewController) {
-        guard let currentPageNumber = moviesPage?.number,
-              let searchText = searchController.searchBar.text,
-              !searchText.isEmpty else {
-
-            return
-        }
-
-        tmdbService.searchMovies(inPageNumber: currentPageNumber, withStringQuery: searchText, sucessCompletion: { (page) in
-
-            self.moviesPage?.movies.append(contentsOf: page.movies)
-            self.moviesPage?.number = currentPageNumber + 1
-
-            DispatchQueue.main.async {
-                self.movieListViewController.reloadData()
-            }
-
-        }, errorCompletion: { (_) in
-
-        })
+        movieRequesterController.needMoreMovies()
     }
 
     func genresForMovie(_ movieList: MovieListViewController, atPosition position: Int, completion: @escaping (String) -> Void) {
@@ -97,22 +62,8 @@ extension SearchMoviesViewController: MovieListViewControllerDelegate {
 extension SearchMoviesViewController: UISearchResultsUpdating, UISearchControllerDelegate, UISearchBarDelegate {
     func updateSearchResults(for searchController: UISearchController) {
 
-        guard let searchText = searchController.searchBar.text,
-              !searchText.isEmpty else {
-
-            return
-        }
-
-        tmdbService.searchMovies(withStringQuery: searchText, sucessCompletion: { (page) in
-
-            self.moviesPage = page
-            DispatchQueue.main.async {
-                self.movieListViewController.reloadData()
-            }
-
-        }, errorCompletion: { (_) in
-
-        })
+        movieRequesterController.resetPagination()
+        movieRequesterController.needMoreMovies()
     }
 
     func willPresentSearchController(_ searchController: UISearchController) {
@@ -125,6 +76,26 @@ extension SearchMoviesViewController: UISearchResultsUpdating, UISearchControlle
 
     func didDismissSearchController(_ searchController: UISearchController) {
 
+    }
+}
+
+extension SearchMoviesViewController: MovieRequesterControllerSearchDelegate {
+    func moviesHaveArrived(_ requester: MovieRequesterController) {
+        self.movieListViewController.reloadData()
+    }
+
+    func moviesEndPoint(_ requester: MovieRequesterController) -> PUTTMDBEndPoint.Movie {
+        return .search
+    }
+
+    func queryString(_ requester: MovieRequesterController) -> String? {
+        guard let searchText = searchController.searchBar.text,
+            !searchText.isEmpty else {
+
+            return nil
+        }
+
+        return searchText
     }
 }
 

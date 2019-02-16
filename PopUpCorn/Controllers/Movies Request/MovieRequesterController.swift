@@ -11,41 +11,47 @@ import Foundation
 class MovieRequesterController {
 
     weak var delegate: MovieRequesterControllerDelegate?
-    
+
     var numberOfMovies: Int {
         return self.moviePage?.movies.count ?? 0
     }
-    
+
     var movies: [Movie] {
         return moviePage?.movies ?? []
     }
-    
+
     private var tmdbService = PUTMDBService.init()
     private var moviePage: Page?
 
     func needMoreMovies() {
 
-        let pageNumber = self.moviePage?.nextPageNumber ?? 1
+        guard let moviesEndPoint = delegate?.moviesEndPoint(self) else {
+            return
+        }
 
         tmdbService.movies(
-            ofEndPoint: PUTTMDBEndPoint.Movie.upComing,
-            inPageNumber: pageNumber,
-            sucessCompletion: { (moviePage) in
+            ofEndPoint: moviesEndPoint,
+            inPageNumber: moviePage?.nextPageNumber ?? 1,
+            withStringQuery: delegate?.asSearchDelegate?.queryString(self),
+            sucessCompletion: { (newMoviePage) in
 
                 if self.moviePage != nil {
-                    self.moviePage?.movies.append(contentsOf: moviePage.movies)
-                    self.moviePage?.number = pageNumber
+                    self.moviePage?.conformTo(page: newMoviePage)
                 } else {
-                    self.moviePage = moviePage
+                    self.moviePage = newMoviePage
                 }
 
                 DispatchQueue.main.async {
                     self.delegate?.moviesHaveArrived(self)
                 }
             },
-            errorCompletion: { (_) in
+            errorCompletion: { (error) in
 
             }
         )
+    }
+
+    func resetPagination() {
+        moviePage = nil
     }
 }
