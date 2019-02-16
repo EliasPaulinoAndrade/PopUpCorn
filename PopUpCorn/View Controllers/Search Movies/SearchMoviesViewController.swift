@@ -19,7 +19,6 @@ class SearchMoviesViewController: UIViewController {
 
     private lazy var searchController: UISearchController = {
         let searchController = UISearchController.init(searchResultsController: nil)
-        searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "\(Constants.searchBarPlaceHolder)"
         searchController.definesPresentationContext = true
@@ -101,14 +100,14 @@ extension SearchMoviesViewController: MovieListViewControllerDelegate {
     }
 }
 
-extension SearchMoviesViewController: UISearchResultsUpdating, UISearchControllerDelegate, UISearchBarDelegate {
-    func updateSearchResults(for searchController: UISearchController) {
-        guard let searchText = searchController.searchBar.text,
+extension SearchMoviesViewController: UISearchControllerDelegate, UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let searchText = searchBar.text,
             !searchText.isEmpty else {
-
+                
                 return
         }
-
+        
         movieRequesterController.resetPagination()
         movieListViewController.reloadData()
         movieRequesterController.needMoreMovies()

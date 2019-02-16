@@ -288,6 +288,13 @@
 			path = "Radius View";
 			sourceTree = "<group>";
 		};
+		E32995852218B05A002AA3E3 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
 		E3374C372212220600D2C02C = {
 			isa = PBXGroup;
 			children = (
@@ -349,6 +356,7 @@
 		E3374C71221222DA00D2C02C /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				E32995852218B05A002AA3E3 /* CoreData */,
 				E3374C9122137DBC00D2C02C /* Cache */,
 				E3374C782212245D00D2C02C /* Plist */,
 				E3374C722212231900D2C02C /* TMDB */,

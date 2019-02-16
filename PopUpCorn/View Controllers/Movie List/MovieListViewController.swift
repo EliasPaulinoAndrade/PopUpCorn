@@ -110,7 +110,18 @@ extension MovieListViewController: PUToggleButtonViewDelegate {
             self.state = .normal
         }
 
+        guard let firstVisibleCell = self.moviesCollectionView.visibleCells.first else {
+            self.reloadData()
+            return
+        }
+
+        let firstCellIndex = self.moviesCollectionView.indexPath(for: firstVisibleCell)
+
         self.reloadData()
+
+        if let oldVisibleCellIndex = firstCellIndex {
+            self.moviesCollectionView.scrollToItem(at: oldVisibleCellIndex, at: .top, animated: true)
+        }
     }
 
     func imageForFirstButton() -> UIImage? {
@@ -123,6 +134,10 @@ extension MovieListViewController: PUToggleButtonViewDelegate {
 
     func tintColor() -> UIColor {
         return UIColor.puRed
+    }
+    
+    private func firstVisibleCellInCollectionView() {
+        
     }
 }
 
