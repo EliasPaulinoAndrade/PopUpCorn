@@ -24,6 +24,7 @@
 		E329957622186193002AA3E3 /* MovieDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E329957522186193002AA3E3 /* MovieDetailViewController.swift */; };
 		E329957A22187108002AA3E3 /* MovieDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E329957922187108002AA3E3 /* MovieDetailViewController.xib */; };
 		E329957C22187786002AA3E3 /* DetailableMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = E329957B22187786002AA3E3 /* DetailableMovie.swift */; };
+		E329958222188061002AA3E3 /* PURadiusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E329958122188061002AA3E3 /* PURadiusView.swift */; };
 		E3374C442212220600D2C02C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3374C432212220600D2C02C /* AppDelegate.swift */; };
 		E3374C4B2212220900D2C02C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3374C4A2212220900D2C02C /* Assets.xcassets */; };
 		E3374C4E2212220900D2C02C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3374C4C2212220900D2C02C /* LaunchScreen.storyboard */; };
@@ -117,6 +118,7 @@
 		E329957522186193002AA3E3 /* MovieDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewController.swift; sourceTree = "<group>"; };
 		E329957922187108002AA3E3 /* MovieDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieDetailViewController.xib; sourceTree = "<group>"; };
 		E329957B22187786002AA3E3 /* DetailableMovie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailableMovie.swift; sourceTree = "<group>"; };
+		E329958122188061002AA3E3 /* PURadiusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PURadiusView.swift; sourceTree = "<group>"; };
 		E3374C402212220600D2C02C /* PopUpCorn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PopUpCorn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3374C432212220600D2C02C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E3374C4A2212220900D2C02C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -276,6 +278,14 @@
 			path = "Movie Detail";
 			sourceTree = "<group>";
 		};
+		E329958022188049002AA3E3 /* Radius View */ = {
+			isa = PBXGroup;
+			children = (
+				E329958122188061002AA3E3 /* PURadiusView.swift */,
+			);
+			path = "Radius View";
+			sourceTree = "<group>";
+		};
 		E3374C372212220600D2C02C = {
 			isa = PBXGroup;
 			children = (
@@ -415,6 +425,7 @@
 		E3374C9A22138D3B00D2C02C /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				E329958022188049002AA3E3 /* Radius View */,
 				E3374CB222149D3200D2C02C /* Toggle Button */,
 				E3374CAE22149CC100D2C02C /* Movie Cell */,
 				E3374CB922149FBB00D2C02C /* defaults */,
@@ -815,6 +826,7 @@
 				E3374C9322137E5D00D2C02C /* PUCacheService.swift in Sources */,
 				E38268FA22163449001C792E /* PUTMDBCredentials.swift in Sources */,
 				E38268E822160577001C792E /* MovieListControllerState.swift in Sources */,
+				E329958222188061002AA3E3 /* PURadiusView.swift in Sources */,
 				E37C777D221722020075D8D8 /* UICollectionView+register.swift in Sources */,
 				E3374C442212220600D2C02C /* AppDelegate.swift in Sources */,
 				E3374CB822149EF100D2C02C /* PUToggleButtonView.swift in Sources */,

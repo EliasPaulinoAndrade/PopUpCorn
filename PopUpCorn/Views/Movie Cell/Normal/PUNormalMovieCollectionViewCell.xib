@@ -20,7 +20,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="270" height="337"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lc3-If-5Ir">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lc3-If-5Ir" customClass="PURadiusView" customModule="PopUpCorn" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="270" height="291"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SXT-GE-4Zz" customClass="PUTMDBImageView" customModule="PopUpCorn" customModuleProvider="target">

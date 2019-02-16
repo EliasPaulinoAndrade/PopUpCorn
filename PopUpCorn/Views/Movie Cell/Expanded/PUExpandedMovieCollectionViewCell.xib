@@ -20,7 +20,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="290" height="330"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZiB-N4-UP2">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZiB-N4-UP2" customClass="PURadiusView" customModule="PopUpCorn" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="290" height="330"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" image="placeHolderPopCorn" translatesAutoresizingMaskIntoConstraints="NO" id="ygf-yQ-zDM">
@@ -101,6 +101,7 @@
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="290" height="330"/>
             <connections>
+                <outlet property="containerView" destination="ZiB-N4-UP2" id="h7d-Ly-N3p"/>
                 <outlet property="genresLabel" destination="Qrp-kC-0pt" id="ctU-IR-jrP"/>
                 <outlet property="headerImageView" destination="kCU-6k-PG5" id="zbH-mj-wgV"/>
                 <outlet property="posterImageView" destination="m6k-w4-dNc" id="GJG-uv-hep"/>

@@ -26,7 +26,7 @@
             <rect key="frame" x="0.0" y="0.0" width="369" height="97"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WWZ-9n-OKG">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WWZ-9n-OKG" customClass="PURadiusView" customModule="PopUpCorn" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="0.0" width="184.5" height="97"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>

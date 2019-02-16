@@ -15,13 +15,7 @@ class MovieDetailViewController: UIViewController {
     @IBOutlet weak var releaseLabel: UILabel!
     @IBOutlet weak var genresLabel: UILabel!
     @IBOutlet weak var overviewLabel: UILabel!
-    @IBOutlet weak var headerView: UIView! {
-        didSet {
-            headerView.clipsToBounds = true
-            headerView.layer.masksToBounds = false
-            headerView.layer.cornerRadius = Dimens.Radius.shortCorner
-        }
-    }
+    @IBOutlet weak var headerView: UIView!
 
     var movie: DetailableMovie?
 

@@ -40,7 +40,7 @@
                                         <constraint firstAttribute="height" constant="350" id="hAZ-nx-kbh"/>
                                     </constraints>
                                 </imageView>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nXj-94-PgL">
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nXj-94-PgL" customClass="PURadiusView" customModule="PopUpCorn" customModuleProvider="target">
                                     <rect key="frame" x="10" y="314.5" width="355" height="71"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4XW-WN-Y6t">
