@@ -23,7 +23,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lc3-If-5Ir">
                         <rect key="frame" x="0.0" y="0.0" width="270" height="291"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SXT-GE-4Zz">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SXT-GE-4Zz" customClass="PUTMDBImageView" customModule="PopUpCorn" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="270" height="291"/>
                             </imageView>
                         </subviews>
@@ -56,7 +56,7 @@
             <size key="customSize" width="270" height="337"/>
             <connections>
                 <outlet property="containerView" destination="lc3-If-5Ir" id="YS3-XQ-N3g"/>
-                <outlet property="movieImageView" destination="SXT-GE-4Zz" id="no4-00-ele"/>
+                <outlet property="movieImageView" destination="SXT-GE-4Zz" id="HIg-GX-MzJ"/>
                 <outlet property="titleLabel" destination="AgT-GR-sRf" id="drW-hw-2Jm"/>
             </connections>
             <point key="canvasLocation" x="316.80000000000001" y="265.81709145427288"/>

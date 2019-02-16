@@ -26,4 +26,5 @@ struct Movie: Codable {
         case releaseDate = "release_date"
         case genreIDs = "genre_ids"
     }
+    
 }

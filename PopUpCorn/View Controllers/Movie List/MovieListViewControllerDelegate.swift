@@ -12,11 +12,6 @@ import UIKit
 protocol MovieListViewControllerDelegate: AnyObject {
     func movies(_ movieList: MovieListViewController) -> [Movie]
 
-    func imageForMovie(
-        _ movieList: MovieListViewController,
-        atPosition position: Int,
-        completion: @escaping (UIImage?) -> Void)
-
     func genresForMovie(
         _ movieList: MovieListViewController,
         atPosition position: Int,

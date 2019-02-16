@@ -14,6 +14,14 @@ struct Page: Codable {
     var totalOfPages: Int?
     var movies: [Movie]
 
+    var nextPageNumber: Int {
+        if let currentPageNumber = self.number {
+            return currentPageNumber + 1
+        }
+        
+        return 0
+    }
+
     enum CodingKeys: String, CodingKey {
         case movies = "results"
         case number = "page"

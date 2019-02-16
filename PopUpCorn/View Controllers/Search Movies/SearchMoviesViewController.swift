@@ -20,7 +20,7 @@ class SearchMoviesViewController: UIViewController {
         let searchController = UISearchController.init(searchResultsController: nil)
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "\(This.CONSTSearchBarPlaceHolder)"
+        searchController.searchBar.placeholder = "\(Constants.searchBarPlaceHolder)"
         searchController.definesPresentationContext = true
         searchController.delegate = self
         searchController.searchBar.delegate = self
@@ -31,7 +31,7 @@ class SearchMoviesViewController: UIViewController {
 
     override func viewDidLoad() {
 
-        self.title = This.CONSTTitle
+        self.title = Constants.title
         self.addChild(movieListViewController, inView: self.view)
         self.movieListViewController.delegate = self
 
@@ -45,7 +45,7 @@ class SearchMoviesViewController: UIViewController {
 }
 
 extension SearchMoviesViewController: MovieListViewControllerDelegate {
-    
+
     func movies(_ movieList: MovieListViewController) -> [Movie] {
         return moviesPage?.movies ?? []
     }
@@ -55,7 +55,7 @@ extension SearchMoviesViewController: MovieListViewControllerDelegate {
             return
         }
 
-        tmdbService.image(fromMovie: movie, withID: position,
+        tmdbService.image(fromMovie: movie,
             progressCompletion: { (movieImage) in
                 DispatchQueue.main.async {
                     completion(movieImage)
@@ -88,9 +88,9 @@ extension SearchMoviesViewController: MovieListViewControllerDelegate {
 
         })
     }
-    
+
     func genresForMovie(_ movieList: MovieListViewController, atPosition position: Int, completion: @escaping (String) -> Void) {
-        
+
     }
 }
 
@@ -109,7 +109,7 @@ extension SearchMoviesViewController: UISearchResultsUpdating, UISearchControlle
             DispatchQueue.main.async {
                 self.movieListViewController.reloadData()
             }
-        
+
         }, errorCompletion: { (_) in
 
         })
@@ -128,9 +128,7 @@ extension SearchMoviesViewController: UISearchResultsUpdating, UISearchControlle
     }
 }
 
-private extension SearchMoviesViewController {
-    typealias This = SearchMoviesViewController
-
-    static let CONSTTitle = "Search"
-    static let CONSTSearchBarPlaceHolder = "tap here"
+private enum Constants {
+    static let title = "Search"
+    static let searchBarPlaceHolder = "tap here"
 }

@@ -13,27 +13,26 @@ class PUExpandedMovieCollectionViewCell: UICollectionViewCell, PUMovieCollection
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var genresLabel: UILabel!
     @IBOutlet weak var releaseLabel: UILabel!
-    @IBOutlet weak var posterImageView: UIImageView!
+    @IBOutlet weak var posterImageView: PUTMDBImageView!
 
     override func awakeFromNib() {
         self.clipsToBounds = true
-        self.layer.cornerRadius = 15
+        self.layer.cornerRadius = Dimens.Radius.bigCorner
     }
 
     func setup(withMovie movie: Movie) {
-        titleLabel.text = movie.title
+        guard let movieReleaseDate = movie.releaseDate,
+            let moviePosterPath =  movie.posterPath else {
 
-        if let movieReleaseDateString = movie.releaseDate {
-            releaseLabel.text = "Release at \(movieReleaseDateString)"
-        } else {
             releaseLabel.isHidden = true
+            return
         }
-        posterImageView.image = nil
 
-    }
+        titleLabel.text = movie.title
+        releaseLabel.text = "Release at \(movieReleaseDate)"
 
-    func set(image: UIImage?) {
-        posterImageView.image = image
+        self.posterImageView.setImage(fromPath: moviePosterPath, placeHolderImage: UIImage.init())
+
     }
 
     func set(genre: String?) {
