@@ -14,6 +14,7 @@ class SearchMoviesViewController: UIViewController {
 
     private var movieListViewController = MovieListViewController.init()
     private var movieRequesterController = MovieRequesterController.init()
+    private var errorPresenterController = ErrorPresenterViewController.init()
 
     private lazy var searchController: UISearchController = {
         let searchController = UISearchController.init(searchResultsController: nil)
@@ -31,9 +32,13 @@ class SearchMoviesViewController: UIViewController {
     override func viewDidLoad() {
 
         self.title = Constants.title
+
+        self.searchController.addChild(errorPresenterController, inView: self.view)
         self.addChild(movieListViewController, inView: self.view)
+
         self.movieListViewController.delegate = self
         self.movieRequesterController.delegate = self
+        self.errorPresenterController.reloadDelegate = self
 
         formatNavigationBar()
     }
@@ -77,6 +82,11 @@ extension SearchMoviesViewController: MovieListViewControllerDelegate {
 
 extension SearchMoviesViewController: UISearchResultsUpdating, UISearchControllerDelegate, UISearchBarDelegate {
     func updateSearchResults(for searchController: UISearchController) {
+        guard let searchText = searchController.searchBar.text,
+            !searchText.isEmpty else {
+
+                return
+        }
 
         movieRequesterController.resetPagination()
         movieListViewController.reloadData()
@@ -98,7 +108,7 @@ extension SearchMoviesViewController: UISearchResultsUpdating, UISearchControlle
 
 extension SearchMoviesViewController: MovieRequesterControllerSearchDelegate {
     func errorHappend(_ requester: MovieRequesterController, error: Error?) {
-
+        errorPresenterController.showReloaderError(withTitle: Errors.Load.title, andMessage: Errors.Load.message)
     }
 
     func moviesHaveArrived(_ requester: MovieRequesterController) {
@@ -117,6 +127,12 @@ extension SearchMoviesViewController: MovieRequesterControllerSearchDelegate {
         }
 
         return searchText
+    }
+}
+
+extension SearchMoviesViewController: ReloaderAlertBuilderDelegate {
+    func needReloadData(_ alertBuilder: ReloaderAlertBuilder) {
+        movieRequesterController.needMoreMovies()
     }
 }
 

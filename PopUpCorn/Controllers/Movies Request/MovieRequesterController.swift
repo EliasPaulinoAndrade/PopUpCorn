@@ -46,7 +46,9 @@ class MovieRequesterController {
                 }
             },
             errorCompletion: { (error) in
-                self.delegate?.errorHappend(self, error: error)
+                DispatchQueue.main.async {
+                    self.delegate?.errorHappend(self, error: error)
+                }
             }
         )
     }

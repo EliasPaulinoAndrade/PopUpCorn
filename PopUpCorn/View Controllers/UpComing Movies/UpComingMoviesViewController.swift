@@ -13,6 +13,7 @@ class UpComingMoviesViewController: UIViewController {
     private var searchMoviesViewControler = SearchMoviesViewController.init()
     private var movieListViewController = MovieListViewController.init()
     private var movieRequesterController = MovieRequesterController.init()
+    private var errorPresenterController = ErrorPresenterViewController.init()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,8 +21,10 @@ class UpComingMoviesViewController: UIViewController {
         self.title = Constants.title
         movieListViewController.delegate = self
         movieRequesterController.delegate = self
+        errorPresenterController.reloadDelegate = self
         movieRequesterController.needMoreMovies()
 
+        self.addChild(errorPresenterController, inView: self.view)
         self.addChild(movieListViewController, inView: self.view)
 
         formatNavigationBar()
@@ -47,8 +50,8 @@ extension UpComingMoviesViewController: MovieListViewControllerDelegate {
         let movie = movieRequesterController.movies[position]
 
         let listableMovie = ListableMovie.init(
-            title: movie.title ?? "No Title",
-            release: movie.releaseDate ?? "No Release Date",
+            title: movie.title ?? Constants.MoviePlaceholder.title,
+            release: movie.releaseDate ?? Constants.MoviePlaceholder.release,
             posterPath: movie.posterPath,
             genresIDs: movie.genreIDs
         )
@@ -76,7 +79,7 @@ extension UpComingMoviesViewController: MovieListViewControllerDelegate {
 
 extension UpComingMoviesViewController: MovieRequesterControllerDelegate {
     func errorHappend(_ requester: MovieRequesterController, error: Error?) {
-
+        errorPresenterController.showReloaderError(withTitle: Errors.Load.title, andMessage: Errors.Load.message)
     }
 
     func moviesEndPoint(_ requester: MovieRequesterController) -> PUTTMDBEndPoint.Movie {
@@ -88,6 +91,17 @@ extension UpComingMoviesViewController: MovieRequesterControllerDelegate {
     }
 }
 
+extension UpComingMoviesViewController: ReloaderAlertBuilderDelegate {
+    func needReloadData(_ alertBuilder: ReloaderAlertBuilder) {
+        movieRequesterController.needMoreMovies()
+    }
+}
+
 private enum Constants {
     static let title = "UpComing"
+
+    enum MoviePlaceholder {
+        static let title = "No Title"
+        static let release = "No Release Date"
+    }
 }
