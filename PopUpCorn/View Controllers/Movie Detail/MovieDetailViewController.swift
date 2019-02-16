@@ -16,6 +16,8 @@ class MovieDetailViewController: UIViewController {
     @IBOutlet weak var genresLabel: UILabel!
     @IBOutlet weak var overviewLabel: UILabel!
     @IBOutlet weak var headerView: UIView!
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var imageHeightConstraint: NSLayoutConstraint!
 
     var movie: DetailableMovie?
 
@@ -23,7 +25,9 @@ class MovieDetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         genresRequesterController.delegate = self
+        scrollView.delegate = self
 
     }
 
@@ -74,6 +78,19 @@ extension MovieDetailViewController: GenreRequesterControllerDelegate {
     }
 }
 
+extension MovieDetailViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+
+        let currentOffSet = scrollView.contentOffset
+
+        if currentOffSet.y < 0.0 {
+            detailImageView.translatesAutoresizingMaskIntoConstraints = false
+            imageHeightConstraint.constant = Constants.imageDefaultHeight - currentOffSet.y
+        }
+    }
+}
+
 private enum Constants {
     static let placeHolderImageName = "placeholderImage"
+    static let imageDefaultHeight: CGFloat = 350
 }
