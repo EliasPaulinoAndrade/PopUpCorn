@@ -33,9 +33,9 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zcC-TL-HVR">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="446.5"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CHy-sN-ogL" customClass="PUTMDBImageView" customModule="PopUpCorn" customModuleProvider="target">
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" image="placeholderImage" translatesAutoresizingMaskIntoConstraints="NO" id="CHy-sN-ogL" customClass="PUTMDBImageView" customModule="PopUpCorn" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="350"/>
-                                    <color key="backgroundColor" red="0.097992964088916779" green="0.53399771451950073" blue="0.63864272832870483" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="backgroundColor" name="red"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="350" id="hAZ-nx-kbh"/>
                                     </constraints>
@@ -82,7 +82,7 @@
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mX7-sn-EEf">
                                     <rect key="frame" x="10" y="395.5" width="355" height="51"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="loading..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1E6-WA-tTj">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="loading..." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1E6-WA-tTj">
                                             <rect key="frame" x="0.0" y="0.0" width="355" height="18"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                             <color key="textColor" name="text_blue"/>
@@ -143,6 +143,7 @@
         </view>
     </objects>
     <resources>
+        <image name="placeholderImage" width="897" height="869"/>
         <namedColor name="black">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

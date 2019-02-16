@@ -25,6 +25,7 @@
 		E329957A22187108002AA3E3 /* MovieDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E329957922187108002AA3E3 /* MovieDetailViewController.xib */; };
 		E329957C22187786002AA3E3 /* DetailableMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = E329957B22187786002AA3E3 /* DetailableMovie.swift */; };
 		E329958222188061002AA3E3 /* PURadiusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E329958122188061002AA3E3 /* PURadiusView.swift */; };
+		E32995842218AAE4002AA3E3 /* PUTMDBImageState.swift in Sources */ = {isa = PBXBuildFile; fileRef = E32995832218AAE4002AA3E3 /* PUTMDBImageState.swift */; };
 		E3374C442212220600D2C02C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3374C432212220600D2C02C /* AppDelegate.swift */; };
 		E3374C4B2212220900D2C02C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3374C4A2212220900D2C02C /* Assets.xcassets */; };
 		E3374C4E2212220900D2C02C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3374C4C2212220900D2C02C /* LaunchScreen.storyboard */; };
@@ -119,6 +120,7 @@
 		E329957922187108002AA3E3 /* MovieDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieDetailViewController.xib; sourceTree = "<group>"; };
 		E329957B22187786002AA3E3 /* DetailableMovie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailableMovie.swift; sourceTree = "<group>"; };
 		E329958122188061002AA3E3 /* PURadiusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PURadiusView.swift; sourceTree = "<group>"; };
+		E32995832218AAE4002AA3E3 /* PUTMDBImageState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PUTMDBImageState.swift; sourceTree = "<group>"; };
 		E3374C402212220600D2C02C /* PopUpCorn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PopUpCorn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3374C432212220600D2C02C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E3374C4A2212220900D2C02C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -364,6 +366,7 @@
 				E3374C752212240600D2C02C /* tmdb.plist */,
 				E38268F922163449001C792E /* PUTMDBCredentials.swift */,
 				E37C7785221787000075D8D8 /* PUTMDBImageView.swift */,
+				E32995832218AAE4002AA3E3 /* PUTMDBImageState.swift */,
 			);
 			path = TMDB;
 			sourceTree = "<group>";
@@ -825,6 +828,7 @@
 				E3374CA42213B39900D2C02C /* NavigationFlowManager.swift in Sources */,
 				E3374C9322137E5D00D2C02C /* PUCacheService.swift in Sources */,
 				E38268FA22163449001C792E /* PUTMDBCredentials.swift in Sources */,
+				E32995842218AAE4002AA3E3 /* PUTMDBImageState.swift in Sources */,
 				E38268E822160577001C792E /* MovieListControllerState.swift in Sources */,
 				E329958222188061002AA3E3 /* PURadiusView.swift in Sources */,
 				E37C777D221722020075D8D8 /* UICollectionView+register.swift in Sources */,

@@ -11,22 +11,22 @@ import UIKit
 
 class PUTMDBPreviewableImageQuery: PUTMDBImageQuery {
 
-    func run(fromPreviewURL previewImageUrl: URL, imageUrl: URL, progressCompletion: @escaping (UIImage) -> Void, errorCompletion: @escaping (Error?) -> Void) {
+    func run(fromPreviewURL previewImageUrl: URL, imageUrl: URL, progressCompletion: @escaping (UIImage, PUTMDBImageState) -> Void, errorCompletion: @escaping (Error?, PUTMDBImageState) -> Void) {
 
         run(fromURL: previewImageUrl, sucessCompletion: { (previewImage) in
 
-            progressCompletion(previewImage)
+            progressCompletion(previewImage, .preview)
 
             /// the the detail image
             self.run(fromURL: imageUrl, sucessCompletion: { (detailImage) in
 
-                progressCompletion(detailImage)
+                progressCompletion(detailImage, .detail)
 
             }, errorCompletion: { (error) in
-                errorCompletion(error)
+                errorCompletion(error, .detail)
             })
         }, errorCompletion: { (error) in
-            errorCompletion(error)
+            errorCompletion(error, .preview)
         })
     }
 }

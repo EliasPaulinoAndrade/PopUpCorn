@@ -28,8 +28,18 @@ class PUNormalMovieCollectionViewCell: UICollectionViewCell, PUMovieCollectionVi
 
         titleLabel.text = movie.title
 
-        if let moviePosterPath = movie.posterPath {
-            movieImageView.setImage(fromPath: moviePosterPath, placeHolderImage: UIImage.init())
+        let placeHolderImage = UIImage.init(named: Constants.placeHolderImageName)
+
+        movieImageView.image = placeHolderImage
+        if let moviePosterPath = (movie.posterPath ?? movie.backdropPath) {
+            movieImageView.setImage(
+                fromPath: moviePosterPath,
+                placeHolderImage: placeHolderImage ?? UIImage.init()
+            )
         }
     }
+}
+
+private enum Constants {
+    static let placeHolderImageName = "placeholderImage"
 }

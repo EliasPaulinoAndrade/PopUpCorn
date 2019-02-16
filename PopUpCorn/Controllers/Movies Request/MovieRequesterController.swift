@@ -29,6 +29,14 @@ class MovieRequesterController {
             return
         }
 
+        if let totalOfPages = moviePage?.totalOfPages {
+            if let nextPage = moviePage?.nextPageNumber, nextPage >= totalOfPages {
+                return
+            }
+        } else if moviePage != nil {
+            return
+        }
+
         tmdbService.movies(
             ofEndPoint: moviesEndPoint,
             inPageNumber: moviePage?.nextPageNumber ?? 1,

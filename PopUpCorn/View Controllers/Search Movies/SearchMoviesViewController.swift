@@ -87,15 +87,13 @@ extension SearchMoviesViewController: MovieListViewControllerDelegate {
     func movieList(_ movieList: MovieListViewController, didSelectItemAt position: Int) {
         let movie = movieRequesterController.movies[position]
 
-        guard let movieTitle = movie.title,
-            let movieRelease = movie.releaseDate,
-            let movieImagePath = movie.backdropPath,
-            let movieOverview = movie.overview else {
-
-                return
-        }
-
-        let detailableMovie = DetailableMovie.init(title: movieTitle, release: movieRelease, image: movieImagePath, genres: nil, overview: movieOverview)
+        let detailableMovie = DetailableMovie.init(
+            title: movie.title ?? "No Title",
+            release: movie.releaseDate ?? "No Release",
+            image: movie.backdropPath ?? movie.posterPath,
+            genres: movie.genreIDs,
+            overview: movie.overview ?? "No Overview."
+        )
 
         movieDetailViewController.movie = detailableMovie
         searchController.isActive = false
@@ -114,18 +112,6 @@ extension SearchMoviesViewController: UISearchResultsUpdating, UISearchControlle
         movieRequesterController.resetPagination()
         movieListViewController.reloadData()
         movieRequesterController.needMoreMovies()
-    }
-
-    func willPresentSearchController(_ searchController: UISearchController) {
-        
-    }
-
-    func didPresentSearchController(_ searchController: UISearchController) {
-
-    }
-
-    func didDismissSearchController(_ searchController: UISearchController) {
-
     }
 }
 

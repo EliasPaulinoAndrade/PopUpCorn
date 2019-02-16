@@ -110,11 +110,11 @@ struct PUTMDBService {
     @discardableResult
     func image(
         fromMovieWithPath imagePath: String,
-        progressCompletion: @escaping (UIImage) -> Void,
-        errorCompletion: @escaping (Error?) -> Void) -> PUTMDBPreviewableImageQuery? {
+        progressCompletion: @escaping (UIImage, PUTMDBImageState) -> Void,
+        errorCompletion: @escaping (Error?, PUTMDBImageState) -> Void) -> PUTMDBPreviewableImageQuery? {
 
         guard let imageBaseUrl = self.credentials?.imageBaseUrl else {
-                errorCompletion(nil)
+                errorCompletion(nil, .none)
                 return nil
         }
 
@@ -135,7 +135,7 @@ struct PUTMDBService {
             return imageQuery
         }
 
-        errorCompletion(nil)
+        errorCompletion(nil, .none)
         return nil
     }
 
@@ -149,11 +149,11 @@ struct PUTMDBService {
     @discardableResult
     func image(
         fromMovie movie: Movie,
-        progressCompletion: @escaping (UIImage) -> Void,
-        errorCompletion: @escaping (Error?) -> Void) -> PUTMDBPreviewableImageQuery? {
+        progressCompletion: @escaping (UIImage, PUTMDBImageState) -> Void,
+        errorCompletion: @escaping (Error?, PUTMDBImageState) -> Void) -> PUTMDBPreviewableImageQuery? {
 
         guard let imagePath = movie.backdropPath else {
-            errorCompletion(nil)
+            errorCompletion(nil, .none)
             return nil
         }
 

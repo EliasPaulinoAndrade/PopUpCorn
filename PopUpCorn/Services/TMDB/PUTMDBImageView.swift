@@ -22,34 +22,18 @@ class PUTMDBImageView: UIImageView {
         self.lastImageQuery?.cancel()
 
         self.lastImageQuery = tmdbService.image(fromMovieWithPath: path,
-            progressCompletion: { (movieImage) in
+            progressCompletion: { (movieImage, _) in
                 DispatchQueue.main.async {
                     self.image = movieImage
-                    if self.isBlured {
-                        self.applyBlur()
-                    }
                 }
             },
-            errorCompletion: { (_) in
-                DispatchQueue.main.async {
-                    self.image = placeHolderImage
+            errorCompletion: { (_, state) in
+                if state != .detail {
+                    DispatchQueue.main.async {
+                        self.image = placeHolderImage
+                    }
                 }
             }
         )
-    }
-
-    func applyBlur() {
-
-//        guard let device = MTLCreateSystemDefaultDevice(),
-//              let queue = device.makeCommandQueue(),
-//              let commandBuffer = queue.makeCommandBuffer() else {
-//            return
-//        }
-//
-//        let blur = MPSImageGaussianBlur(device: device, sigma: 50)
-//
-//
-//        blur.encode(commandBuffer: commandBuffer, sourceImage: MPSImage, destinationImage: <#T##MPSImage#>)
-
     }
 }

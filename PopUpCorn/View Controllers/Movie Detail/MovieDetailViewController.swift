@@ -19,18 +19,21 @@ class MovieDetailViewController: UIViewController {
 
     var movie: DetailableMovie?
 
+    private var genresRequesterController = GenreRequesterController.init()
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        genresRequesterController.delegate = self
 
     }
 
     override func viewWillDisappear(_ animated: Bool) {
-
         navigationController?.navigationBar.prefersLargeTitles = true
     }
 
     override func viewWillAppear(_ animated: Bool) {
 
+        self.detailImageView.image = nil
         navigationController?.navigationBar.prefersLargeTitles = false
         formatMovie()
     }
@@ -40,10 +43,37 @@ class MovieDetailViewController: UIViewController {
             return
         }
 
+        let placeHolderImage = UIImage.init(named: Constants.placeHolderImageName)
+
         titleLabel.text = movie.title
         releaseLabel.text = movie.release
-        genresLabel.text = movie.genres
         overviewLabel.text = movie.overview
-        detailImageView.setImage(fromPath: movie.image, placeHolderImage: UIImage.init())
+
+        detailImageView.image = placeHolderImage
+        if let movieImage = movie.image {
+            detailImageView.setImage(
+                fromPath: movieImage,
+                placeHolderImage: placeHolderImage ?? UIImage.init()
+            )
+        }
+
+        genresRequesterController.needGenres(withIDs: movie.genres)
     }
+}
+
+extension MovieDetailViewController: GenreRequesterControllerDelegate {
+    func genresHasArrived(_ requester: GenreRequesterController, genres: [String]) {
+        genresLabel.isHidden = false
+        genresLabel.text = genres.reduce("") { (currentValue, currentString) -> String in
+            return "\(currentValue) \(currentString.lowercased())"
+        }
+    }
+
+    func errorHappend(_ requester: GenreRequesterController, error: Error?) {
+        genresLabel.isHidden = true
+    }
+}
+
+private enum Constants {
+    static let placeHolderImageName = "placeholderImage"
 }

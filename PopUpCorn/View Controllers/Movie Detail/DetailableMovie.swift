@@ -12,7 +12,7 @@ import UIKit
 struct DetailableMovie {
     var title: String
     var release: String
-    var image: String
-    var genres: String?
+    var image: String?
+    var genres: [Int]
     var overview: String
 }
