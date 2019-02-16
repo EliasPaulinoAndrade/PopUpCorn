@@ -47,12 +47,12 @@ struct PUTTMDBEndPoint {
             var paramenters = [
                 "api_key": apiKey,
                 "language": language,
-                "page": pageNumber
+                "page": pageNumber,
+                "include_adult": "false"
             ]
 
             if let queryString = query {
                 paramenters["query"] = queryString
-                paramenters["include_adult"] = "false"
             }
 
             PUTTMDBEndPoint.insert(parameters: paramenters, inStringURL: &urlString)

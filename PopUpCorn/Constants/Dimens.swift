@@ -12,6 +12,6 @@ import CoreGraphics
 enum Dimens {
     enum Radius {
         static let bigCorner: CGFloat = 15
-        static let shortCorner: CGFloat = 15
+        static let shortCorner: CGFloat = 5
     }
 }

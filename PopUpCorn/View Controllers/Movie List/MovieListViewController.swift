@@ -79,7 +79,7 @@ extension MovieListViewController: UICollectionViewDelegateFlowLayout, UICollect
             return CGSize.init(width: cellWidth, height: cellHeight)
         case .normal:
             let cellWidth = collectionView.bounds.width/3 - 10
-            let cellHeight = cellWidth * 1.5
+            let cellHeight = cellWidth * 1.7
 
             return CGSize.init(width: cellWidth, height: cellHeight)
         }
@@ -93,6 +93,10 @@ extension MovieListViewController: UICollectionViewDelegateFlowLayout, UICollect
         if indexPath.row == (moviesCount - 2) {
             delegate?.needLoadMoreMovies(self)
         }
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        delegate?.movieList(self, didSelectItemAt: indexPath.row)
     }
 }
 

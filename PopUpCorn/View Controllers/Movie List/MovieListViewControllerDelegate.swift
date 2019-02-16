@@ -14,10 +14,7 @@ protocol MovieListViewControllerDelegate: AnyObject {
 
     func movieList(_ movieList: MovieListViewController, movieForPositon position: Int) -> ListableMovie
 
-    func genresForMovie(
-        _ movieList: MovieListViewController,
-        atPosition position: Int,
-        completion: @escaping (String) -> Void)
-
     func needLoadMoreMovies(_ movieList: MovieListViewController)
+
+    func movieList(_ movieList: MovieListViewController, didSelectItemAt position: Int)
 }

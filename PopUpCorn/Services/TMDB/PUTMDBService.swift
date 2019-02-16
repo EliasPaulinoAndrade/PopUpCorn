@@ -152,7 +152,7 @@ struct PUTMDBService {
         progressCompletion: @escaping (UIImage) -> Void,
         errorCompletion: @escaping (Error?) -> Void) -> PUTMDBPreviewableImageQuery? {
 
-        guard let imagePath = movie.posterPath else {
+        guard let imagePath = movie.backdropPath else {
             errorCompletion(nil)
             return nil
         }

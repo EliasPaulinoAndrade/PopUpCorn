@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MetalPerformanceShaders
 
 class PUExpandedMovieCollectionViewCell: UICollectionViewCell, PUMovieCollectionViewCellProtocol {
 
@@ -14,6 +15,7 @@ class PUExpandedMovieCollectionViewCell: UICollectionViewCell, PUMovieCollection
     @IBOutlet weak var genresLabel: UILabel!
     @IBOutlet weak var releaseLabel: UILabel!
     @IBOutlet weak var posterImageView: PUTMDBImageView!
+    @IBOutlet weak var headerImageView: PUTMDBImageView!
 
     private var genresRequesterController = GenreRequesterController.init()
 
@@ -25,16 +27,24 @@ class PUExpandedMovieCollectionViewCell: UICollectionViewCell, PUMovieCollection
     }
 
     func setup(withMovie movie: ListableMovie) {
-        guard let moviePosterPath =  movie.posterPath else {
+        guard let moviePosterPath =  movie.backdropPath else {
 
             releaseLabel.isHidden = true
             return
         }
 
         titleLabel.text = movie.title
-        releaseLabel.text = "Release at \(movie.release)"
+        releaseLabel.text = "\(Constants.releaseSufix) \(movie.release)"
 
-        self.posterImageView.setImage(fromPath: moviePosterPath, placeHolderImage: UIImage.init())
+        self.posterImageView.setImage(
+            fromPath: moviePosterPath,
+            placeHolderImage: UIImage.init()
+        )
+
+        self.headerImageView.setImage(
+            fromPath: moviePosterPath,
+            placeHolderImage: UIImage.init()
+        )
 
         genresRequesterController.needGenres(withIDs: movie.genresIDs)
     }
@@ -54,4 +64,9 @@ extension PUExpandedMovieCollectionViewCell: GenreRequesterControllerDelegate {
     func errorHappend(_ requester: GenreRequesterController, error: Error?) {
         genresLabel.isHidden = true
     }
+}
+
+private enum Constants {
+    static let releaseSufix = "Release at"
+    static let placeHolderImageName = "placeHolderPopCorn"
 }

@@ -8,11 +8,14 @@
 
 import Foundation
 import UIKit
+import MetalPerformanceShaders
 
 class PUTMDBImageView: UIImageView {
 
-    let tmdbService = PUTMDBService.init()
-    var lastImageQuery: PUTMDBImageQuery?
+    var isBlured = false
+
+    private let tmdbService = PUTMDBService.init()
+    private var lastImageQuery: PUTMDBImageQuery?
 
     func setImage(fromPath path: String, placeHolderImage: UIImage) {
 
@@ -22,6 +25,9 @@ class PUTMDBImageView: UIImageView {
             progressCompletion: { (movieImage) in
                 DispatchQueue.main.async {
                     self.image = movieImage
+                    if self.isBlured {
+                        self.applyBlur()
+                    }
                 }
             },
             errorCompletion: { (_) in
@@ -30,5 +36,20 @@ class PUTMDBImageView: UIImageView {
                 }
             }
         )
+    }
+
+    func applyBlur() {
+
+//        guard let device = MTLCreateSystemDefaultDevice(),
+//              let queue = device.makeCommandQueue(),
+//              let commandBuffer = queue.makeCommandBuffer() else {
+//            return
+//        }
+//
+//        let blur = MPSImageGaussianBlur(device: device, sigma: 50)
+//
+//
+//        blur.encode(commandBuffer: commandBuffer, sourceImage: MPSImage, destinationImage: <#T##MPSImage#>)
+
     }
 }

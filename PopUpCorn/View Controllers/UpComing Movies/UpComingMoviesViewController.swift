@@ -14,6 +14,7 @@ class UpComingMoviesViewController: UIViewController {
     private var movieListViewController = MovieListViewController.init()
     private var movieRequesterController = MovieRequesterController.init()
     private var errorPresenterController = ErrorPresenterViewController.init()
+    private var movieDetailViewController = MovieDetailViewController.init()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,6 +54,7 @@ extension UpComingMoviesViewController: MovieListViewControllerDelegate {
             title: movie.title ?? Constants.MoviePlaceholder.title,
             release: movie.releaseDate ?? Constants.MoviePlaceholder.release,
             posterPath: movie.posterPath,
+            backdropPath: movie.backdropPath,
             genresIDs: movie.genreIDs
         )
 
@@ -68,12 +70,24 @@ extension UpComingMoviesViewController: MovieListViewControllerDelegate {
     }
 
     func needLoadMoreMovies(_ movieList: MovieListViewController) {
-
         movieRequesterController.needMoreMovies()
     }
 
-    func genresForMovie(_ movieList: MovieListViewController, atPosition position: Int, completion: @escaping (String) -> Void) {
+    func movieList(_ movieList: MovieListViewController, didSelectItemAt position: Int) {
+        let movie = movieRequesterController.movies[position]
 
+        guard let movieTitle = movie.title,
+              let movieRelease = movie.releaseDate,
+              let movieImagePath = movie.backdropPath,
+              let movieOverview = movie.overview else {
+
+            return
+        }
+
+        let detailableMovie = DetailableMovie.init(title: movieTitle, release: movieRelease, image: movieImagePath, genres: nil, overview: movieOverview)
+
+        movieDetailViewController.movie = detailableMovie
+        navigationController?.pushViewController(movieDetailViewController, animated: true)
     }
 }
 
