@@ -18,6 +18,8 @@ class MovieListViewController: UIViewController {
 
     var state = MovieListControllerState.expanded
 
+    var movies: [ListableMovie] = []
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -42,7 +44,7 @@ class MovieListViewController: UIViewController {
 extension MovieListViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 
-        return delegate?.movies(self).count ?? 0
+        return delegate?.numberOfMovies(self) ?? 0
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -54,23 +56,14 @@ extension MovieListViewController: UICollectionViewDelegateFlowLayout, UICollect
             for: indexPath
         )
 
-        guard let movie = delegate?.movies(self)[indexPath.row] else {
+        guard let movie = delegate?.movieList(self, movieForPositon: indexPath.row) else {
             return cell
         }
 
+        movies.append(movie)
+
         if let movieCell = cell as? PUMovieCollectionViewCellProtocol {
             movieCell.setup(withMovie: movie)
-        }
-
-        if let expandedMovieCell = cell as? PUExpandedMovieCollectionViewCell {
-            delegate?.genresForMovie(self,
-                 atPosition: indexPath.row,
-                 completion: { (genresString) in
-                    DispatchQueue.main.async {
-                        expandedMovieCell.set(genre: genresString)
-                    }
-                }
-            )
         }
 
         return cell
@@ -93,7 +86,7 @@ extension MovieListViewController: UICollectionViewDelegateFlowLayout, UICollect
     }
 
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        guard let moviesCount = delegate?.movies(self).count else {
+        guard let moviesCount = delegate?.numberOfMovies(self) else {
             return
         }
 

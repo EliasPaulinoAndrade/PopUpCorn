@@ -24,7 +24,7 @@ class PUNormalMovieCollectionViewCell: UICollectionViewCell, PUMovieCollectionVi
         super.awakeFromNib()
     }
 
-    func setup(withMovie movie: Movie) {
+    func setup(withMovie movie: ListableMovie) {
 
         titleLabel.text = movie.title
 

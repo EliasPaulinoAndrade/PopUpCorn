@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		5836E74A840FF6742C9C4333 /* Pods_PopUpCornTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78373EE9637F4316F5FCAFA0 /* Pods_PopUpCornTests.framework */; };
 		C6199C3C6BC081B4BAAF7B52 /* Pods_PopUpCornUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC65AD63EA2D65B43D250D38 /* Pods_PopUpCornUITests.framework */; };
+		E304299022182EE9009A22E5 /* ListableMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = E304298F22182EE9009A22E5 /* ListableMovie.swift */; };
 		E3374C442212220600D2C02C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3374C432212220600D2C02C /* AppDelegate.swift */; };
 		E3374C4B2212220900D2C02C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3374C4A2212220900D2C02C /* Assets.xcassets */; };
 		E3374C4E2212220900D2C02C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3374C4C2212220900D2C02C /* LaunchScreen.storyboard */; };
@@ -87,6 +88,7 @@
 		BB9F10A9C44249B8F3FDA82D /* Pods-PopUpCorn.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PopUpCorn.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PopUpCorn/Pods-PopUpCorn.debug.xcconfig"; sourceTree = "<group>"; };
 		BF9ECCEE184A02CE1C5A83B9 /* Pods-PopUpCornTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PopUpCornTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PopUpCornTests/Pods-PopUpCornTests.release.xcconfig"; sourceTree = "<group>"; };
 		C2F4AC3984CAC43A80D271C4 /* Pods-PopUpCornUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PopUpCornUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PopUpCornUITests/Pods-PopUpCornUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		E304298F22182EE9009A22E5 /* ListableMovie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListableMovie.swift; sourceTree = "<group>"; };
 		E3374C402212220600D2C02C /* PopUpCorn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PopUpCorn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3374C432212220600D2C02C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E3374C4A2212220900D2C02C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -194,6 +196,13 @@
 				1A203ECEC0A9AD37FA65E873 /* Pods-PopUpCornUITests.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		E304298E22182CC1009A22E5 /* Error */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Error;
 			sourceTree = "<group>";
 		};
 		E3374C372212220600D2C02C = {
@@ -304,6 +313,7 @@
 			isa = PBXGroup;
 			children = (
 				E38268F022161DD3001C792E /* defaults */,
+				E304298E22182CC1009A22E5 /* Error */,
 				E38268ED22161D04001C792E /* Search Movies */,
 				E3374CA62214317000D2C02C /* UpComing Movies */,
 				E3374CA52214315300D2C02C /* Movie List */,
@@ -347,6 +357,7 @@
 				E3374C8322124D2600D2C02C /* MovieListViewController.xib */,
 				E3374CA9221431C200D2C02C /* MovieListViewControllerDelegate.swift */,
 				E38268E722160577001C792E /* MovieListControllerState.swift */,
+				E304298F22182EE9009A22E5 /* ListableMovie.swift */,
 			);
 			path = "Movie List";
 			sourceTree = "<group>";
@@ -692,6 +703,7 @@
 				E3374C9522137EEA00D2C02C /* PUCacheCenter.swift in Sources */,
 				E38268FD22163C63001C792E /* PUTMDBPreviewableImageQuery.swift in Sources */,
 				E3374CBB22149FEC00D2C02C /* PUBaseZibOwnerView.swift in Sources */,
+				E304299022182EE9009A22E5 /* ListableMovie.swift in Sources */,
 				E37C7781221775FF0075D8D8 /* MovieRequesterController.swift in Sources */,
 				E3826901221659E7001C792E /* Array+genreDict.swift in Sources */,
 				E38268EF22161D1B001C792E /* SearchMoviesViewController.swift in Sources */,

@@ -43,6 +43,22 @@ class UpComingMoviesViewController: UIViewController {
 }
 
 extension UpComingMoviesViewController: MovieListViewControllerDelegate {
+    func movieList(_ movieList: MovieListViewController, movieForPositon position: Int) -> ListableMovie {
+        let movie = movieRequesterController.movies[position]
+
+        let listableMovie = ListableMovie.init(
+            title: movie.title ?? "No Title",
+            release: movie.releaseDate ?? "No Release Date",
+            posterPath: movie.posterPath,
+            genresIDs: movie.genreIDs
+        )
+
+        return listableMovie
+    }
+
+    func numberOfMovies(_ movieList: MovieListViewController) -> Int {
+        return movieRequesterController.numberOfMovies
+    }
 
     func movies(_ movieList: MovieListViewController) -> [Movie] {
         return movieRequesterController.movies
@@ -59,6 +75,9 @@ extension UpComingMoviesViewController: MovieListViewControllerDelegate {
 }
 
 extension UpComingMoviesViewController: MovieRequesterControllerDelegate {
+    func errorHappend(_ requester: MovieRequesterController, error: Error?) {
+
+    }
 
     func moviesEndPoint(_ requester: MovieRequesterController) -> PUTTMDBEndPoint.Movie {
         return .upComing

@@ -25,7 +25,7 @@ class PUTMDBImageQuery: PUTMDBQuery {
         sucessCompletion: @escaping (UIImage) -> Void,
         errorCompletion: @escaping (Error?) -> Void) {
 
-        if let currentTask = self.task {
+        if let currentTask = self.task, currentTask.state == .running {
             currentTask.cancel()
         }
 

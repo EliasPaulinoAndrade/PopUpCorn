@@ -45,6 +45,22 @@ class SearchMoviesViewController: UIViewController {
 }
 
 extension SearchMoviesViewController: MovieListViewControllerDelegate {
+    func movieList(_ movieList: MovieListViewController, movieForPositon position: Int) -> ListableMovie {
+        let movie = movieRequesterController.movies[position]
+
+        let listableMovie = ListableMovie.init(
+            title: movie.title ?? "No Title",
+            release: movie.releaseDate ?? "No Release Date",
+            posterPath: movie.posterPath,
+            genresIDs: movie.genreIDs
+        )
+
+        return listableMovie
+    }
+
+    func numberOfMovies(_ movieList: MovieListViewController) -> Int {
+        return movieRequesterController.numberOfMovies
+    }
 
     func movies(_ movieList: MovieListViewController) -> [Movie] {
         return movieRequesterController.movies
@@ -63,6 +79,7 @@ extension SearchMoviesViewController: UISearchResultsUpdating, UISearchControlle
     func updateSearchResults(for searchController: UISearchController) {
 
         movieRequesterController.resetPagination()
+        movieListViewController.reloadData()
         movieRequesterController.needMoreMovies()
     }
 
@@ -80,6 +97,10 @@ extension SearchMoviesViewController: UISearchResultsUpdating, UISearchControlle
 }
 
 extension SearchMoviesViewController: MovieRequesterControllerSearchDelegate {
+    func errorHappend(_ requester: MovieRequesterController, error: Error?) {
+
+    }
+
     func moviesHaveArrived(_ requester: MovieRequesterController) {
         self.movieListViewController.reloadData()
     }

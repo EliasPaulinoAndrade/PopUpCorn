@@ -20,16 +20,15 @@ class PUExpandedMovieCollectionViewCell: UICollectionViewCell, PUMovieCollection
         self.layer.cornerRadius = Dimens.Radius.bigCorner
     }
 
-    func setup(withMovie movie: Movie) {
-        guard let movieReleaseDate = movie.releaseDate,
-            let moviePosterPath =  movie.posterPath else {
+    func setup(withMovie movie: ListableMovie) {
+        guard let moviePosterPath =  movie.posterPath else {
 
             releaseLabel.isHidden = true
             return
         }
 
         titleLabel.text = movie.title
-        releaseLabel.text = "Release at \(movieReleaseDate)"
+        releaseLabel.text = "Release at \(movie.release)"
 
         self.posterImageView.setImage(fromPath: moviePosterPath, placeHolderImage: UIImage.init())
 

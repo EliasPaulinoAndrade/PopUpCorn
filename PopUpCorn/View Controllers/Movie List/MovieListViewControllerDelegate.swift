@@ -10,7 +10,9 @@ import Foundation
 import UIKit
 
 protocol MovieListViewControllerDelegate: AnyObject {
-    func movies(_ movieList: MovieListViewController) -> [Movie]
+    func numberOfMovies(_ movieList: MovieListViewController) -> Int
+
+    func movieList(_ movieList: MovieListViewController, movieForPositon position: Int) -> ListableMovie
 
     func genresForMovie(
         _ movieList: MovieListViewController,

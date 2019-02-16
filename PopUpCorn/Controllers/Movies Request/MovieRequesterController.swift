@@ -46,7 +46,7 @@ class MovieRequesterController {
                 }
             },
             errorCompletion: { (error) in
-
+                self.delegate?.errorHappend(self, error: error)
             }
         )
     }
