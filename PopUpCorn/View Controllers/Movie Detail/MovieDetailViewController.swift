@@ -46,22 +46,17 @@ class MovieDetailViewController: UIViewController {
         self.detailImageView.image = nil
         navigationController?.navigationBar.prefersLargeTitles = false
         formatMovie()
-        formatScreenByOrientation()
     }
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         if view.isStanding {
-            scrollView.contentOffset.y = Constants.imageDefaultHeight
+            UIView.animate(withDuration: Constants.scrollOffSetAnimationDuration) {
+                self.scrollView.contentOffset.y = Constants.imageDefaultHeight
+            }
         } else {
-            scrollView.contentOffset.y = 0.0
-        }
-    }
-
-    func formatScreenByOrientation() {
-        if view.isStanding {
-            scrollView.contentOffset.y = 0.0
-        } else {
-            scrollView.contentOffset.y = Constants.imageDefaultHeight
+            UIView.animate(withDuration: Constants.scrollOffSetAnimationDuration) {
+                self.scrollView.contentOffset.y = 0.0
+            }
         }
     }
 
@@ -72,9 +67,15 @@ class MovieDetailViewController: UIViewController {
 
         let placeHolderImage = UIImage.init(named: Constants.placeHolderImageName)
 
-        titleLabel.text = movie.title
-        releaseLabel.text = movie.release
-        overviewLabel.text = movie.overview
+        if let movieTitle = movie.title, !movieTitle.isEmpty {
+            title = movie.title
+        } else {
+            title = MoviePlaceholder.title
+        }
+
+        titleLabel.set(unsafeText: movie.title, placeHolder: MoviePlaceholder.title)
+        releaseLabel.set(unsafeText: movie.release, placeHolder: MoviePlaceholder.release)
+        overviewLabel.set(unsafeText: movie.overview, placeHolder: MoviePlaceholder.overview)
 
         detailImageView.image = placeHolderImage
         if let movieImage = movie.image {
@@ -116,4 +117,5 @@ extension MovieDetailViewController: UIScrollViewDelegate {
 private enum Constants {
     static let placeHolderImageName = "placeholderImage"
     static let imageDefaultHeight: CGFloat = 350
+    static let scrollOffSetAnimationDuration = 0.3
 }

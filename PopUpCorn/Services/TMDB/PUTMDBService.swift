@@ -53,14 +53,14 @@ struct PUTMDBService {
                 return
         }
 
-        let upComingStringURL = endPoint.with(
+        let moviesStringUrl = endPoint.with(
             baseURL: baseUrl,
             pageNumber: "\(pageNumber)",
             query: stringQuery,
             andApiKey: apiKey
         )
 
-        if let url = URL.init(string: upComingStringURL) {
+        if let url = URL.init(string: moviesStringUrl) {
             let modelQuery = PUTMDBModelQuery<Page>()
             modelQuery.run(fromURL: url, sucessCompletion: sucessCompletion, errorCompletion: errorCompletion)
         } else {

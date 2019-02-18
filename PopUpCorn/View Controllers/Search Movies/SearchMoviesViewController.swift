@@ -16,6 +16,8 @@ class SearchMoviesViewController: UIViewController {
     private var movieRequesterController = MovieRequesterController.init()
     private var errorPresenterController = ErrorPresenterViewController.init()
     private var movieDetailViewController = MovieDetailViewController.init()
+    private var searchSuggestionsViewController = SearchSuggestionsViewController.init()
+    private var loadIndicatorController = LoadIndicatorViewController.init()
 
     private lazy var searchController: UISearchController = {
         let searchController = UISearchController.init(searchResultsController: nil)
@@ -24,6 +26,7 @@ class SearchMoviesViewController: UIViewController {
         searchController.definesPresentationContext = true
         searchController.delegate = self
         searchController.searchBar.delegate = self
+        searchController.searchResultsUpdater = self
         searchController.searchBar.tintColor = UIColor.white
 
         return searchController
@@ -33,16 +36,25 @@ class SearchMoviesViewController: UIViewController {
 
         self.title = Constants.title
 
-        self.searchController.addChild(errorPresenterController, inView: self.view)
-        self.addChild(movieListViewController, inView: self.view)
+        searchController.addChild(errorPresenterController, inView: self.view)
+        addChild(searchSuggestionsViewController, inView: self.view)
+        addChild(movieListViewController, inView: self.view)
+        searchController.addChild(loadIndicatorController, inView: self.view)
 
-        self.movieListViewController.delegate = self
-        self.movieRequesterController.delegate = self
-        self.errorPresenterController.reloadDelegate = self
+        showSuggestions()
+
+        searchSuggestionsViewController.delegate = self
+        movieListViewController.delegate = self
+        movieRequesterController.delegate = self
+        errorPresenterController.reloadDelegate = self
     }
 
     override func viewWillAppear(_ animated: Bool) {
         formatNavigationBar()
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        searchSuggestionsViewController.saveSuggestions()
     }
 
     func formatNavigationBar() {
@@ -53,6 +65,17 @@ class SearchMoviesViewController: UIViewController {
         searchController.searchBar.resignFirstResponder()
         searchController.resignFirstResponder()
     }
+
+    func showSuggestions() {
+        movieListViewController.view.isHidden = true
+        searchSuggestionsViewController.view.isHidden = false
+        searchSuggestionsViewController.reloadData()
+    }
+
+    func hideSuggestions() {
+        movieListViewController.view.isHidden = false
+        searchSuggestionsViewController.view.isHidden = true
+    }
 }
 
 extension SearchMoviesViewController: MovieListViewControllerDelegate {
@@ -61,8 +84,8 @@ extension SearchMoviesViewController: MovieListViewControllerDelegate {
         let movie = movieRequesterController.movies[position]
 
         let listableMovie = ListableMovie.init(
-            title: movie.title ?? "No Title",
-            release: movie.releaseDate ?? "No Release Date",
+            title: movie.title ?? MoviePlaceholder.title,
+            release: movie.releaseDate ?? MoviePlaceholder.release,
             posterPath: movie.posterPath,
             backdropPath: movie.backdropPath,
             genresIDs: movie.genreIDs
@@ -87,11 +110,11 @@ extension SearchMoviesViewController: MovieListViewControllerDelegate {
         let movie = movieRequesterController.movies[position]
 
         let detailableMovie = DetailableMovie.init(
-            title: movie.title ?? "No Title",
-            release: movie.releaseDate ?? "No Release",
+            title: movie.title,
+            release: movie.releaseDate,
             image: movie.backdropPath ?? movie.posterPath,
             genres: movie.genreIDs,
-            overview: movie.overview ?? "No Overview."
+            overview: movie.overview
         )
 
         movieDetailViewController.movie = detailableMovie
@@ -100,7 +123,19 @@ extension SearchMoviesViewController: MovieListViewControllerDelegate {
     }
 }
 
-extension SearchMoviesViewController: UISearchControllerDelegate, UISearchBarDelegate {
+extension SearchMoviesViewController: UISearchControllerDelegate, UISearchBarDelegate, UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let searchText = searchController.searchBar.text else {
+                return
+        }
+
+        if searchText.isEmpty {
+            searchSuggestionsViewController.removeParamenter()
+        } else {
+            searchSuggestionsViewController.setParamenter(text: searchText)
+        }
+    }
+
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let searchText = searchBar.text,
             !searchText.isEmpty else {
@@ -108,9 +143,25 @@ extension SearchMoviesViewController: UISearchControllerDelegate, UISearchBarDel
                 return
         }
 
+        hideSuggestions()
+        searchSuggestionsViewController.add(suggestion: searchText)
         movieRequesterController.resetPagination()
         movieListViewController.reloadData()
+        loadIndicatorController.startAnimating()
         movieRequesterController.needMoreMovies()
+    }
+
+    func willPresentSearchController(_ searchController: UISearchController) {
+        showSuggestions()
+    }
+
+    func willDismissSearchController(_ searchController: UISearchController) {
+        searchSuggestionsViewController.removeParamenter()
+        showSuggestions()
+    }
+
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        showSuggestions()
     }
 }
 
@@ -120,7 +171,8 @@ extension SearchMoviesViewController: MovieRequesterControllerSearchDelegate {
     }
 
     func moviesHaveArrived(_ requester: MovieRequesterController) {
-        self.movieListViewController.reloadData()
+        movieListViewController.reloadData()
+        loadIndicatorController.stopAnimating()
     }
 
     func moviesEndPoint(_ requester: MovieRequesterController) -> PUTTMDBEndPoint.Movie {
@@ -144,7 +196,14 @@ extension SearchMoviesViewController: ReloaderAlertBuilderDelegate {
     }
 }
 
+extension SearchMoviesViewController: SearchSuggestionsViewContorllerDelegate {
+    func userDidSelectSuggestion(_ controller: SearchSuggestionsViewController, suggestion: String) {
+        self.searchController.isActive = true
+        self.searchController.searchBar.text = suggestion
+    }
+}
+
 private enum Constants {
     static let title = "Search"
-    static let searchBarPlaceHolder = "tap here"
+    static let searchBarPlaceHolder = "type here"
 }
