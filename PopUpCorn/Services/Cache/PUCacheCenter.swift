@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-struct PUCacheCenter {
+class PUCacheCenter {
     static var shared = PUCacheCenter.init()
 
     var imageCache: NSCache<NSString, UIImage> = NSCache.init()

@@ -190,7 +190,8 @@ struct PUTMDBService {
     ///   - errorCompletion: error completion
     func image(
         fromMovie movie: Movie,
-        progressCompletion: @escaping (UIImage) -> Void,
+        withID id: Int?,
+        progressCompletion: @escaping (UIImage, Int?) -> Void,
         errorCompletion: @escaping (Error?) -> Void) {
 
         guard let imageBaseUrl = self.imageBaseUrl,
@@ -201,7 +202,7 @@ struct PUTMDBService {
 
         /// the image is already in the cache
         if let movieImage = cacheService.get(imageWithKey: imagePath) {
-            progressCompletion(movieImage)
+            progressCompletion(movieImage, id)
             return
         }
 
@@ -214,14 +215,14 @@ struct PUTMDBService {
             /// get the preview image
             image(fromURL: previewImageUrl, sucessCompletion: { (previewImage) in
 
-                progressCompletion(previewImage)
+                progressCompletion(previewImage, id)
 
                 /// the the detail image
                 self.image(fromURL: detailtImageUrl, sucessCompletion: { (detailImage) in
 
                     /// save the detail image to the image cache
                     self.cacheService.add(image: detailImage, withKey: imagePath)
-                    progressCompletion(detailImage)
+                    progressCompletion(detailImage, id)
 
                 }, errorCompletion: { (error) in
                     errorCompletion(error)

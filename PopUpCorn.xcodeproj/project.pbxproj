@@ -28,6 +28,23 @@
 		E3374C9322137E5D00D2C02C /* PUCacheService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3374C9222137E5D00D2C02C /* PUCacheService.swift */; };
 		E3374C9522137EEA00D2C02C /* PUCacheCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3374C9422137EEA00D2C02C /* PUCacheCenter.swift */; };
 		E3374C992213844400D2C02C /* UIImage+initFromURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3374C982213844400D2C02C /* UIImage+initFromURL.swift */; };
+		E3374C9F22138D7B00D2C02C /* PUExpandedMovieCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3374C9D22138D7B00D2C02C /* PUExpandedMovieCollectionViewCell.swift */; };
+		E3374CA022138D7B00D2C02C /* PUExpandedMovieCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3374C9E22138D7B00D2C02C /* PUExpandedMovieCollectionViewCell.xib */; };
+		E3374CA2221390D300D2C02C /* UIColor+pucolors.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3374CA1221390D300D2C02C /* UIColor+pucolors.swift */; };
+		E3374CA42213B39900D2C02C /* NavigationFlowManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3374CA32213B39900D2C02C /* NavigationFlowManager.swift */; };
+		E3374CA82214319500D2C02C /* UpComingMoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3374CA72214319500D2C02C /* UpComingMoviesViewController.swift */; };
+		E3374CAA221431C200D2C02C /* MovieListViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3374CA9221431C200D2C02C /* MovieListViewControllerDelegate.swift */; };
+		E3374CB422149D5500D2C02C /* PUToggleButtonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3374CB322149D5500D2C02C /* PUToggleButtonView.xib */; };
+		E3374CB822149EF100D2C02C /* PUToggleButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3374CB722149EF100D2C02C /* PUToggleButtonView.swift */; };
+		E3374CBB22149FEC00D2C02C /* PUBaseZibOwnerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3374CBA22149FEC00D2C02C /* PUBaseZibOwnerView.swift */; };
+		E38268DE2215FF57001C792E /* PUToggleButtonViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38268DD2215FF57001C792E /* PUToggleButtonViewDelegate.swift */; };
+		E38268E02215FFFE001C792E /* PUToggleButtonState.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38268DF2215FFFE001C792E /* PUToggleButtonState.swift */; };
+		E38268E52216022F001C792E /* PUNormalMovieCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38268E32216022F001C792E /* PUNormalMovieCollectionViewCell.swift */; };
+		E38268E62216022F001C792E /* PUNormalMovieCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E38268E42216022F001C792E /* PUNormalMovieCollectionViewCell.xib */; };
+		E38268E822160577001C792E /* MovieListControllerState.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38268E722160577001C792E /* MovieListControllerState.swift */; };
+		E38268EA22160823001C792E /* PUMovieCollectionViewCellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38268E922160823001C792E /* PUMovieCollectionViewCellProtocol.swift */; };
+		E38268EF22161D1B001C792E /* SearchMoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38268EE22161D1B001C792E /* SearchMoviesViewController.swift */; };
+		E38268F222161E0F001C792E /* UIViewController+addChild.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38268F122161E0F001C792E /* UIViewController+addChild.swift */; };
 		F61E6669CE03F25FC7476E66 /* Pods_PopUpCorn.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A41B9FC352158C247928E54 /* Pods_PopUpCorn.framework */; };
 /* End PBXBuildFile section */
 
@@ -82,6 +99,23 @@
 		E3374C9222137E5D00D2C02C /* PUCacheService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PUCacheService.swift; sourceTree = "<group>"; };
 		E3374C9422137EEA00D2C02C /* PUCacheCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PUCacheCenter.swift; sourceTree = "<group>"; };
 		E3374C982213844400D2C02C /* UIImage+initFromURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+initFromURL.swift"; sourceTree = "<group>"; };
+		E3374C9D22138D7B00D2C02C /* PUExpandedMovieCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PUExpandedMovieCollectionViewCell.swift; sourceTree = "<group>"; };
+		E3374C9E22138D7B00D2C02C /* PUExpandedMovieCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PUExpandedMovieCollectionViewCell.xib; sourceTree = "<group>"; };
+		E3374CA1221390D300D2C02C /* UIColor+pucolors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+pucolors.swift"; sourceTree = "<group>"; };
+		E3374CA32213B39900D2C02C /* NavigationFlowManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationFlowManager.swift; sourceTree = "<group>"; };
+		E3374CA72214319500D2C02C /* UpComingMoviesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpComingMoviesViewController.swift; sourceTree = "<group>"; };
+		E3374CA9221431C200D2C02C /* MovieListViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListViewControllerDelegate.swift; sourceTree = "<group>"; };
+		E3374CB322149D5500D2C02C /* PUToggleButtonView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PUToggleButtonView.xib; sourceTree = "<group>"; };
+		E3374CB722149EF100D2C02C /* PUToggleButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PUToggleButtonView.swift; sourceTree = "<group>"; };
+		E3374CBA22149FEC00D2C02C /* PUBaseZibOwnerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PUBaseZibOwnerView.swift; sourceTree = "<group>"; };
+		E38268DD2215FF57001C792E /* PUToggleButtonViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PUToggleButtonViewDelegate.swift; sourceTree = "<group>"; };
+		E38268DF2215FFFE001C792E /* PUToggleButtonState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PUToggleButtonState.swift; sourceTree = "<group>"; };
+		E38268E32216022F001C792E /* PUNormalMovieCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PUNormalMovieCollectionViewCell.swift; sourceTree = "<group>"; };
+		E38268E42216022F001C792E /* PUNormalMovieCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PUNormalMovieCollectionViewCell.xib; sourceTree = "<group>"; };
+		E38268E722160577001C792E /* MovieListControllerState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListControllerState.swift; sourceTree = "<group>"; };
+		E38268E922160823001C792E /* PUMovieCollectionViewCellProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PUMovieCollectionViewCellProtocol.swift; sourceTree = "<group>"; };
+		E38268EE22161D1B001C792E /* SearchMoviesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMoviesViewController.swift; sourceTree = "<group>"; };
+		E38268F122161E0F001C792E /* UIViewController+addChild.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+addChild.swift"; sourceTree = "<group>"; };
 		FC65AD63EA2D65B43D250D38 /* Pods_PopUpCornUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PopUpCornUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -164,6 +198,7 @@
 				E3374C7E2212452400D2C02C /* Extensions */,
 				E3374C71221222DA00D2C02C /* Services */,
 				E3374C8622124DDA00D2C02C /* Models */,
+				E3374C9A22138D3B00D2C02C /* Views */,
 				E3374C8122124CC000D2C02C /* Controllers */,
 				E3374C432212220600D2C02C /* AppDelegate.swift */,
 				E3374C4A2212220900D2C02C /* Assets.xcassets */,
@@ -225,6 +260,8 @@
 			children = (
 				E3374C7F2212455100D2C02C /* Bundle+plistPath.swift */,
 				E3374C982213844400D2C02C /* UIImage+initFromURL.swift */,
+				E3374CA1221390D300D2C02C /* UIColor+pucolors.swift */,
+				E38268F122161E0F001C792E /* UIViewController+addChild.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -232,8 +269,10 @@
 		E3374C8122124CC000D2C02C /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				E3374C8222124D2600D2C02C /* MovieListViewController.swift */,
-				E3374C8322124D2600D2C02C /* MovieListViewController.xib */,
+				E38268F022161DD3001C792E /* defaults */,
+				E38268ED22161D04001C792E /* Search Movies */,
+				E3374CA62214317000D2C02C /* UpComing Movies */,
+				E3374CA52214315300D2C02C /* Movie List */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -255,6 +294,98 @@
 				E3374C9422137EEA00D2C02C /* PUCacheCenter.swift */,
 			);
 			path = Cache;
+			sourceTree = "<group>";
+		};
+		E3374C9A22138D3B00D2C02C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				E3374CB222149D3200D2C02C /* Toggle Button */,
+				E3374CAE22149CC100D2C02C /* Movie Cell */,
+				E3374CB922149FBB00D2C02C /* defaults */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		E3374CA52214315300D2C02C /* Movie List */ = {
+			isa = PBXGroup;
+			children = (
+				E3374C8222124D2600D2C02C /* MovieListViewController.swift */,
+				E3374C8322124D2600D2C02C /* MovieListViewController.xib */,
+				E3374CA9221431C200D2C02C /* MovieListViewControllerDelegate.swift */,
+				E38268E722160577001C792E /* MovieListControllerState.swift */,
+			);
+			path = "Movie List";
+			sourceTree = "<group>";
+		};
+		E3374CA62214317000D2C02C /* UpComing Movies */ = {
+			isa = PBXGroup;
+			children = (
+				E3374CA72214319500D2C02C /* UpComingMoviesViewController.swift */,
+			);
+			path = "UpComing Movies";
+			sourceTree = "<group>";
+		};
+		E3374CAE22149CC100D2C02C /* Movie Cell */ = {
+			isa = PBXGroup;
+			children = (
+				E38268E2221601FF001C792E /* Normal */,
+				E38268E1221601B8001C792E /* Expanded */,
+				E38268E922160823001C792E /* PUMovieCollectionViewCellProtocol.swift */,
+			);
+			path = "Movie Cell";
+			sourceTree = "<group>";
+		};
+		E3374CB222149D3200D2C02C /* Toggle Button */ = {
+			isa = PBXGroup;
+			children = (
+				E3374CB322149D5500D2C02C /* PUToggleButtonView.xib */,
+				E3374CB722149EF100D2C02C /* PUToggleButtonView.swift */,
+				E38268DD2215FF57001C792E /* PUToggleButtonViewDelegate.swift */,
+				E38268DF2215FFFE001C792E /* PUToggleButtonState.swift */,
+			);
+			path = "Toggle Button";
+			sourceTree = "<group>";
+		};
+		E3374CB922149FBB00D2C02C /* defaults */ = {
+			isa = PBXGroup;
+			children = (
+				E3374CBA22149FEC00D2C02C /* PUBaseZibOwnerView.swift */,
+			);
+			path = defaults;
+			sourceTree = "<group>";
+		};
+		E38268E1221601B8001C792E /* Expanded */ = {
+			isa = PBXGroup;
+			children = (
+				E3374C9D22138D7B00D2C02C /* PUExpandedMovieCollectionViewCell.swift */,
+				E3374C9E22138D7B00D2C02C /* PUExpandedMovieCollectionViewCell.xib */,
+			);
+			path = Expanded;
+			sourceTree = "<group>";
+		};
+		E38268E2221601FF001C792E /* Normal */ = {
+			isa = PBXGroup;
+			children = (
+				E38268E32216022F001C792E /* PUNormalMovieCollectionViewCell.swift */,
+				E38268E42216022F001C792E /* PUNormalMovieCollectionViewCell.xib */,
+			);
+			path = Normal;
+			sourceTree = "<group>";
+		};
+		E38268ED22161D04001C792E /* Search Movies */ = {
+			isa = PBXGroup;
+			children = (
+				E38268EE22161D1B001C792E /* SearchMoviesViewController.swift */,
+			);
+			path = "Search Movies";
+			sourceTree = "<group>";
+		};
+		E38268F022161DD3001C792E /* defaults */ = {
+			isa = PBXGroup;
+			children = (
+				E3374CA32213B39900D2C02C /* NavigationFlowManager.swift */,
+			);
+			path = defaults;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -366,9 +497,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				E3374C4E2212220900D2C02C /* LaunchScreen.storyboard in Resources */,
+				E38268E62216022F001C792E /* PUNormalMovieCollectionViewCell.xib in Resources */,
 				E3374C4B2212220900D2C02C /* Assets.xcassets in Resources */,
+				E3374CA022138D7B00D2C02C /* PUExpandedMovieCollectionViewCell.xib in Resources */,
 				E3374C762212240600D2C02C /* tmdb.plist in Resources */,
 				E3374C8522124D2600D2C02C /* MovieListViewController.xib in Resources */,
+				E3374CB422149D5500D2C02C /* PUToggleButtonView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -479,16 +613,30 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E38268F222161E0F001C792E /* UIViewController+addChild.swift in Sources */,
+				E3374C9F22138D7B00D2C02C /* PUExpandedMovieCollectionViewCell.swift in Sources */,
+				E38268DE2215FF57001C792E /* PUToggleButtonViewDelegate.swift in Sources */,
 				E3374C9522137EEA00D2C02C /* PUCacheCenter.swift in Sources */,
+				E3374CBB22149FEC00D2C02C /* PUBaseZibOwnerView.swift in Sources */,
+				E38268EF22161D1B001C792E /* SearchMoviesViewController.swift in Sources */,
+				E38268EA22160823001C792E /* PUMovieCollectionViewCellProtocol.swift in Sources */,
 				E3374C7C2212248F00D2C02C /* PUListType.swift in Sources */,
+				E38268E52216022F001C792E /* PUNormalMovieCollectionViewCell.swift in Sources */,
 				E3374C7A2212247300D2C02C /* PUPlistService.swift in Sources */,
 				E3374C8E221253F000D2C02C /* PUTTMDBEndPoint.swift in Sources */,
 				E3374C742212239700D2C02C /* PUTMDBService.swift in Sources */,
+				E3374CA82214319500D2C02C /* UpComingMoviesViewController.swift in Sources */,
 				E3374C8422124D2600D2C02C /* MovieListViewController.swift in Sources */,
+				E3374CA2221390D300D2C02C /* UIColor+pucolors.swift in Sources */,
 				E3374C8A2212518900D2C02C /* Page.swift in Sources */,
+				E38268E02215FFFE001C792E /* PUToggleButtonState.swift in Sources */,
 				E3374C992213844400D2C02C /* UIImage+initFromURL.swift in Sources */,
+				E3374CAA221431C200D2C02C /* MovieListViewControllerDelegate.swift in Sources */,
+				E3374CA42213B39900D2C02C /* NavigationFlowManager.swift in Sources */,
 				E3374C9322137E5D00D2C02C /* PUCacheService.swift in Sources */,
+				E38268E822160577001C792E /* MovieListControllerState.swift in Sources */,
 				E3374C442212220600D2C02C /* AppDelegate.swift in Sources */,
+				E3374CB822149EF100D2C02C /* PUToggleButtonView.swift in Sources */,
 				E3374C8822124E0300D2C02C /* Movie.swift in Sources */,
 				E3374C802212455100D2C02C /* Bundle+plistPath.swift in Sources */,
 				E3374C8C221252B400D2C02C /* Genre.swift in Sources */,

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PUToggleButtonView" customModule="PopUpCorn" customModuleProvider="target">
+            <connections>
+                <outlet property="containerView" destination="iN0-l3-epB" id="QpP-Er-U5L"/>
+                <outlet property="firstButton" destination="vNR-V7-7wR" id="uEu-EG-4nl"/>
+                <outlet property="firstButtonImageView" destination="cCj-Y7-3v0" id="AP2-kE-BsY"/>
+                <outlet property="secondButton" destination="tbd-Wj-c8k" id="SnM-LK-sAi"/>
+                <outlet property="secondButtonImageView" destination="uVP-Ee-aNV" id="4ev-sF-5Ya"/>
+                <outlet property="selectedIndicatorLeft" destination="yIj-dj-MGR" id="IVX-yP-twS"/>
+                <outlet property="selectedIndicatorView" destination="WWZ-9n-OKG" id="Y1d-DQ-D6G"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="369" height="97"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WWZ-9n-OKG">
+                    <rect key="frame" x="0.0" y="0.0" width="184.5" height="97"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tbd-Wj-c8k">
+                    <rect key="frame" x="184.5" y="0.0" width="184.5" height="97"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="onlyoneicon" translatesAutoresizingMaskIntoConstraints="NO" id="uVP-Ee-aNV">
+                            <rect key="frame" x="10" y="10" width="164.5" height="77"/>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <gestureRecognizers/>
+                    <constraints>
+                        <constraint firstItem="uVP-Ee-aNV" firstAttribute="top" secondItem="tbd-Wj-c8k" secondAttribute="top" constant="10" id="Jcc-5f-PNT"/>
+                        <constraint firstAttribute="trailing" secondItem="uVP-Ee-aNV" secondAttribute="trailing" constant="10" id="WYf-lT-Hc2"/>
+                        <constraint firstAttribute="width" priority="999" constant="180" id="akT-Bp-56P"/>
+                        <constraint firstItem="uVP-Ee-aNV" firstAttribute="leading" secondItem="tbd-Wj-c8k" secondAttribute="leading" constant="10" id="bUk-Xq-0jy"/>
+                        <constraint firstAttribute="bottom" secondItem="uVP-Ee-aNV" secondAttribute="bottom" constant="10" id="oJG-V8-mXA"/>
+                    </constraints>
+                    <connections>
+                        <outletCollection property="gestureRecognizers" destination="Tdn-zx-TaB" appends="YES" id="C6W-ac-FnP"/>
+                    </connections>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vNR-V7-7wR">
+                    <rect key="frame" x="0.0" y="0.0" width="184.5" height="97"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gridicon" translatesAutoresizingMaskIntoConstraints="NO" id="cCj-Y7-3v0">
+                            <rect key="frame" x="10" y="10" width="164.5" height="77"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <gestureRecognizers/>
+                    <constraints>
+                        <constraint firstItem="cCj-Y7-3v0" firstAttribute="leading" secondItem="vNR-V7-7wR" secondAttribute="leading" constant="10" id="56Q-9V-efB"/>
+                        <constraint firstItem="cCj-Y7-3v0" firstAttribute="top" secondItem="vNR-V7-7wR" secondAttribute="top" constant="10" id="HlP-Z8-bo8"/>
+                        <constraint firstAttribute="trailing" secondItem="cCj-Y7-3v0" secondAttribute="trailing" constant="10" id="L4v-6u-2s5"/>
+                        <constraint firstAttribute="bottom" secondItem="cCj-Y7-3v0" secondAttribute="bottom" constant="10" id="Lim-SB-WPi"/>
+                    </constraints>
+                    <connections>
+                        <outletCollection property="gestureRecognizers" destination="IJV-QN-NVt" appends="YES" id="qfh-RX-Zcc"/>
+                    </connections>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="vNR-V7-7wR" firstAttribute="width" secondItem="tbd-Wj-c8k" secondAttribute="width" id="92b-3M-6oR"/>
+                <constraint firstItem="tbd-Wj-c8k" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="KLL-lo-zVw"/>
+                <constraint firstItem="WWZ-9n-OKG" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="OGN-ha-8O5"/>
+                <constraint firstItem="vNR-V7-7wR" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="QBr-3P-FPj"/>
+                <constraint firstItem="vNR-V7-7wR" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="ctJ-3d-IDF"/>
+                <constraint firstItem="WWZ-9n-OKG" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="lNj-T2-S3L"/>
+                <constraint firstItem="tbd-Wj-c8k" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="nED-3N-0bO"/>
+                <constraint firstItem="tbd-Wj-c8k" firstAttribute="leading" secondItem="vNR-V7-7wR" secondAttribute="trailing" id="obX-dI-FxV"/>
+                <constraint firstItem="vNR-V7-7wR" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="uc4-3z-xOo"/>
+                <constraint firstItem="WWZ-9n-OKG" firstAttribute="width" secondItem="vNR-V7-7wR" secondAttribute="width" id="w6c-Ki-fs4"/>
+                <constraint firstItem="tbd-Wj-c8k" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="y9L-Ay-UZD"/>
+                <constraint firstItem="WWZ-9n-OKG" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="yIj-dj-MGR"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="37.600000000000001" y="417.8410794602699"/>
+        </view>
+        <tapGestureRecognizer id="IJV-QN-NVt">
+            <connections>
+                <action selector="firstButtonTapped:" destination="-1" id="Tki-rE-EmK"/>
+            </connections>
+        </tapGestureRecognizer>
+        <tapGestureRecognizer id="Tdn-zx-TaB">
+            <connections>
+                <action selector="secondButtonTapped:" destination="-1" id="n2p-RC-bbk"/>
+            </connections>
+        </tapGestureRecognizer>
+    </objects>
+    <resources>
+        <image name="gridicon" width="40" height="40"/>
+        <image name="onlyoneicon" width="40" height="40"/>
+    </resources>
+</document>
