@@ -13,21 +13,24 @@ class PUNormalMovieCollectionViewCell: UICollectionViewCell, PUMovieCollectionVi
     @IBOutlet weak var containerView: UIView! {
         didSet {
             containerView.clipsToBounds = true
-            containerView.layer.cornerRadius = 5
+            containerView.layer.cornerRadius = Dimens.Radius.shortCorner
         }
     }
 
-    @IBOutlet weak var movieImageView: UIImageView!
+    @IBOutlet weak var movieImageView: PUTMDBImageView!
     @IBOutlet weak var titleLabel: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
     }
 
-    func setup(withMovie movie: Movie) {
+    func setup(withMovie movie: ListableMovie) {
 
         titleLabel.text = movie.title
-        movieImageView.image = nil
+
+        if let moviePosterPath = movie.posterPath {
+            movieImageView.setImage(fromPath: moviePosterPath, placeHolderImage: UIImage.init())
+        }
     }
 
     func set(image: UIImage?) {

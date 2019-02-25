@@ -7,32 +7,66 @@
 //
 
 import UIKit
+import MetalPerformanceShaders
 
 class PUExpandedMovieCollectionViewCell: UICollectionViewCell, PUMovieCollectionViewCellProtocol {
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var genresLabel: UILabel!
     @IBOutlet weak var releaseLabel: UILabel!
-    @IBOutlet weak var posterImageView: UIImageView!
+    @IBOutlet weak var posterImageView: PUTMDBImageView!
+    @IBOutlet weak var headerImageView: PUTMDBImageView!
+
+    private var genresRequesterController = GenreRequesterController.init()
 
     override func awakeFromNib() {
         self.clipsToBounds = true
-        self.layer.cornerRadius = 15
+        self.layer.cornerRadius = Dimens.Radius.bigCorner
+
+        genresRequesterController.delegate = self
     }
 
-    func setup(withMovie movie: Movie) {
-        titleLabel.text = movie.title
+    func setup(withMovie movie: ListableMovie) {
+        guard let moviePosterPath =  movie.backdropPath else {
 
-        if let movieReleaseDateString = movie.releaseDate {
-            releaseLabel.text = "Release at \(movieReleaseDateString)"
-        } else {
             releaseLabel.isHidden = true
+            return
         }
-        posterImageView.image = nil
 
+        titleLabel.text = movie.title
+        releaseLabel.text = "\(Constants.releaseSufix) \(movie.release)"
+
+        self.posterImageView.setImage(
+            fromPath: moviePosterPath,
+            placeHolderImage: UIImage.init()
+        )
+
+        self.headerImageView.setImage(
+            fromPath: moviePosterPath,
+            placeHolderImage: UIImage.init()
+        )
+
+        genresRequesterController.needGenres(withIDs: movie.genresIDs)
     }
 
-    func set(image: UIImage?) {
-        posterImageView.image = image
+    func set(genre: String?) {
+        genresLabel.text = genre
     }
+}
+
+extension PUExpandedMovieCollectionViewCell: GenreRequesterControllerDelegate {
+    func genresHasArrived(_ requester: GenreRequesterController, genres: [String]) {
+        genresLabel.text = genres.reduce("") { (currentValue, currentString) -> String in
+            return "\(currentValue) \(currentString.lowercased())"
+        }
+    }
+
+    func errorHappend(_ requester: GenreRequesterController, error: Error?) {
+        genresLabel.isHidden = true
+    }
+}
+
+private enum Constants {
+    static let releaseSufix = "Release at"
+    static let placeHolderImageName = "placeHolderPopCorn"
 }

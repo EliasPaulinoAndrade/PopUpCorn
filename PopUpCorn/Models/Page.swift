@@ -14,10 +14,23 @@ struct Page: Codable {
     var totalOfPages: Int?
     var movies: [Movie]
 
+    var nextPageNumber: Int? {
+        if let currentPageNumber = self.number {
+            return currentPageNumber + 1
+        }
+
+        return 1
+    }
+
     enum CodingKeys: String, CodingKey {
         case movies = "results"
         case number = "page"
         case totalOfResults = "total_results"
         case totalOfPages = "total_pages"
+    }
+
+    mutating func conformTo(page: Page) {
+        movies.append(contentsOf: page.movies)
+        number = page.number
     }
 }

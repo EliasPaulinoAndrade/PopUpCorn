@@ -10,6 +10,5 @@ import Foundation
 import UIKit
 
 protocol PUMovieCollectionViewCellProtocol {
-    func setup(withMovie movie: Movie)
-    func set(image: UIImage?)
+    func setup(withMovie movie: ListableMovie)
 }
