@@ -8,6 +8,7 @@
 
 import Foundation
 
+//the url properties for tmdb API
 enum PUTMDBQueryProperty: String {
     case query
     case language

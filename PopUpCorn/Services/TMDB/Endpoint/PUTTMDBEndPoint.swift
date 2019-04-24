@@ -19,6 +19,9 @@ enum PUTTMDBEndPoint {
 
     case image(type: PUTMDBImageType, baseURL: String, imageName: String)
 
+    /// build the endpoint path for the enum case
+    ///
+    /// - Returns: the endpoint url
     func formatted() -> URL? {
 
         var urlComponents: URLComponents?

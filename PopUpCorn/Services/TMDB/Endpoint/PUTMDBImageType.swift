@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// the image endpoint types
 enum PUTMDBImageType: String, CustomStringConvertible {
     var description: String {
         return self.rawValue

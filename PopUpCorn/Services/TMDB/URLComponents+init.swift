@@ -9,6 +9,13 @@
 import Foundation
 
 extension URLComponents {
+
+    /// init specialized for tmdb endpoints
+    ///
+    /// - Parameters:
+    ///   - credentials: the tmdb credentials
+    ///   - path: the sub url path
+    ///   - items: the url items for the endpoint
     init?(withCredentials credentials: PUTMDBCredentials, path: String, withItems items: [PUTMDBQueryProperty: String]) {
 
         let baseUrl = credentials.baseUrl

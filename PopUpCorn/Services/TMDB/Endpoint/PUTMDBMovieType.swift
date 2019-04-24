@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// the movie endpoint types
 enum PUTMDBMovieType: String, CustomStringConvertible {
     var description: String {
         return self.rawValue
