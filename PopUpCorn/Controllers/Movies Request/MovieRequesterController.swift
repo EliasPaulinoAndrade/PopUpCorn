@@ -40,7 +40,7 @@ class MovieRequesterController {
         }
 
         tmdbService.movies(
-            ofEndPoint: moviesEndPoint,
+            type: moviesEndPoint,
             inPageNumber: moviePage?.nextPageNumber ?? 1,
             withStringQuery: delegate?.asSearchDelegate?.queryString(self),
             sucessCompletion: { (newMoviePage) in

@@ -10,7 +10,7 @@ import Foundation
 
 protocol MovieRequesterControllerDelegate: AnyObject {
     func moviesHaveArrived(_ requester: MovieRequesterController)
-    func moviesEndPoint(_ requester: MovieRequesterController) -> PUTTMDBEndPoint.Movie
+    func moviesEndPoint(_ requester: MovieRequesterController) -> PUTMDBMovieType
     func errorHappend(_ requester: MovieRequesterController, error: Error?)
 }
 

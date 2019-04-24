@@ -39,26 +39,25 @@ struct PUTMDBService {
     ///   - sucessCompletion: sucess completion
     ///   - errorCompletion: error completion, some error happend or something was wrong
     func movies(
-        ofEndPoint endPoint: PUTTMDBEndPoint.Movie,
+        type: PUTMDBMovieType,
         inPageNumber pageNumber: Int? = 1,
         withStringQuery stringQuery: String? = nil,
         sucessCompletion: @escaping (Page) -> Void,
         errorCompletion: @escaping (Error?) -> Void) {
 
         guard let pageNumber = pageNumber,
-              let baseUrl = self.credentials?.baseUrl,
-              let apiKey = self.credentials?.apiKey else {
+              let credentials = self.credentials else {
 
                 errorCompletion(nil)
                 return
         }
 
-        let moviesUrl = endPoint.with(
-            baseURL: baseUrl,
-            pageNumber: "\(pageNumber)",
-            query: stringQuery,
-            andApiKey: apiKey
-        )
+        let moviesUrl = PUTTMDBEndPoint.movie(
+            credentials: credentials,
+            type: type,
+            language: "en-US",
+            pageNumber: "\(pageNumber)"
+        ).formatted()
 
         if let url = moviesUrl {
             let modelQuery = PUTMDBModelQuery<Page>()
@@ -77,8 +76,7 @@ struct PUTMDBService {
         sucessCompletion: @escaping ([Genre]) -> Void,
         errorCompletion: @escaping (Error?) -> Void) {
 
-        guard let baseUrl = self.credentials?.baseUrl,
-              let apiKey = self.credentials?.apiKey else {
+        guard let credentials = self.credentials else {
                 errorCompletion(nil)
                 return
         }
@@ -88,7 +86,10 @@ struct PUTMDBService {
             return
         }
 
-        let genresURL = PUTTMDBEndPoint.Genre.allGenres.with(baseURL: baseUrl, andApiKey: apiKey)
+        let genresURL = PUTTMDBEndPoint.genre(
+            credentials: credentials,
+            language: "en-US"
+        ).formatted()
 
         if let url = genresURL {
 
@@ -118,8 +119,8 @@ struct PUTMDBService {
                 return nil
         }
 
-        let previewImageUrl = PUTTMDBEndPoint.Image.littleImage.with(imageBaseURL: imageBaseUrl, andImageName: imagePath)
-        let imageUrl = PUTTMDBEndPoint.Image.bigImage.with(imageBaseURL: imageBaseUrl, andImageName: imagePath)
+        let previewImageUrl = PUTTMDBEndPoint.image(type: .littleImage, baseURL: imageBaseUrl, imageName: imagePath).formatted()
+        let imageUrl = PUTTMDBEndPoint.image(type: .bigImage, baseURL: imageBaseUrl, imageName: imagePath).formatted()
 
         if let previewImageUrl = previewImageUrl, let detailImageUrl = imageUrl {
 
