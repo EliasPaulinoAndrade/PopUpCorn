@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 /// a controller to control the genres requests
 class GenreRequesterController {
 
@@ -16,7 +15,6 @@ class GenreRequesterController {
 
     private var tmdbService = PUTMDBService.init()
 
-    
     /// tells the controller to retrieve the genres with given genreIDs
     ///
     /// - Parameter genreIDs: the genre IDs of the required genres

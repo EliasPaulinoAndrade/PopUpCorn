@@ -19,14 +19,16 @@ struct PUTTMDBEndPoint {
             language: String = "en-US",
             andApiKey apiKey: String) -> URL? {
 
-            var urlString = "\(baseURL)\(self.rawValue)"
+            let urlString = "\(baseURL)\(self.rawValue)"
 
-            PUTTMDBEndPoint.insert(parameters: [
-                "api_key": apiKey,
-                "language": language
-                ], inStringURL: &urlString)
+            var urlComponents = URLComponents.init(string: urlString)
 
-            return URL(string: urlString)
+            urlComponents?.queryItems = [
+                URLQueryItem.init(name: "api_key", value: apiKey),
+                URLQueryItem.init(name: "language", value: language)
+            ]
+
+            return urlComponents?.url
         }
     }
 
@@ -42,21 +44,22 @@ struct PUTTMDBEndPoint {
             query: String? = nil,
             andApiKey apiKey: String) -> URL? {
 
-            var urlString = "\(baseURL)\(self.rawValue)"
+            let urlString = "\(baseURL)\(self.rawValue)"
 
-            var paramenters = [
-                "api_key": apiKey,
-                "language": language,
-                "page": pageNumber,
-                "include_adult": "false"
+            var urlComponents = URLComponents.init(string: urlString)
+
+            urlComponents?.queryItems = [
+                URLQueryItem.init(name: "api_key", value: apiKey),
+                URLQueryItem.init(name: "language", value: language),
+                URLQueryItem.init(name: "page", value: pageNumber),
+                URLQueryItem.init(name: "include_adult", value: "false")
             ]
 
             if let queryString = query {
-                paramenters["query"] = queryString
+                urlComponents?.queryItems?.append(URLQueryItem.init(name: "query", value: queryString))
             }
 
-            PUTTMDBEndPoint.insert(parameters: paramenters, inStringURL: &urlString)
-            return URL(string: urlString)
+            return urlComponents?.url
         }
     }
 
@@ -70,14 +73,6 @@ struct PUTTMDBEndPoint {
 
             let urlString = "\(baseURL)\(self.rawValue)/\(imageName)"
             return URL(string: urlString)
-        }
-    }
-
-    static private func insert(parameters: [String: Any], inStringURL stringURL: inout String) {
-
-        stringURL.append("?")
-        for (paramenterKey, paramenterValue) in parameters {
-            stringURL.append("\(paramenterKey)=\(paramenterValue)&")
         }
     }
 }

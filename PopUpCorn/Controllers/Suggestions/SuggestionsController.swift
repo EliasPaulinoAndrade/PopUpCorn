@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 /// A controller the abstracts retrieve, creation and listing of suggestions
 class SuggestionsController {
     private var plistService = PUPlistService.init()
