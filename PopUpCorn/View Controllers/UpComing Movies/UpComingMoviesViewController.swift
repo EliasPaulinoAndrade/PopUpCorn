@@ -83,7 +83,7 @@ extension UpComingMoviesViewController: MovieListViewControllerDelegate {
         let detailableMovie = DetailableMovie.init(
             title: movie.title,
             release: movie.releaseDate,
-            image: movie.backdropPath ?? movie.posterPath,
+            image: movie.posterPath ?? movie.backdropPath,
             genres: movie.genreIDs,
             overview: movie.overview
         )
@@ -117,5 +117,4 @@ extension UpComingMoviesViewController: ReloaderAlertBuilderDelegate {
 
 private enum Constants {
     static let title = "UpComing"
-
 }

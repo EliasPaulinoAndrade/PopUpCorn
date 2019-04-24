@@ -8,6 +8,8 @@
 
 import Foundation
 
+
+/// A controller to control the movies request
 class MovieRequesterController {
 
     weak var delegate: MovieRequesterControllerDelegate?
@@ -23,6 +25,8 @@ class MovieRequesterController {
     private var tmdbService = PUTMDBService.init()
     private var moviePage: Page?
 
+    
+    /// tells the controller to retrieve new movies
     func needMoreMovies() {
 
         guard let moviesEndPoint = delegate?.moviesEndPoint(self) else {

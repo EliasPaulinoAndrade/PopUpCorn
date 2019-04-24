@@ -12,14 +12,13 @@ import MetalPerformanceShaders
 
 class PUTMDBImageView: UIImageView {
 
-    var isBlured = false
-
     private let tmdbService = PUTMDBService.init()
     private var lastImageQuery: PUTMDBImageQuery?
 
     func setImage(fromPath path: String, placeHolderImage: UIImage) {
 
         self.lastImageQuery?.cancel()
+        self.image = placeHolderImage
 
         self.lastImageQuery = tmdbService.image(fromMovieWithPath: path,
             progressCompletion: { (movieImage, _) in

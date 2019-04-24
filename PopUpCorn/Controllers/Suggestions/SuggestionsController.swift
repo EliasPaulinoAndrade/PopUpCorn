@@ -8,6 +8,8 @@
 
 import Foundation
 
+
+/// A controller the abstracts retrieve, creation and listing of suggestions
 class SuggestionsController {
     private var plistService = PUPlistService.init()
 
@@ -33,6 +35,7 @@ class SuggestionsController {
         plistService.saveSuggestions()
     }
 
+    //search a string in the suggestions
     func searchOnSuggestions(text: String) -> [String] {
         let suggestions = plistService.suggestions.array
 

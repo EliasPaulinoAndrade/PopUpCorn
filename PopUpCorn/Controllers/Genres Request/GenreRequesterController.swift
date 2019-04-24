@@ -8,12 +8,18 @@
 
 import Foundation
 
+
+/// a controller to control the genres requests
 class GenreRequesterController {
 
     weak var delegate: GenreRequesterControllerDelegate?
 
     private var tmdbService = PUTMDBService.init()
 
+    
+    /// tells the controller to retrieve the genres with given genreIDs
+    ///
+    /// - Parameter genreIDs: the genre IDs of the required genres
     func needGenres(withIDs genreIDs: [Int]) {
         requestMiddleware { (genres) in
             let genresNames = genres.nameArray(filteredByIds: genreIDs)
