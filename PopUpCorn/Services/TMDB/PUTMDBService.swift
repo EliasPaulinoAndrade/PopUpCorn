@@ -52,12 +52,19 @@ struct PUTMDBService {
                 return
         }
 
-        let moviesUrl = PUTTMDBEndPoint.movie(
-            credentials: credentials,
-            type: type,
-            language: "en-US",
-            pageNumber: "\(pageNumber)"
-        ).formatted()
+        var moviesUrl: URL?
+
+        if let query = stringQuery {
+            
+//            moviesUrl = PUTTMDBEndPoint.movieSearch(credentials: credentials, type: type, language: "en-US", pageNumber: pageNumber, query: query)
+        } else {
+            moviesUrl = PUTTMDBEndPoint.movie(
+                credentials: credentials,
+                type: type,
+                language: "en-US",
+                pageNumber: "\(pageNumber)"
+            ).formatted()
+        }
 
         if let url = moviesUrl {
             let modelQuery = PUTMDBModelQuery<Page>()
