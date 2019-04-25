@@ -10,12 +10,12 @@ import UIKit
 
 class UpComingMoviesViewController: UIViewController {
 
-    private var searchMoviesViewControler = SearchMoviesViewController.init()
     private var movieListViewController = MovieListViewController.init()
     private var movieRequesterController = MovieRequesterController.init()
     private var errorPresenterController = ErrorPresenterViewController.init()
-    private var movieDetailViewController = MovieDetailViewController.init()
     private var loadIndicatorViewController = LoadIndicatorViewController.init()
+
+    weak var delegate: UpComingMoviesViewControllerDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,7 +46,8 @@ class UpComingMoviesViewController: UIViewController {
     }
 
     @objc func searchButtonWasTapped(sender: UIBarButtonItem) {
-        navigationController?.pushViewController(searchMoviesViewControler, animated: true)
+//        navigationController?.pushViewController(searchMoviesViewControler, animated: true)
+        delegate?.searchButtonWasSelected()
     }
 }
 
@@ -88,8 +89,7 @@ extension UpComingMoviesViewController: MovieListViewControllerDelegate {
             overview: movie.overview
         )
 
-        movieDetailViewController.movie = detailableMovie
-        navigationController?.pushViewController(movieDetailViewController, animated: true)
+        delegate?.upComingMovieWasSelected(movie: detailableMovie)
     }
 }
 

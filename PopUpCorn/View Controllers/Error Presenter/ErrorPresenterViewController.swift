@@ -46,16 +46,25 @@ class ErrorPresenterViewController: UIViewController {
     func showReloaderError(withTitle title: String, andMessage message: String) {
 
         alertMiddleware(withTitle: title, andMessage: message) { (alertBuilder, present) in
-            let reloadAlertBuilder = ReloaderAlertBuilder.init(withAlertBuilder: alertBuilder, andDelegate: reloadDelegate)
+            let reloadAlertBuilder = ReloaderAlertBuilder.init(
+                withAlertBuilder: alertBuilder,
+                andDelegate: reloadDelegate
+            )
 
             present(reloadAlertBuilder)
         }
     }
 
-    func showQuitError(withTitle title: String, andMessage message: String, andControllerToQuit controllerToQuit: ClosableViewControllerProtocol) {
+    func showQuitError(
+        withTitle title: String,
+        andMessage message: String,
+        andControllerToQuit controllerToQuit: ClosableViewControllerProtocol) {
 
         alertMiddleware(withTitle: title, andMessage: message) { (alertBuilder, present) in
-            let quitAlertBuilder = QuitAlertBuilder.init(withAlertBuilder: alertBuilder, controllerToQuit: controllerToQuit)
+            let quitAlertBuilder = QuitAlertBuilder.init(
+                withAlertBuilder: alertBuilder,
+                controllerToQuit: controllerToQuit
+            )
 
             present(quitAlertBuilder)
         }
