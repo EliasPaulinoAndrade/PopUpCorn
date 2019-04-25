@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class AppNavigator: NavigatorProtocol {
+class AppCoordinator: CoordinatorProtocol {
     var rootViewController: UINavigationController = {
         let navigationViewController = UINavigationController.init()
 

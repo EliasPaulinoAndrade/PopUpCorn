@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-protocol NavigatorProtocol {
+protocol CoordinatorProtocol {
     var rootViewController: UINavigationController { get set }
     func start()
 }

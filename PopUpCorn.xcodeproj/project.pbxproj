@@ -76,7 +76,7 @@
 		E381C37222710D8E00530F3C /* PUTMDBMovieType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E381C37122710D8E00530F3C /* PUTMDBMovieType.swift */; };
 		E381C37422710DB400530F3C /* PUTMDBImageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E381C37322710DB400530F3C /* PUTMDBImageType.swift */; };
 		E381C37622710DCE00530F3C /* PUTMDBQueryProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = E381C37522710DCE00530F3C /* PUTMDBQueryProperty.swift */; };
-		E381C3782272443A00530F3C /* NavigatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E381C3772272443A00530F3C /* NavigatorProtocol.swift */; };
+		E381C3782272443A00530F3C /* CoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E381C3772272443A00530F3C /* CoordinatorProtocol.swift */; };
 		E381C37A227244BE00530F3C /* AppNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E381C379227244BE00530F3C /* AppNavigator.swift */; };
 		E381C37C227247F900530F3C /* UpComingMoviesCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E381C37B227247F900530F3C /* UpComingMoviesCoordinator.swift */; };
 		E381C37E22724C4600530F3C /* UpComingMoviesViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E381C37D22724C4600530F3C /* UpComingMoviesViewControllerDelegate.swift */; };
@@ -199,7 +199,7 @@
 		E381C37122710D8E00530F3C /* PUTMDBMovieType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PUTMDBMovieType.swift; sourceTree = "<group>"; };
 		E381C37322710DB400530F3C /* PUTMDBImageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PUTMDBImageType.swift; sourceTree = "<group>"; };
 		E381C37522710DCE00530F3C /* PUTMDBQueryProperty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PUTMDBQueryProperty.swift; sourceTree = "<group>"; };
-		E381C3772272443A00530F3C /* NavigatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigatorProtocol.swift; sourceTree = "<group>"; };
+		E381C3772272443A00530F3C /* CoordinatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorProtocol.swift; sourceTree = "<group>"; };
 		E381C379227244BE00530F3C /* AppNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppNavigator.swift; sourceTree = "<group>"; };
 		E381C37B227247F900530F3C /* UpComingMoviesCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpComingMoviesCoordinator.swift; sourceTree = "<group>"; };
 		E381C37D22724C4600530F3C /* UpComingMoviesViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpComingMoviesViewControllerDelegate.swift; sourceTree = "<group>"; };
@@ -424,7 +424,7 @@
 				E3374C8122124CC000D2C02C /* View Controllers */,
 				E37C777E221741DA0075D8D8 /* Controllers */,
 				E3374C8622124DDA00D2C02C /* Models */,
-				E38268F022161DD3001C792E /* Coordinator */,
+				E38268F022161DD3001C792E /* Coordinators */,
 				E3374C432212220600D2C02C /* AppDelegate.swift */,
 				E3374C4A2212220900D2C02C /* Assets.xcassets */,
 				E3374C4C2212220900D2C02C /* LaunchScreen.storyboard */,
@@ -665,16 +665,16 @@
 			path = "Search Movies";
 			sourceTree = "<group>";
 		};
-		E38268F022161DD3001C792E /* Coordinator */ = {
+		E38268F022161DD3001C792E /* Coordinators */ = {
 			isa = PBXGroup;
 			children = (
-				E381C3772272443A00530F3C /* NavigatorProtocol.swift */,
+				E381C3772272443A00530F3C /* CoordinatorProtocol.swift */,
 				E381C379227244BE00530F3C /* AppNavigator.swift */,
 				E381C37B227247F900530F3C /* UpComingMoviesCoordinator.swift */,
 				E381C37F2272510500530F3C /* MovieDetailCoordinator.swift */,
 				E381C381227251C500530F3C /* SearchMoviesCoordinator.swift */,
 			);
-			path = Coordinator;
+			path = Coordinators;
 			sourceTree = "<group>";
 		};
 		E38268FB22163951001C792E /* Queries */ = {
@@ -956,7 +956,7 @@
 				E3374C8422124D2600D2C02C /* MovieListViewController.swift in Sources */,
 				E329957C22187786002AA3E3 /* DetailableMovie.swift in Sources */,
 				E30429A622184133009A22E5 /* ReloaderAlertBuilderDelegate.swift in Sources */,
-				E381C3782272443A00530F3C /* NavigatorProtocol.swift in Sources */,
+				E381C3782272443A00530F3C /* CoordinatorProtocol.swift in Sources */,
 				E37C777522171C310075D8D8 /* MovieCell.swift in Sources */,
 				E3374CA2221390D300D2C02C /* UIColor+pucolors.swift in Sources */,
 				E381C37222710D8E00530F3C /* PUTMDBMovieType.swift in Sources */,

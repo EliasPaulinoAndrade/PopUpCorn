@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class SearchMoviesCoordinator: NavigatorProtocol {
+class SearchMoviesCoordinator: CoordinatorProtocol {
     var rootViewController: UINavigationController
 
     var searchMoviesViewController = SearchMoviesViewController.init()
@@ -19,6 +19,11 @@ class SearchMoviesCoordinator: NavigatorProtocol {
     }
 
     func start() {
+        searchMoviesViewController.title = Constants.title
         rootViewController.pushViewController(searchMoviesViewController, animated: true)
     }
+}
+
+private enum Constants {
+    static let title = "Search"
 }

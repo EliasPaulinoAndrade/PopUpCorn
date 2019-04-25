@@ -20,7 +20,6 @@ class UpComingMoviesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.title = Constants.title
         movieListViewController.delegate = self
         movieRequesterController.delegate = self
         errorPresenterController.reloadDelegate = self
@@ -46,7 +45,6 @@ class UpComingMoviesViewController: UIViewController {
     }
 
     @objc func searchButtonWasTapped(sender: UIBarButtonItem) {
-//        navigationController?.pushViewController(searchMoviesViewControler, animated: true)
         delegate?.searchButtonWasSelected()
     }
 }
@@ -113,8 +111,4 @@ extension UpComingMoviesViewController: ReloaderAlertBuilderDelegate {
         loadIndicatorViewController.startAnimating()
         movieRequesterController.needMoreMovies()
     }
-}
-
-private enum Constants {
-    static let title = "UpComing"
 }

@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class UpComingMoviesCoordinator: NavigatorProtocol {
+class UpComingMoviesCoordinator: CoordinatorProtocol {
     var rootViewController: UINavigationController
 
     lazy var searchMoviesCoordinator = SearchMoviesCoordinator.init(withRootViewController: rootViewController)
@@ -29,13 +29,14 @@ class UpComingMoviesCoordinator: NavigatorProtocol {
     }
 
     func start() {
+        upComingMoviesController.title = Constants.title
         rootViewController.pushViewController(upComingMoviesController, animated: true)
     }
 }
 
 extension UpComingMoviesCoordinator: UpComingMoviesViewControllerDelegate {
     func upComingMovieWasSelected(movie: DetailableMovie) {
-        movieDetailCoordinator.movieDetailViewController.movie = movie
+        movieDetailCoordinator.movie = movie
 
         movieDetailCoordinator.start()
     }
@@ -44,4 +45,8 @@ extension UpComingMoviesCoordinator: UpComingMoviesViewControllerDelegate {
 
         searchMoviesCoordinator.start()
     }
+}
+
+private enum Constants {
+    static let title = "UpComing"
 }

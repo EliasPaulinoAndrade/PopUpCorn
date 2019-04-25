@@ -9,10 +9,17 @@
 import Foundation
 import UIKit
 
-class MovieDetailCoordinator: NavigatorProtocol {
+class MovieDetailCoordinator: CoordinatorProtocol {
     var rootViewController: UINavigationController
 
-    var movieDetailViewController = MovieDetailViewController.init()
+    var movie: DetailableMovie? {
+        didSet {
+            movieDetailViewController.title = movie?.title ?? MoviePlaceholder.title
+            movieDetailViewController.movie = movie
+        }
+    }
+
+    private var movieDetailViewController = MovieDetailViewController.init()
 
     init(withRootViewController rootViewController: UINavigationController) {
         self.rootViewController = rootViewController

@@ -34,8 +34,6 @@ class SearchMoviesViewController: UIViewController {
 
     override func viewDidLoad() {
 
-        self.title = Constants.title
-
         searchController.addChild(errorPresenterController, inView: self.view)
         addChild(searchSuggestionsViewController, inView: self.view)
         addChild(movieListViewController, inView: self.view)
