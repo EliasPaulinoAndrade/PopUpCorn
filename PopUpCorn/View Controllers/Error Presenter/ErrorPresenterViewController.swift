@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// a view controller responsible by showing errors alerts. It make custom alerts using the alert decorators.
 class ErrorPresenterViewController: UIViewController {
 
     weak var reloadDelegate: ReloaderAlertBuilderDelegate?

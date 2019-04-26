@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// a view controller that shows the detail view of a detailableMovie
 class MovieDetailViewController: UIViewController {
 
     @IBOutlet weak var detailImageView: PUTMDBImageView!

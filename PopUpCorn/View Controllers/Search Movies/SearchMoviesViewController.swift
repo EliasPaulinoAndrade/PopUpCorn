@@ -10,6 +10,7 @@ import Foundation
 
 import UIKit
 
+/// a view controller that shows the search screen.
 class SearchMoviesViewController: UIViewController {
 
     private var movieListViewController = MovieListViewController.init()

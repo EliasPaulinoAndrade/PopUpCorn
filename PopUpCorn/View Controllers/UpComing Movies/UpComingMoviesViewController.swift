@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// a view controller that shows the inical app screen
 class UpComingMoviesViewController: UIViewController {
 
     private var movieListViewController = MovieListViewController.init()

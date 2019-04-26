@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// a view controller that shows the suggestions list
 class SearchSuggestionsViewController: UIViewController {
     @IBOutlet weak var suggestionsTableView: UITableView! {
         didSet {
