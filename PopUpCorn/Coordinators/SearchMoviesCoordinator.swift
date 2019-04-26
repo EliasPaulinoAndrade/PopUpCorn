@@ -12,7 +12,15 @@ import UIKit
 class SearchMoviesCoordinator: CoordinatorProtocol {
     var rootViewController: UINavigationController
 
-    var searchMoviesViewController = SearchMoviesViewController.init()
+    lazy var searchMoviesViewController: SearchMoviesViewController = {
+        let searchMoviesViewController = SearchMoviesViewController.init()
+
+        searchMoviesViewController.delegate = self
+
+        return searchMoviesViewController
+    }()
+
+    lazy var movieDetailCoordinator = MovieDetailCoordinator.init(withRootViewController: rootViewController)
 
     init(withRootViewController rootViewController: UINavigationController) {
         self.rootViewController = rootViewController
@@ -21,6 +29,14 @@ class SearchMoviesCoordinator: CoordinatorProtocol {
     func start() {
         searchMoviesViewController.title = Constants.title
         rootViewController.pushViewController(searchMoviesViewController, animated: true)
+    }
+}
+
+extension SearchMoviesCoordinator: SearchMoviesViewControllerDelegate {
+    func searchMovieWasSelected(movie: DetailableMovie) {
+
+        movieDetailCoordinator.movie = movie
+        movieDetailCoordinator.start()
     }
 }
 

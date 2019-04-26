@@ -21,7 +21,7 @@ struct PUPlistService {
         }
         return nil
     }()
-    
+
     /// if the suggestions are not in the documents plist it returns de default suggestions
     var suggestions: Queue<String> = {
         var suggestions = Queue<String>.init(withLimit: Suggestions.limitOfSuggestions)

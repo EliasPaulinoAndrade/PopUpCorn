@@ -20,6 +20,8 @@ class SearchMoviesViewController: UIViewController {
     private var searchSuggestionsViewController = SearchSuggestionsViewController.init()
     private var loadIndicatorController = LoadIndicatorViewController.init()
 
+    weak var delegate: SearchMoviesViewControllerDelegate?
+
     private lazy var searchController: UISearchController = {
         let searchController = UISearchController.init(searchResultsController: nil)
         searchController.obscuresBackgroundDuringPresentation = false
@@ -124,7 +126,8 @@ extension SearchMoviesViewController: MovieListViewControllerDelegate {
 
         movieDetailViewController.movie = detailableMovie
         searchController.isActive = false
-        navigationController?.pushViewController(movieDetailViewController, animated: true)
+
+        delegate?.searchMovieWasSelected(movie: detailableMovie)
     }
 }
 
@@ -203,7 +206,9 @@ extension SearchMoviesViewController: ReloaderAlertBuilderDelegate {
 
 extension SearchMoviesViewController: SearchSuggestionsViewContorllerDelegate {
     func userDidSelectSuggestion(_ controller: SearchSuggestionsViewController, suggestion: String) {
-        self.searchController.isActive = true
+        searchController.isActive = true
+        searchController.isEditing = true
+
         self.searchController.searchBar.text = suggestion
     }
 }
