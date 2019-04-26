@@ -18,17 +18,8 @@ struct PUTMDBService {
     /// initialize the service getting the api atributtes from TMDB plist
     init() {
         let plistService = PUPlistService.init()
-        let tmdbAtributtes = plistService.tmdbAtributtes
 
-        if let apiKey = tmdbAtributtes.apiKey,
-           let baseUrl = tmdbAtributtes.baseUrl.normal,
-           let imageBaseUrl = tmdbAtributtes.baseUrl.image {
-            self.credentials = PUTMDBCredentials.init(
-                withApiKey: apiKey,
-                baseUrl: baseUrl,
-                andImageBaseUrl: imageBaseUrl
-            )
-        }
+        self.credentials = plistService.tmdbAtributtes
     }
 
     /// Get movies from the API

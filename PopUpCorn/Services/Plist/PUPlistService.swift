@@ -10,18 +10,16 @@ import Foundation
 
 /// A service that reads/write plist files
 struct PUPlistService {
-    var tmdbAtributtes: (apiKey: String?, baseUrl: (image: String?, normal: String?)) = {
-        if let path = Bundle.main.path(forPlist: "\(PUListType.tmdb)"),
-           let tmdbDictionary = NSDictionary(contentsOfFile: path) as? [String: String] {
+    var tmdbAtributtes: PUTMDBCredentials? = {
+        let plistDecoder = PropertyListDecoder.init()
 
-            return  (apiKey: tmdbDictionary["api_key"],
-                     baseUrl: (
-                        (normal: tmdbDictionary["base_url"],
-                         image: tmdbDictionary["image_base_url"])
-                     )
-                    )
+        if let path = Bundle.main.path(forPlist: "\(PUListType.tmdb)"),
+           let plistData = FileManager.default.contents(atPath: path),
+           let credentials = try? plistDecoder.decode(PUTMDBCredentials.self, from: plistData) {
+
+            return credentials
         }
-        return (nil, (nil, nil))
+        return nil
     }()
 
     var suggestions: Queue<String> = {
