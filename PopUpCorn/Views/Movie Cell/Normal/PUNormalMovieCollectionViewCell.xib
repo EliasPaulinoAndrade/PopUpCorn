@@ -20,11 +20,11 @@
                 <rect key="frame" x="0.0" y="0.0" width="270" height="337"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lc3-If-5Ir">
-                        <rect key="frame" x="0.0" y="0.0" width="270" height="291"/>
+                    <view contentMode="scaleToFill" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="lc3-If-5Ir" customClass="PURadiusView" customModule="PopUpCorn" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="270" height="309"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SXT-GE-4Zz" customClass="PUTMDBImageView" customModule="PopUpCorn" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="270" height="291"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="SXT-GE-4Zz" customClass="PUTMDBImageView" customModule="PopUpCorn" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="270" height="309"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" name="red"/>
@@ -35,8 +35,8 @@
                             <constraint firstAttribute="trailing" secondItem="SXT-GE-4Zz" secondAttribute="trailing" id="qZD-ni-9M7"/>
                         </constraints>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label ret ret ret retre tr tre t ret ert re t ret ret re tre t wt rwet wt t wt" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AgT-GR-sRf">
-                        <rect key="frame" x="0.0" y="301" width="270" height="36"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="loading..." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AgT-GR-sRf">
+                        <rect key="frame" x="0.0" y="319" width="270" height="18"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                         <color key="textColor" name="text_blue"/>
                         <nil key="highlightedColor"/>

@@ -13,6 +13,7 @@ extension UIViewController {
     func addChild(_ child: UIViewController, inView view: UIView) {
         addChild(child)
         view.addSubview(child.view)
+        child.view.frame = view.frame
 
         child.view.translatesAutoresizingMaskIntoConstraints = false
 

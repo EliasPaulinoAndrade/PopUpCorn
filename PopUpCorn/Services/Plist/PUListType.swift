@@ -11,7 +11,7 @@ import Foundation
 /// a enum to store plist file names
 enum PUListType: String, CustomStringConvertible {
 
-    case tmdb
+    case tmdb, suggestions
 
     var description: String {
         return self.rawValue

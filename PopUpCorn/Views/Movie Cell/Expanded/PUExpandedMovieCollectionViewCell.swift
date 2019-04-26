@@ -16,6 +16,7 @@ class PUExpandedMovieCollectionViewCell: UICollectionViewCell, PUMovieCollection
     @IBOutlet weak var releaseLabel: UILabel!
     @IBOutlet weak var posterImageView: PUTMDBImageView!
     @IBOutlet weak var headerImageView: PUTMDBImageView!
+    @IBOutlet weak var containerView: PURadiusView!
 
     private var genresRequesterController = GenreRequesterController.init()
 
@@ -27,35 +28,35 @@ class PUExpandedMovieCollectionViewCell: UICollectionViewCell, PUMovieCollection
     }
 
     func setup(withMovie movie: ListableMovie) {
-        guard let moviePosterPath =  movie.backdropPath else {
-
-            releaseLabel.isHidden = true
-            return
-        }
-
         titleLabel.text = movie.title
         releaseLabel.text = "\(Constants.releaseSufix) \(movie.release)"
+        releaseLabel.isHidden = false
 
-        self.posterImageView.setImage(
-            fromPath: moviePosterPath,
-            placeHolderImage: UIImage.init()
-        )
+        let placeHolderImage = UIImage.init(named: Constants.placeHolderImageName)
 
-        self.headerImageView.setImage(
-            fromPath: moviePosterPath,
-            placeHolderImage: UIImage.init()
-        )
+        if let moviePosterPath = (movie.backdropPath ?? movie.posterPath) {
+            self.posterImageView.setImage(
+                fromPath: moviePosterPath,
+                placeHolderImage: placeHolderImage ?? UIImage.init()
+            )
 
+            self.headerImageView.setImage(
+                fromPath: moviePosterPath,
+                placeHolderImage: placeHolderImage ?? UIImage.init()
+            )
+        }
+
+        self.headerImageView.image = placeHolderImage
+        self.posterImageView.image = placeHolderImage
+
+        genresLabel.isHidden = false
         genresRequesterController.needGenres(withIDs: movie.genresIDs)
-    }
-
-    func set(genre: String?) {
-        genresLabel.text = genre
     }
 }
 
 extension PUExpandedMovieCollectionViewCell: GenreRequesterControllerDelegate {
     func genresHasArrived(_ requester: GenreRequesterController, genres: [String]) {
+        genresLabel.isHidden = false
         genresLabel.text = genres.reduce("") { (currentValue, currentString) -> String in
             return "\(currentValue) \(currentString.lowercased())"
         }
@@ -68,5 +69,5 @@ extension PUExpandedMovieCollectionViewCell: GenreRequesterControllerDelegate {
 
 private enum Constants {
     static let releaseSufix = "Release at"
-    static let placeHolderImageName = "placeHolderPopCorn"
+    static let placeHolderImageName = "placeholderImage"
 }

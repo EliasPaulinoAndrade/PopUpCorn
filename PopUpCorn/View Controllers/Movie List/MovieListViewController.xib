@@ -13,6 +13,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MovieListViewController" customModule="PopUpCorn" customModuleProvider="target">
             <connections>
+                <outlet property="loadIndicatorPlace" destination="lCe-KM-x7m" id="X0V-Tg-T7C"/>
+                <outlet property="loadIndicatorPlaceHeightConstraint" destination="WMX-5B-mvw" id="Zlk-9f-RGk"/>
                 <outlet property="moviesCollectionView" destination="buT-Er-MlR" id="lUq-yu-pev"/>
                 <outlet property="toggleButton" destination="Y4K-0a-9rq" id="1MB-6g-kRl"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -23,6 +25,13 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lCe-KM-x7m">
+                    <rect key="frame" x="0.0" y="667" width="375" height="0.0"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" id="WMX-5B-mvw"/>
+                    </constraints>
+                </view>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="buT-Er-MlR">
                     <rect key="frame" x="10" y="80" width="355" height="577"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -44,8 +53,11 @@
             </subviews>
             <color key="backgroundColor" name="black"/>
             <constraints>
+                <constraint firstItem="lCe-KM-x7m" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="2Jf-sW-oK6"/>
                 <constraint firstItem="buT-Er-MlR" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="ELi-g3-gTi"/>
                 <constraint firstItem="buT-Er-MlR" firstAttribute="top" secondItem="Y4K-0a-9rq" secondAttribute="bottom" constant="10" id="dyT-hH-LV1"/>
+                <constraint firstItem="lCe-KM-x7m" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="e3x-Wg-sB8"/>
+                <constraint firstItem="lCe-KM-x7m" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="euJ-MC-mox"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="buT-Er-MlR" secondAttribute="bottom" constant="10" id="ofw-Ld-pmf"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="buT-Er-MlR" secondAttribute="trailing" constant="10" id="pyl-pV-iGE"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Y4K-0a-9rq" secondAttribute="trailing" constant="10" id="r1s-p7-ckd"/>

@@ -14,14 +14,23 @@ class MovieListViewController: UIViewController {
 
     @IBOutlet weak var toggleButton: PUToggleButtonView!
 
+    @IBOutlet weak var loadIndicatorPlace: UIView!
+
+    @IBOutlet weak var loadIndicatorPlaceHeightConstraint: NSLayoutConstraint!
+
     weak var delegate: MovieListViewControllerDelegate?
 
     var state = MovieListControllerState.expanded
 
-    var movies: [ListableMovie] = []
+    private var movies: [ListableMovie] = []
+
+    private var loadIndicatorController = LoadIndicatorViewController.init()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        addChild(loadIndicatorController, inView: loadIndicatorPlace)
+        loadIndicatorController.startAnimating()
 
         moviesCollectionView.delegate = self
         moviesCollectionView.dataSource = self
@@ -31,13 +40,27 @@ class MovieListViewController: UIViewController {
     }
 
     func registerMovieCells() {
-        moviesCollectionView.register(nibWithName: MovieCell.Exapanded.nibName, identifiedBy: MovieCell.Exapanded.reuseIdentifier)
+        moviesCollectionView.register(
+            nibWithName: MovieCell.Exapanded.nibName,
+            identifiedBy: MovieCell.Exapanded.reuseIdentifier
+        )
 
-        moviesCollectionView.register(nibWithName: MovieCell.Normal.nibName, identifiedBy: MovieCell.Normal.reuseIdentifier)
+        moviesCollectionView.register(
+            nibWithName: MovieCell.Normal.nibName,
+            identifiedBy: MovieCell.Normal.reuseIdentifier
+        )
     }
 
     func reloadData() {
         self.moviesCollectionView.reloadData()
+    }
+
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        moviesCollectionView.collectionViewLayout.invalidateLayout()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        moviesCollectionView.collectionViewLayout.invalidateLayout()
     }
 }
 
@@ -50,20 +73,20 @@ extension MovieListViewController: UICollectionViewDelegateFlowLayout, UICollect
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
         let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: state == .expanded ?
-                MovieCell.Exapanded.reuseIdentifier :
-                MovieCell.Normal.reuseIdentifier ,
+            withReuseIdentifier:
+                (state == .normal ?
+                    MovieCell.Normal.reuseIdentifier :
+                    MovieCell.Exapanded.reuseIdentifier
+                ),
             for: indexPath
         )
 
-        guard let movie = delegate?.movieList(self, movieForPositon: indexPath.row) else {
-            return cell
-        }
-
-        movies.append(movie)
-
         if let movieCell = cell as? PUMovieCollectionViewCellProtocol {
-            movieCell.setup(withMovie: movie)
+            if let movie = delegate?.movieList(self, movieForPositon: indexPath.row) {
+
+                movies.append(movie)
+                movieCell.setup(withMovie: movie)
+            }
         }
 
         return cell
@@ -73,15 +96,30 @@ extension MovieListViewController: UICollectionViewDelegateFlowLayout, UICollect
 
         switch state {
         case .expanded:
-            let cellWidth = collectionView.bounds.width
-            let cellHeight = cellWidth * 1.1
+            if collectionView.isStanding {
+                let cellWidth = collectionView.bounds.width
+                let cellHeight = cellWidth * 1.1
 
-            return CGSize.init(width: cellWidth, height: cellHeight)
+                return CGSize.init(width: cellWidth, height: cellHeight)
+            } else {
+                let cellWidth = collectionView.bounds.width/2 - 10
+                let cellHeight = cellWidth * 1.1
+
+                return CGSize.init(width: cellWidth, height: cellHeight)
+            }
+
         case .normal:
-            let cellWidth = collectionView.bounds.width/3 - 10
-            let cellHeight = cellWidth * 1.7
+            if collectionView.isStanding {
+                let cellWidth = collectionView.bounds.width/3 - 10
+                let cellHeight = cellWidth * 1.7
 
-            return CGSize.init(width: cellWidth, height: cellHeight)
+                return CGSize.init(width: cellWidth, height: cellHeight)
+            } else {
+                let cellWidth = collectionView.bounds.width/5 - 10
+                let cellHeight = cellWidth * 1.7
+
+                return CGSize.init(width: cellWidth, height: cellHeight)
+            }
         }
     }
 
@@ -92,6 +130,17 @@ extension MovieListViewController: UICollectionViewDelegateFlowLayout, UICollect
 
         if indexPath.row == (moviesCount - 2) {
             delegate?.needLoadMoreMovies(self)
+        }
+    }
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+
+        let bounceSize = scrollView.contentSize.height - (scrollView.contentOffset.y + scrollView.frame.height)
+
+        if bounceSize < -Constants.scrollMinimunBounceToShowLoadIndicator {
+            loadIndicatorPlaceHeightConstraint.constant = -bounceSize
+        } else {
+            loadIndicatorPlaceHeightConstraint.constant = 0
         }
     }
 
@@ -111,6 +160,9 @@ extension MovieListViewController: PUToggleButtonViewDelegate {
         }
 
         self.reloadData()
+
+        let firstCellIndexPath = IndexPath.init(row: 0, section: 0)
+        self.moviesCollectionView.scrollToItem(at: firstCellIndexPath, at: .top, animated: true)
     }
 
     func imageForFirstButton() -> UIImage? {
@@ -131,4 +183,6 @@ private enum Constants {
         static let expanded = "expanded"
         static let grid = "grid"
     }
+
+    static let scrollMinimunBounceToShowLoadIndicator: CGFloat = 15
 }

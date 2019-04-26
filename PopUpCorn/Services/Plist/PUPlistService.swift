@@ -23,4 +23,24 @@ struct PUPlistService {
         }
         return (nil, (nil, nil))
     }()
+
+    var suggestions: Queue<String> = {
+        var suggestions = Queue<String>.init(withLimit: Suggestions.limitOfSuggestions)
+
+        if let path = Bundle.main.path(forPlist: "\(PUListType.suggestions)"),
+           let listOfSuggestions = NSArray(contentsOfFile: path) as? [String] {
+
+            suggestions.add(array: listOfSuggestions)
+        }
+        return suggestions
+    }()
+
+    func saveSuggestions() {
+
+        let suggestionsArray = NSArray.init(array: suggestions.array)
+
+        if let path = Bundle.main.path(forPlist: "\(PUListType.suggestions)") {
+            suggestionsArray.write(toFile: path, atomically: true)
+        }
+    }
 }

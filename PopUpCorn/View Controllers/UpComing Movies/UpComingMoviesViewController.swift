@@ -15,6 +15,7 @@ class UpComingMoviesViewController: UIViewController {
     private var movieRequesterController = MovieRequesterController.init()
     private var errorPresenterController = ErrorPresenterViewController.init()
     private var movieDetailViewController = MovieDetailViewController.init()
+    private var loadIndicatorViewController = LoadIndicatorViewController.init()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,10 +24,13 @@ class UpComingMoviesViewController: UIViewController {
         movieListViewController.delegate = self
         movieRequesterController.delegate = self
         errorPresenterController.reloadDelegate = self
-        movieRequesterController.needMoreMovies()
 
         self.addChild(errorPresenterController, inView: self.view)
         self.addChild(movieListViewController, inView: self.view)
+        self.addChild(loadIndicatorViewController, inView: self.view)
+
+        loadIndicatorViewController.startAnimating()
+        movieRequesterController.needMoreMovies()
 
         formatNavigationBar()
     }
@@ -51,8 +55,8 @@ extension UpComingMoviesViewController: MovieListViewControllerDelegate {
         let movie = movieRequesterController.movies[position]
 
         let listableMovie = ListableMovie.init(
-            title: movie.title ?? Constants.MoviePlaceholder.title,
-            release: movie.releaseDate ?? Constants.MoviePlaceholder.release,
+            title: movie.title ?? MoviePlaceholder.title,
+            release: movie.releaseDate ?? MoviePlaceholder.release,
             posterPath: movie.posterPath,
             backdropPath: movie.backdropPath,
             genresIDs: movie.genreIDs
@@ -76,15 +80,13 @@ extension UpComingMoviesViewController: MovieListViewControllerDelegate {
     func movieList(_ movieList: MovieListViewController, didSelectItemAt position: Int) {
         let movie = movieRequesterController.movies[position]
 
-        guard let movieTitle = movie.title,
-              let movieRelease = movie.releaseDate,
-              let movieImagePath = movie.backdropPath,
-              let movieOverview = movie.overview else {
-
-            return
-        }
-
-        let detailableMovie = DetailableMovie.init(title: movieTitle, release: movieRelease, image: movieImagePath, genres: nil, overview: movieOverview)
+        let detailableMovie = DetailableMovie.init(
+            title: movie.title,
+            release: movie.releaseDate,
+            image: movie.posterPath ?? movie.backdropPath,
+            genres: movie.genreIDs,
+            overview: movie.overview
+        )
 
         movieDetailViewController.movie = detailableMovie
         navigationController?.pushViewController(movieDetailViewController, animated: true)
@@ -102,20 +104,17 @@ extension UpComingMoviesViewController: MovieRequesterControllerDelegate {
 
     func moviesHaveArrived(_ requester: MovieRequesterController) {
         movieListViewController.reloadData()
+        loadIndicatorViewController.stopAnimating()
     }
 }
 
 extension UpComingMoviesViewController: ReloaderAlertBuilderDelegate {
     func needReloadData(_ alertBuilder: ReloaderAlertBuilder) {
+        loadIndicatorViewController.startAnimating()
         movieRequesterController.needMoreMovies()
     }
 }
 
 private enum Constants {
     static let title = "UpComing"
-
-    enum MoviePlaceholder {
-        static let title = "No Title"
-        static let release = "No Release Date"
-    }
 }

@@ -53,14 +53,14 @@ struct PUTMDBService {
                 return
         }
 
-        let upComingStringURL = endPoint.with(
+        let moviesUrl = endPoint.with(
             baseURL: baseUrl,
             pageNumber: "\(pageNumber)",
             query: stringQuery,
             andApiKey: apiKey
         )
 
-        if let url = URL.init(string: upComingStringURL) {
+        if let url = moviesUrl {
             let modelQuery = PUTMDBModelQuery<Page>()
             modelQuery.run(fromURL: url, sucessCompletion: sucessCompletion, errorCompletion: errorCompletion)
         } else {
@@ -88,9 +88,9 @@ struct PUTMDBService {
             return
         }
 
-        let genresStringURL = PUTTMDBEndPoint.Genre.allGenres.with(baseURL: baseUrl, andApiKey: apiKey)
+        let genresURL = PUTTMDBEndPoint.Genre.allGenres.with(baseURL: baseUrl, andApiKey: apiKey)
 
-        if let url = URL.init(string: genresStringURL) {
+        if let url = genresURL {
 
             let modelQuery = PUTMDBModelQuery<[String: [Genre]]>()
             modelQuery.run(fromURL: url, sucessCompletion: { (genreDictionary :[String : [Genre]]) in
@@ -110,32 +110,32 @@ struct PUTMDBService {
     @discardableResult
     func image(
         fromMovieWithPath imagePath: String,
-        progressCompletion: @escaping (UIImage) -> Void,
-        errorCompletion: @escaping (Error?) -> Void) -> PUTMDBPreviewableImageQuery? {
+        progressCompletion: @escaping (UIImage, PUTMDBImageState) -> Void,
+        errorCompletion: @escaping (Error?, PUTMDBImageState) -> Void) -> PUTMDBPreviewableImageQuery? {
 
         guard let imageBaseUrl = self.credentials?.imageBaseUrl else {
-                errorCompletion(nil)
+                errorCompletion(nil, .none)
                 return nil
         }
 
-        let previewImageStringUrl = PUTTMDBEndPoint.Image.littleImage.with(imageBaseURL: imageBaseUrl, andImageName: imagePath)
-        let imageStringUrl = PUTTMDBEndPoint.Image.bigImage.with(imageBaseURL: imageBaseUrl, andImageName: imagePath)
+        let previewImageUrl = PUTTMDBEndPoint.Image.littleImage.with(imageBaseURL: imageBaseUrl, andImageName: imagePath)
+        let imageUrl = PUTTMDBEndPoint.Image.bigImage.with(imageBaseURL: imageBaseUrl, andImageName: imagePath)
 
-        if let previewImageUrl = URL.init(string: previewImageStringUrl),
-            let detailImageUrl = URL.init(string: imageStringUrl) {
+        if let previewImageUrl = previewImageUrl, let detailImageUrl = imageUrl {
 
             let imageQuery = PUTMDBPreviewableImageQuery.init()
 
-            imageQuery.run(
+            imageQuery.run (
                 fromPreviewURL: previewImageUrl,
                 imageUrl: detailImageUrl,
                 progressCompletion: progressCompletion,
                 errorCompletion: errorCompletion
             )
+
             return imageQuery
         }
 
-        errorCompletion(nil)
+        errorCompletion(nil, .none)
         return nil
     }
 
@@ -149,11 +149,11 @@ struct PUTMDBService {
     @discardableResult
     func image(
         fromMovie movie: Movie,
-        progressCompletion: @escaping (UIImage) -> Void,
-        errorCompletion: @escaping (Error?) -> Void) -> PUTMDBPreviewableImageQuery? {
+        progressCompletion: @escaping (UIImage, PUTMDBImageState) -> Void,
+        errorCompletion: @escaping (Error?, PUTMDBImageState) -> Void) -> PUTMDBPreviewableImageQuery? {
 
         guard let imagePath = movie.backdropPath else {
-            errorCompletion(nil)
+            errorCompletion(nil, .none)
             return nil
         }
 

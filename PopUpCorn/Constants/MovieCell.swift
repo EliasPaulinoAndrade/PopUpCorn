@@ -19,4 +19,9 @@ enum MovieCell {
         static let nibName = "PUExpandedMovieCollectionViewCell"
         static let reuseIdentifier = "expandedMovieIdenfier"
     }
+
+    enum Empty {
+        static let nibName = "PUPlaceHolderMovieCollectionViewCell"
+        static let reuseIdentifier = "placeholderMovieIdenfier"
+    }
 }

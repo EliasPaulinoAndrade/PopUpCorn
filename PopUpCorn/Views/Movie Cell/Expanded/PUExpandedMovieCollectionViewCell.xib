@@ -20,15 +20,9 @@
                 <rect key="frame" x="0.0" y="0.0" width="290" height="330"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZiB-N4-UP2">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZiB-N4-UP2" customClass="PURadiusView" customModule="PopUpCorn" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="290" height="330"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" image="placeHolderPopCorn" translatesAutoresizingMaskIntoConstraints="NO" id="ygf-yQ-zDM">
-                                <rect key="frame" x="92.5" y="165" width="105" height="105"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="ygf-yQ-zDM" secondAttribute="height" multiplier="1:1" id="cFm-tM-P5V"/>
-                                </constraints>
-                            </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="kCU-6k-PG5" customClass="PUTMDBImageView" customModule="PopUpCorn" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="290" height="105"/>
                             </imageView>
@@ -78,15 +72,12 @@
                             <constraint firstItem="m6k-w4-dNc" firstAttribute="leading" secondItem="ZiB-N4-UP2" secondAttribute="leading" id="8wr-Yh-zEK"/>
                             <constraint firstItem="vh4-uC-Wk4" firstAttribute="top" secondItem="ZiB-N4-UP2" secondAttribute="top" id="Aj1-1T-9u2"/>
                             <constraint firstAttribute="trailing" secondItem="m6k-w4-dNc" secondAttribute="trailing" id="BoQ-4N-awe"/>
-                            <constraint firstItem="ygf-yQ-zDM" firstAttribute="top" secondItem="vh4-uC-Wk4" secondAttribute="bottom" constant="60" id="GnJ-Ok-dci"/>
                             <constraint firstItem="kCU-6k-PG5" firstAttribute="top" secondItem="ZiB-N4-UP2" secondAttribute="top" id="HZt-vU-fSr"/>
                             <constraint firstItem="m6k-w4-dNc" firstAttribute="top" secondItem="kCU-6k-PG5" secondAttribute="bottom" id="N1Z-TT-Lfi"/>
                             <constraint firstItem="kCU-6k-PG5" firstAttribute="leading" secondItem="ZiB-N4-UP2" secondAttribute="leading" id="Ob1-aq-F9l"/>
                             <constraint firstItem="m6k-w4-dNc" firstAttribute="top" secondItem="vh4-uC-Wk4" secondAttribute="bottom" id="Wft-un-nEC"/>
-                            <constraint firstAttribute="bottom" secondItem="ygf-yQ-zDM" secondAttribute="bottom" constant="60" id="byV-Fy-ZDq"/>
                             <constraint firstAttribute="trailing" secondItem="kCU-6k-PG5" secondAttribute="trailing" id="h27-hJ-tIf"/>
                             <constraint firstItem="vh4-uC-Wk4" firstAttribute="leading" secondItem="ZiB-N4-UP2" secondAttribute="leading" id="hKf-oV-dDC"/>
-                            <constraint firstItem="ygf-yQ-zDM" firstAttribute="centerX" secondItem="m6k-w4-dNc" secondAttribute="centerX" id="iRg-bd-bWe"/>
                             <constraint firstAttribute="trailing" secondItem="vh4-uC-Wk4" secondAttribute="trailing" id="ljM-u3-3eF"/>
                         </constraints>
                     </view>
@@ -101,6 +92,7 @@
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="290" height="330"/>
             <connections>
+                <outlet property="containerView" destination="ZiB-N4-UP2" id="h7d-Ly-N3p"/>
                 <outlet property="genresLabel" destination="Qrp-kC-0pt" id="ctU-IR-jrP"/>
                 <outlet property="headerImageView" destination="kCU-6k-PG5" id="zbH-mj-wgV"/>
                 <outlet property="posterImageView" destination="m6k-w4-dNc" id="GJG-uv-hep"/>
@@ -111,7 +103,6 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="placeHolderPopCorn" width="372.3636474609375" height="372.3636474609375"/>
         <namedColor name="purple">
             <color red="0.12156862745098039" green="0.066666666666666666" blue="0.12549019607843137" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

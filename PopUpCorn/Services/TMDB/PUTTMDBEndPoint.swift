@@ -17,7 +17,7 @@ struct PUTTMDBEndPoint {
         func with(
             baseURL: String,
             language: String = "en-US",
-            andApiKey apiKey: String) -> String {
+            andApiKey apiKey: String) -> URL? {
 
             var urlString = "\(baseURL)\(self.rawValue)"
 
@@ -26,7 +26,7 @@ struct PUTTMDBEndPoint {
                 "language": language
                 ], inStringURL: &urlString)
 
-            return urlString
+            return URL(string: urlString)
         }
     }
 
@@ -40,7 +40,7 @@ struct PUTTMDBEndPoint {
             pageNumber: String,
             language: String = "en-US",
             query: String? = nil,
-            andApiKey apiKey: String) -> String {
+            andApiKey apiKey: String) -> URL? {
 
             var urlString = "\(baseURL)\(self.rawValue)"
 
@@ -56,7 +56,7 @@ struct PUTTMDBEndPoint {
             }
 
             PUTTMDBEndPoint.insert(parameters: paramenters, inStringURL: &urlString)
-            return urlString
+            return URL(string: urlString)
         }
     }
 
@@ -66,10 +66,10 @@ struct PUTTMDBEndPoint {
 
         func with(
             imageBaseURL baseURL: String,
-            andImageName imageName: String) -> String {
+            andImageName imageName: String) -> URL? {
 
             let urlString = "\(baseURL)\(self.rawValue)/\(imageName)"
-            return urlString
+            return URL(string: urlString)
         }
     }
 
