@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -39,7 +39,7 @@
 		0ABDAD297F101E2710FB7D18F2C8C5FE /* Pods-PopUpCornTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-PopUpCornTests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		0DEF266C45AAD7A796A006E2314C4C42 /* Pods-PopUpCornTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PopUpCornTests.release.xcconfig"; sourceTree = "<group>"; };
 		0EA677DF07E220D605F45F282C85A456 /* Pods-PopUpCornUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PopUpCornUITests.release.xcconfig"; sourceTree = "<group>"; };
-		1238A674915AAA6B58BA4E53FF7FB143 /* Pods_PopUpCornTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_PopUpCornTests.framework; path = "Pods-PopUpCornTests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1238A674915AAA6B58BA4E53FF7FB143 /* Pods_PopUpCornTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PopUpCornTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		131325B2E90A6DA091A068E9233FC9E2 /* Pods-PopUpCorn-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-PopUpCorn-acknowledgements.plist"; sourceTree = "<group>"; };
 		185BCDAEF55E60CE9556A4EB18362014 /* Pods-PopUpCornTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PopUpCornTests.debug.xcconfig"; sourceTree = "<group>"; };
 		225B500A4F9B7939BF0613E018310A07 /* Pods-PopUpCornTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-PopUpCornTests-dummy.m"; sourceTree = "<group>"; };
@@ -53,14 +53,14 @@
 		771678C0CC46864DA7F6D4FAED13F637 /* Pods-PopUpCorn.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PopUpCorn.debug.xcconfig"; sourceTree = "<group>"; };
 		7969B409D15465DCC2C94DD9DF42C6A3 /* Pods-PopUpCornUITests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-PopUpCornUITests-frameworks.sh"; sourceTree = "<group>"; };
 		79D9BB019CB26E413A71AEF9BB47E765 /* Pods-PopUpCornTests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-PopUpCornTests-resources.sh"; sourceTree = "<group>"; };
-		7A1BF4993A689553897F70558424E16A /* Pods_PopUpCornUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_PopUpCornUITests.framework; path = "Pods-PopUpCornUITests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7A1BF4993A689553897F70558424E16A /* Pods_PopUpCornUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PopUpCornUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		805498CC8C1D16821337A1D413E7E5A3 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		86F7499B0CBEA711D0909DE5DDDF0559 /* Pods-PopUpCorn-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-PopUpCorn-umbrella.h"; sourceTree = "<group>"; };
-		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		99E0658CDDCCBDB45A2D20BFA631351C /* Pods-PopUpCornUITests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-PopUpCornUITests-acknowledgements.plist"; sourceTree = "<group>"; };
 		A550AC4501D73CFA98A7EF769D51D304 /* Pods-PopUpCorn.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PopUpCorn.release.xcconfig"; sourceTree = "<group>"; };
 		A5E730726517D0799A07F3E59C80EA96 /* Pods-PopUpCornUITests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-PopUpCornUITests-umbrella.h"; sourceTree = "<group>"; };
-		A9F9854B1B5AA8D790C41025AE28BCAC /* Pods_PopUpCorn.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_PopUpCorn.framework; path = "Pods-PopUpCorn.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A9F9854B1B5AA8D790C41025AE28BCAC /* Pods_PopUpCorn.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PopUpCorn.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2E7DAC8B4009BD2DE8163B985FA9016 /* Pods-PopUpCornUITests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-PopUpCornUITests-resources.sh"; sourceTree = "<group>"; };
 		B41776990E691BD50AB5F5388F3EA588 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B5CAFA9EA1B8455528C930E64EB8B2A3 /* Pods-PopUpCorn-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-PopUpCorn-acknowledgements.markdown"; sourceTree = "<group>"; };
@@ -133,7 +133,6 @@
 			isa = PBXGroup;
 			children = (
 			);
-			name = SwiftLint;
 			path = SwiftLint;
 			sourceTree = "<group>";
 		};
@@ -315,10 +314,11 @@
 			};
 			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
 			productRefGroup = 38F392C07AF4855D7DDB217823873B30 /* Products */;
@@ -483,11 +483,7 @@
 				INFOPLIST_FILE = "Target Support Files/Pods-PopUpCornUITests/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-PopUpCornUITests/Pods-PopUpCornUITests.modulemap";
 				OTHER_LDFLAGS = "";
@@ -521,11 +517,7 @@
 				INFOPLIST_FILE = "Target Support Files/Pods-PopUpCornTests/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-PopUpCornTests/Pods-PopUpCornTests.modulemap";
 				OTHER_LDFLAGS = "";
@@ -559,11 +551,7 @@
 				INFOPLIST_FILE = "Target Support Files/Pods-PopUpCorn/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-PopUpCorn/Pods-PopUpCorn.modulemap";
 				OTHER_LDFLAGS = "";
@@ -597,11 +585,7 @@
 				INFOPLIST_FILE = "Target Support Files/Pods-PopUpCornTests/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-PopUpCornTests/Pods-PopUpCornTests.modulemap";
 				OTHER_LDFLAGS = "";
@@ -673,8 +657,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 4.2;
 				SYMROOT = "${SRCROOT}/../build";
 			};
@@ -698,11 +681,7 @@
 				INFOPLIST_FILE = "Target Support Files/Pods-PopUpCorn/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-PopUpCorn/Pods-PopUpCorn.modulemap";
 				OTHER_LDFLAGS = "";
@@ -737,11 +716,7 @@
 				INFOPLIST_FILE = "Target Support Files/Pods-PopUpCornUITests/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-PopUpCornUITests/Pods-PopUpCornUITests.modulemap";
 				OTHER_LDFLAGS = "";

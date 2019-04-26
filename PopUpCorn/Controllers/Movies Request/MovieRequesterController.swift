@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 /// A controller to control the movies request
 class MovieRequesterController {
 
@@ -25,7 +24,6 @@ class MovieRequesterController {
     private var tmdbService = PUTMDBService.init()
     private var moviePage: Page?
 
-    
     /// tells the controller to retrieve new movies
     func needMoreMovies() {
 
@@ -42,7 +40,7 @@ class MovieRequesterController {
         }
 
         tmdbService.movies(
-            ofEndPoint: moviesEndPoint,
+            type: moviesEndPoint,
             inPageNumber: moviePage?.nextPageNumber ?? 1,
             withStringQuery: delegate?.asSearchDelegate?.queryString(self),
             sucessCompletion: { (newMoviePage) in

@@ -73,6 +73,10 @@
 		E37C7781221775FF0075D8D8 /* MovieRequesterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37C7780221775FF0075D8D8 /* MovieRequesterController.swift */; };
 		E37C778322177CA90075D8D8 /* MovieRequesterControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37C778222177CA90075D8D8 /* MovieRequesterControllerDelegate.swift */; };
 		E37C7786221787000075D8D8 /* PUTMDBImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37C7785221787000075D8D8 /* PUTMDBImageView.swift */; };
+		E381C36F2270F21F00530F3C /* URLComponents+init.swift in Sources */ = {isa = PBXBuildFile; fileRef = E381C36E2270F21F00530F3C /* URLComponents+init.swift */; };
+		E381C37222710D8E00530F3C /* PUTMDBMovieType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E381C37122710D8E00530F3C /* PUTMDBMovieType.swift */; };
+		E381C37422710DB400530F3C /* PUTMDBImageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E381C37322710DB400530F3C /* PUTMDBImageType.swift */; };
+		E381C37622710DCE00530F3C /* PUTMDBQueryProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = E381C37522710DCE00530F3C /* PUTMDBQueryProperty.swift */; };
 		E38268DE2215FF57001C792E /* PUToggleButtonViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38268DD2215FF57001C792E /* PUToggleButtonViewDelegate.swift */; };
 		E38268E02215FFFE001C792E /* PUToggleButtonState.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38268DF2215FFFE001C792E /* PUToggleButtonState.swift */; };
 		E38268E52216022F001C792E /* PUNormalMovieCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38268E32216022F001C792E /* PUNormalMovieCollectionViewCell.swift */; };
@@ -187,6 +191,10 @@
 		E37C7780221775FF0075D8D8 /* MovieRequesterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieRequesterController.swift; sourceTree = "<group>"; };
 		E37C778222177CA90075D8D8 /* MovieRequesterControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieRequesterControllerDelegate.swift; sourceTree = "<group>"; };
 		E37C7785221787000075D8D8 /* PUTMDBImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PUTMDBImageView.swift; sourceTree = "<group>"; };
+		E381C36E2270F21F00530F3C /* URLComponents+init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLComponents+init.swift"; sourceTree = "<group>"; };
+		E381C37122710D8E00530F3C /* PUTMDBMovieType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PUTMDBMovieType.swift; sourceTree = "<group>"; };
+		E381C37322710DB400530F3C /* PUTMDBImageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PUTMDBImageType.swift; sourceTree = "<group>"; };
+		E381C37522710DCE00530F3C /* PUTMDBQueryProperty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PUTMDBQueryProperty.swift; sourceTree = "<group>"; };
 		E38268DD2215FF57001C792E /* PUToggleButtonViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PUToggleButtonViewDelegate.swift; sourceTree = "<group>"; };
 		E38268DF2215FFFE001C792E /* PUToggleButtonState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PUToggleButtonState.swift; sourceTree = "<group>"; };
 		E38268E32216022F001C792E /* PUNormalMovieCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PUNormalMovieCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -446,10 +454,11 @@
 		E3374C722212231900D2C02C /* TMDB */ = {
 			isa = PBXGroup;
 			children = (
+				E381C37022710CEB00530F3C /* Endpoint */,
 				E38268FB22163951001C792E /* Queries */,
+				E381C36E2270F21F00530F3C /* URLComponents+init.swift */,
 				E3374C732212239700D2C02C /* PUTMDBService.swift */,
 				E38268FE221657AB001C792E /* PUTMDBServiceData.swift */,
-				E3374C8D221253F000D2C02C /* PUTTMDBEndPoint.swift */,
 				E3374C752212240600D2C02C /* tmdb.plist */,
 				E38268F922163449001C792E /* PUTMDBCredentials.swift */,
 				E37C7785221787000075D8D8 /* PUTMDBImageView.swift */,
@@ -606,6 +615,17 @@
 				E37C778222177CA90075D8D8 /* MovieRequesterControllerDelegate.swift */,
 			);
 			path = "Movies Request";
+			sourceTree = "<group>";
+		};
+		E381C37022710CEB00530F3C /* Endpoint */ = {
+			isa = PBXGroup;
+			children = (
+				E3374C8D221253F000D2C02C /* PUTTMDBEndPoint.swift */,
+				E381C37122710D8E00530F3C /* PUTMDBMovieType.swift */,
+				E381C37322710DB400530F3C /* PUTMDBImageType.swift */,
+				E381C37522710DCE00530F3C /* PUTMDBQueryProperty.swift */,
+			);
+			path = Endpoint;
 			sourceTree = "<group>";
 		};
 		E38268E1221601B8001C792E /* Expanded */ = {
@@ -914,6 +934,7 @@
 				E38268F82216330A001C792E /* PUTMDBImageQuery.swift in Sources */,
 				E37C7786221787000075D8D8 /* PUTMDBImageView.swift in Sources */,
 				E3374C8E221253F000D2C02C /* PUTTMDBEndPoint.swift in Sources */,
+				E381C36F2270F21F00530F3C /* URLComponents+init.swift in Sources */,
 				E3374C742212239700D2C02C /* PUTMDBService.swift in Sources */,
 				E3374CA82214319500D2C02C /* UpComingMoviesViewController.swift in Sources */,
 				E3374C8422124D2600D2C02C /* MovieListViewController.swift in Sources */,
@@ -921,6 +942,7 @@
 				E30429A622184133009A22E5 /* ReloaderAlertBuilderDelegate.swift in Sources */,
 				E37C777522171C310075D8D8 /* MovieCell.swift in Sources */,
 				E3374CA2221390D300D2C02C /* UIColor+pucolors.swift in Sources */,
+				E381C37222710D8E00530F3C /* PUTMDBMovieType.swift in Sources */,
 				E329959522198F06002AA3E3 /* SearchSuggestionsViewContorllerDelegate.swift in Sources */,
 				E329959B2219C50A002AA3E3 /* SuggestionsController.swift in Sources */,
 				E3374C8A2212518900D2C02C /* Page.swift in Sources */,
@@ -934,6 +956,7 @@
 				E32995892218E22A002AA3E3 /* MoviePlaceholder.swift in Sources */,
 				E3374C9322137E5D00D2C02C /* PUCacheService.swift in Sources */,
 				E38268FA22163449001C792E /* PUTMDBCredentials.swift in Sources */,
+				E381C37622710DCE00530F3C /* PUTMDBQueryProperty.swift in Sources */,
 				E32995842218AAE4002AA3E3 /* PUTMDBImageState.swift in Sources */,
 				E32995872218C0DE002AA3E3 /* UIView+isStanding.swift in Sources */,
 				E38268E822160577001C792E /* MovieListControllerState.swift in Sources */,
@@ -941,6 +964,7 @@
 				E329958222188061002AA3E3 /* PURadiusView.swift in Sources */,
 				E37C777D221722020075D8D8 /* UICollectionView+register.swift in Sources */,
 				E3374C442212220600D2C02C /* AppDelegate.swift in Sources */,
+				E381C37422710DB400530F3C /* PUTMDBImageType.swift in Sources */,
 				E3374CB822149EF100D2C02C /* PUToggleButtonView.swift in Sources */,
 				E3374C8822124E0300D2C02C /* Movie.swift in Sources */,
 				E3374C802212455100D2C02C /* Bundle+plistPath.swift in Sources */,

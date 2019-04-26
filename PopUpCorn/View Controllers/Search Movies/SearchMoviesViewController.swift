@@ -175,7 +175,7 @@ extension SearchMoviesViewController: MovieRequesterControllerSearchDelegate {
         loadIndicatorController.stopAnimating()
     }
 
-    func moviesEndPoint(_ requester: MovieRequesterController) -> PUTTMDBEndPoint.Movie {
+    func moviesEndPoint(_ requester: MovieRequesterController) -> PUTMDBMovieType {
         return .search
     }
 

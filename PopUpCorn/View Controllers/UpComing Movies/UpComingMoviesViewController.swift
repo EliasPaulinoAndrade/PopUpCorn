@@ -98,7 +98,7 @@ extension UpComingMoviesViewController: MovieRequesterControllerDelegate {
         errorPresenterController.showReloaderError(withTitle: Errors.Load.title, andMessage: Errors.Load.message)
     }
 
-    func moviesEndPoint(_ requester: MovieRequesterController) -> PUTTMDBEndPoint.Movie {
+    func moviesEndPoint(_ requester: MovieRequesterController) -> PUTMDBMovieType {
         return .upComing
     }
 

@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import MetalPerformanceShaders
 
+/// a imageview that can download a image from tmdb API. It will show a preview placeholder image and while the real image is downloaded
 class PUTMDBImageView: UIImageView {
 
     private let tmdbService = PUTMDBService.init()
