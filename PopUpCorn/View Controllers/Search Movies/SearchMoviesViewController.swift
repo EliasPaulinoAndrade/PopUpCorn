@@ -46,6 +46,8 @@ class SearchMoviesViewController: UIViewController {
         movieListViewController.delegate = self
         movieRequesterController.delegate = self
         errorPresenterController.reloadDelegate = self
+
+        NotificationCenter.default.addObserver(self, selector: #selector(appMoveToBackground), name: UIApplication.willResignActiveNotification, object: nil)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -53,6 +55,10 @@ class SearchMoviesViewController: UIViewController {
     }
 
     override func viewWillDisappear(_ animated: Bool) {
+        searchSuggestionsViewController.saveSuggestions()
+    }
+
+    @objc func appMoveToBackground() {
         searchSuggestionsViewController.saveSuggestions()
     }
 
