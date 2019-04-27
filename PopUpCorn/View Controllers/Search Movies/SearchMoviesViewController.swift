@@ -122,11 +122,11 @@ extension SearchMoviesViewController: MovieListViewControllerDelegate {
             release: movie.releaseDate,
             image: movie.backdropPath ?? movie.posterPath,
             genres: movie.genreIDs,
-            overview: movie.overview
+            overview: movie.overview,
+            id: "\(movie.id ?? -1)"
         )
 
         movieDetailViewController.movie = detailableMovie
-//        searchController.isActive = false
 
         delegate?.searchMovieWasSelected(movie: detailableMovie, atPosition: position)
     }

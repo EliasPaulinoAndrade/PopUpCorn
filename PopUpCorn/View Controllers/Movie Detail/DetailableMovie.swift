@@ -15,4 +15,5 @@ struct DetailableMovie {
     var image: String?
     var genres: [Int]
     var overview: String?
+    var id: String?
 }

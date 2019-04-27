@@ -16,7 +16,7 @@ enum PUTTMDBEndPoint {
     case movie(credentials: PUTMDBCredentials, type: PUTMDBMovieType, language: String, pageNumber: String)
 
     case movieSearch(credentials: PUTMDBCredentials, language: String, pageNumber: String, query: String)
-    
+
     case movieSilimilar(credentials: PUTMDBCredentials, language: String, pageNumber: String, movieId: String)
 
     case image(type: PUTMDBImageType, baseURL: String, imageName: String)

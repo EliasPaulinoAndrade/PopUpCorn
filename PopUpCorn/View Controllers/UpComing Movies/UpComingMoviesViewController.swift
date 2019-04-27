@@ -85,7 +85,8 @@ extension UpComingMoviesViewController: MovieListViewControllerDelegate {
             release: movie.releaseDate,
             image: movie.backdropPath ?? movie.posterPath,
             genres: movie.genreIDs,
-            overview: movie.overview
+            overview: movie.overview,
+            id: "\(movie.id ?? -1)"
         )
 
         delegate?.upComingMovieWasSelected(movie: detailableMovie, atPosition: position)

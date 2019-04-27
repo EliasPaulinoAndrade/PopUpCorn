@@ -105,6 +105,8 @@
 		E38FB69C2273D0AE00EB4985 /* CGPoint+sum.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38FB69B2273D0AE00EB4985 /* CGPoint+sum.swift */; };
 		E38FB69E2273F78200EB4985 /* TransitioningDelegateForDetailMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38FB69D2273F78200EB4985 /* TransitioningDelegateForDetailMovie.swift */; };
 		E38FB6A022748D7900EB4985 /* PanGestureInteractiveTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38FB69F22748D7900EB4985 /* PanGestureInteractiveTransition.swift */; };
+		E38FB6A32274BB0900EB4985 /* SimilarMovieRequesterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38FB6A22274BB0900EB4985 /* SimilarMovieRequesterController.swift */; };
+		E38FB6A52274BB6900EB4985 /* SimilarMovieRequesterControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38FB6A42274BB6900EB4985 /* SimilarMovieRequesterControllerDelegate.swift */; };
 		F61E6669CE03F25FC7476E66 /* Pods_PopUpCorn.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A41B9FC352158C247928E54 /* Pods_PopUpCorn.framework */; };
 /* End PBXBuildFile section */
 
@@ -236,6 +238,8 @@
 		E38FB69B2273D0AE00EB4985 /* CGPoint+sum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGPoint+sum.swift"; sourceTree = "<group>"; };
 		E38FB69D2273F78200EB4985 /* TransitioningDelegateForDetailMovie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitioningDelegateForDetailMovie.swift; sourceTree = "<group>"; };
 		E38FB69F22748D7900EB4985 /* PanGestureInteractiveTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanGestureInteractiveTransition.swift; sourceTree = "<group>"; };
+		E38FB6A22274BB0900EB4985 /* SimilarMovieRequesterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimilarMovieRequesterController.swift; sourceTree = "<group>"; };
+		E38FB6A42274BB6900EB4985 /* SimilarMovieRequesterControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimilarMovieRequesterControllerDelegate.swift; sourceTree = "<group>"; };
 		FC65AD63EA2D65B43D250D38 /* Pods_PopUpCornUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PopUpCornUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -635,6 +639,7 @@
 		E37C777E221741DA0075D8D8 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				E38FB6A12274BAE200EB4985 /* Similar Movies Requester */,
 				E32995992219C4F1002AA3E3 /* Suggestions */,
 				E30429AD22185150009A22E5 /* Genres Request */,
 				E37C777F221775E00075D8D8 /* Movies Request */,
@@ -710,6 +715,15 @@
 				E38268FC22163C63001C792E /* PUTMDBPreviewableImageQuery.swift */,
 			);
 			path = Queries;
+			sourceTree = "<group>";
+		};
+		E38FB6A12274BAE200EB4985 /* Similar Movies Requester */ = {
+			isa = PBXGroup;
+			children = (
+				E38FB6A22274BB0900EB4985 /* SimilarMovieRequesterController.swift */,
+				E38FB6A42274BB6900EB4985 /* SimilarMovieRequesterControllerDelegate.swift */,
+			);
+			path = "Similar Movies Requester";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -954,6 +968,7 @@
 				E3374C9522137EEA00D2C02C /* PUCacheCenter.swift in Sources */,
 				E38268FD22163C63001C792E /* PUTMDBPreviewableImageQuery.swift in Sources */,
 				E38FB69C2273D0AE00EB4985 /* CGPoint+sum.swift in Sources */,
+				E38FB6A32274BB0900EB4985 /* SimilarMovieRequesterController.swift in Sources */,
 				E3374CBB22149FEC00D2C02C /* PUBaseZibOwnerView.swift in Sources */,
 				E30429A822184162009A22E5 /* QuitAlertBuilder.swift in Sources */,
 				E304299022182EE9009A22E5 /* ListableMovie.swift in Sources */,
@@ -977,6 +992,7 @@
 				E381C36F2270F21F00530F3C /* URLComponents+init.swift in Sources */,
 				E381C382227251C500530F3C /* SearchMoviesCoordinator.swift in Sources */,
 				E3374C742212239700D2C02C /* PUTMDBService.swift in Sources */,
+				E38FB6A52274BB6900EB4985 /* SimilarMovieRequesterControllerDelegate.swift in Sources */,
 				E3374CA82214319500D2C02C /* UpComingMoviesViewController.swift in Sources */,
 				E38FB6962273C2F700EB4985 /* ImageFrameToMovieDetailTransitioning.swift in Sources */,
 				E3374C8422124D2600D2C02C /* MovieListViewController.swift in Sources */,
