@@ -34,6 +34,7 @@ class SearchMoviesCoordinator: CoordinatorProtocol {
 
 extension SearchMoviesCoordinator: SearchMoviesViewControllerDelegate {
     func searchMovieWasSelected(movie: DetailableMovie, atPosition position: Int) {
+        movieDetailCoordinator.moviesLister = searchMoviesViewController
         movieDetailCoordinator.movie = movie
         movieDetailCoordinator.moviePosition = position
 

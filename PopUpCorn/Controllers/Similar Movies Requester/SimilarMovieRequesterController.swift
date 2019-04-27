@@ -20,17 +20,16 @@ class SimilarMovieRequesterController: NSObject {
         return moviePage?.movies ?? []
     }
 
-    var movieID: String
+    var movieID: String?
 
     private var tmdbService = PUTMDBService.init()
     private var moviePage: Page?
 
-    init(forMovieID movieID: String) {
-        self.movieID = movieID
-    }
-
     /// tells the controller to retrieve new movies
     func needMoreMovies() {
+        guard let movieID = self.movieID else {
+            return
+        }
 
         if let totalOfPages = moviePage?.totalOfPages {
             if let nextPage = moviePage?.nextPageNumber, nextPage >= totalOfPages {

@@ -36,6 +36,8 @@ class UpComingMoviesCoordinator: CoordinatorProtocol {
 
 extension UpComingMoviesCoordinator: UpComingMoviesViewControllerDelegate {
     func upComingMovieWasSelected(movie: DetailableMovie, atPosition position: Int) {
+
+        movieDetailCoordinator.moviesLister = upComingMoviesController
         movieDetailCoordinator.movie = movie
         movieDetailCoordinator.moviePosition = position
 

@@ -12,13 +12,17 @@ import UIKit
 class MovieDetailCoordinator: NSObject, CoordinatorProtocol {
     var rootViewController: UINavigationController
 
-    lazy var transitioning = TransitioningDelegateForDetailMovie.init(withTargetMoviePosition: moviePosition, rootViewController: rootViewController, andInteractionController: interactiveTransision)
+    var moviesLister: MovieListUserProtocol?
+
+    lazy var transitioning = TransitioningDelegateForDetailMovie.init(withTargetMoviePosition: moviePosition, listingMoviesController: moviesLister, rootViewController: rootViewController, andInteractionController: interactiveTransision)
 
     lazy var interactiveTransision: PanGestureInteractiveTransition = {
         let interactiveTransision = PanGestureInteractiveTransition.init(viewController: movieDetailViewController)
 
         return interactiveTransision
     }()
+
+    lazy var movieDetailCoordinator = MovieDetailCoordinator.init(withRootViewController: rootViewController)
 
     var movie: DetailableMovie? {
         didSet {
@@ -51,18 +55,27 @@ class MovieDetailCoordinator: NSObject, CoordinatorProtocol {
             return
         }
 
+        movieDetailViewController.resetSimilarMovies(toMovieId: movie?.id)
+
         if moviePosition != nil {
             movieDetailViewController.transitioningDelegate = transitioning
             movieDetailViewController.modalPresentationStyle = .custom
             movieDetailViewController.modalPresentationCapturesStatusBarAppearance = false
-            previousController.present(movieDetailViewController, animated: true, completion: nil)
-        } else {
-            previousController.present(movieDetailViewController, animated: true, completion: nil)
         }
+
+        previousController.present(movieDetailViewController, animated: true, completion: nil)
     }
 }
 
 extension MovieDetailCoordinator: MovieDetailViewControllerDelegate {
+    func similarMovieWasSelected(movie: DetailableMovie, atPosition position: Int) {
+        movieDetailCoordinator.moviesLister = movieDetailViewController
+        movieDetailCoordinator.movie = movie
+        movieDetailCoordinator.moviePosition = position
+
+        movieDetailCoordinator.start(previousController: movieDetailViewController)
+    }
+
     func edgeInteractionHappend(recognizer: UIPanGestureRecognizer) {
         if let totalTranslation = recognizer.view?.bounds.size.width {
             self.interactiveTransision.update(recognizer: recognizer, totalTranslation: totalTranslation)

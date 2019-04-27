@@ -12,4 +12,5 @@ import UIKit
 protocol MovieDetailViewControllerDelegate: AnyObject {
     func closeButtonTapped()
     func edgeInteractionHappend(recognizer: UIPanGestureRecognizer)
+    func similarMovieWasSelected(movie: DetailableMovie, atPosition position: Int)
 }

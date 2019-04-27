@@ -9,7 +9,7 @@
 import UIKit
 
 /// a view controller that shows the detail view of a detailableMovie
-class MovieDetailViewController: UIViewController {
+class MovieDetailViewController: UIViewController, MovieListUserProtocol {
 
     @IBOutlet weak var detailImageView: PUTMDBImageView!
     @IBOutlet weak var titleLabel: UILabel!
@@ -32,11 +32,16 @@ class MovieDetailViewController: UIViewController {
         }
     }
 
+    @IBOutlet weak var moviesListPlaceView: UIView!
+
+    var movieListViewController = MovieListViewController.init()
+
     weak var delegate: MovieDetailViewControllerDelegate?
 
     var movie: DetailableMovie?
 
     private var genresRequesterController = GenreRequesterController.init()
+    private var similarMoviesRequesterController = SimilarMovieRequesterController()
 
     override var prefersStatusBarHidden: Bool {
         return true
@@ -46,6 +51,14 @@ class MovieDetailViewController: UIViewController {
         super.viewDidLoad()
 
         genresRequesterController.delegate = self
+        similarMoviesRequesterController.delegate = self
+        movieListViewController.delegate = self
+
+        self.addChild(movieListViewController, inView: self.moviesListPlaceView)
+        if let flowLayout = movieListViewController.moviesCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+            flowLayout.scrollDirection = .horizontal
+        }
+
         scrollView.delegate = self
         formatGestures()
     }
@@ -59,6 +72,7 @@ class MovieDetailViewController: UIViewController {
         self.detailImageView.image = nil
         navigationController?.navigationBar.prefersLargeTitles = false
         formatMovie()
+        similarMoviesRequesterController.needMoreMovies()
     }
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -113,6 +127,17 @@ class MovieDetailViewController: UIViewController {
 
         genresRequesterController.needGenres(withIDs: movie.genres)
     }
+
+    func resetSimilarMovies(toMovieId movieId: String?) {
+        similarMoviesRequesterController.resetPagination()
+
+        if movieListViewController.isViewLoaded {
+            movieListViewController.reloadData()
+            scrollView.contentOffset = CGPoint.zero
+        }
+
+        similarMoviesRequesterController.movieID = movieId
+    }
 }
 
 extension MovieDetailViewController: GenreRequesterControllerDelegate {
@@ -125,6 +150,60 @@ extension MovieDetailViewController: GenreRequesterControllerDelegate {
 
     func errorHappend(_ requester: GenreRequesterController, error: Error?) {
         genresLabel.isHidden = true
+    }
+}
+
+extension MovieDetailViewController: SimilarMovieRequesterControllerDelegate {
+    func moviesHaveArrived(_ requester: SimilarMovieRequesterController) {
+        movieListViewController.reloadData()
+//        loadIndicatorViewController.stopAnimating()
+    }
+
+    func errorHappend(_ requester: SimilarMovieRequesterController, error: Error?) {
+
+    }
+}
+
+extension MovieDetailViewController: MovieListViewControllerDelegate {
+    func movieList(_ movieList: MovieListViewController, movieForPositon position: Int) -> ListableMovie {
+        let movie = similarMoviesRequesterController.movies[position]
+
+        let listableMovie = ListableMovie.init(
+            title: movie.title ?? MoviePlaceholder.title,
+            release: movie.releaseDate ?? MoviePlaceholder.release,
+            posterPath: movie.posterPath,
+            backdropPath: movie.backdropPath,
+            genresIDs: movie.genreIDs
+        )
+
+        return listableMovie
+    }
+
+    func numberOfMovies(_ movieList: MovieListViewController) -> Int {
+        return similarMoviesRequesterController.numberOfMovies
+    }
+
+    func movies(_ movieList: MovieListViewController) -> [Movie] {
+        return similarMoviesRequesterController.movies
+    }
+
+    func needLoadMoreMovies(_ movieList: MovieListViewController) {
+        similarMoviesRequesterController.needMoreMovies()
+    }
+
+    func movieList(_ movieList: MovieListViewController, didSelectItemAt position: Int) {
+        let movie = similarMoviesRequesterController.movies[position]
+
+        let detailableMovie = DetailableMovie.init(
+            title: movie.title,
+            release: movie.releaseDate,
+            image: movie.backdropPath ?? movie.posterPath,
+            genres: movie.genreIDs,
+            overview: movie.overview,
+            id: "\(movie.id ?? -1)"
+        )
+
+        delegate?.similarMovieWasSelected(movie: detailableMovie, atPosition: position)
     }
 }
 

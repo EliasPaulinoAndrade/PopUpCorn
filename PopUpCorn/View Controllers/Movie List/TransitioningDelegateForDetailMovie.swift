@@ -15,26 +15,29 @@ class TransitioningDelegateForDetailMovie: NSObject, UIViewControllerTransitioni
     /// the movie position in the movies lisiting
     var moviePosition: Int?
 
+    var listingMoviesController: MovieListUserProtocol?
+
     var rootViewController: UIViewController
 
     var interactionController: UIViewControllerInteractiveTransitioning?
 
-    init(withTargetMoviePosition targetMoviePosition: Int?, rootViewController: UIViewController, andInteractionController interactionController: UIViewControllerInteractiveTransitioning? = nil) {
+    init(withTargetMoviePosition targetMoviePosition: Int?, listingMoviesController: MovieListUserProtocol?, rootViewController: UIViewController, andInteractionController interactionController: UIViewControllerInteractiveTransitioning? = nil) {
         self.moviePosition = targetMoviePosition
-        self.rootViewController = rootViewController
+        self.listingMoviesController = listingMoviesController
         self.interactionController = interactionController
+        self.rootViewController = rootViewController
     }
 
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
 
-        let (movieImageFrame, movieImage) = movieItemViewInfo(parentController: rootViewController)
+        let (movieImageFrame, movieImage) = movieItemViewInfo(parentController: listingMoviesController)
 
         return ImageFrameToMovieDetailTransitioning.init(withPlaceHolderImage: movieImage, andFrame: movieImageFrame, duration: 0.5)
     }
 
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
 
-        let (movieImageFrame, movieImage) = movieItemViewInfo(parentController: rootViewController)
+        let (movieImageFrame, movieImage) = movieItemViewInfo(parentController: listingMoviesController)
 
         return MovieDetailToImageFrameTransitioning(withPlaceHolderImage: movieImage, andFrame: movieImageFrame, duration: 0.5)
     }
@@ -43,18 +46,16 @@ class TransitioningDelegateForDetailMovie: NSObject, UIViewControllerTransitioni
     ///
     /// - Parameter parentController: the movie listing parent view controller, must be a UINavigationController
     /// - Returns: the movie info
-    func movieItemViewInfo(parentController: UIViewController) -> (frame: CGRect?, image: UIImage?) {
-        guard let fromViewController = parentController as? UINavigationController,
-            let movieListUser = fromViewController.topViewController as? MovieListUserProtocol,
-            let movieItem = movieListUser.movieListViewController.viewForMovieAt(position: moviePosition ?? 0) as? PUMovieCollectionViewCellProtocol,
-            let movieItemView = movieItem as? UIView else {
+    func movieItemViewInfo(parentController: MovieListUserProtocol?) -> (frame: CGRect?, image: UIImage?) {
+        guard let movieItem = parentController?.movieListViewController.viewForMovieAt(position: moviePosition ?? 0) as? PUMovieCollectionViewCellProtocol,
+              let movieItemView = movieItem as? UIView else {
 
                 return (nil, nil)
         }
 
         let posterImageView = movieItem.moviePosterImageView
 
-        let movieItemOrigin = movieItemView.convert(posterImageView.frame.origin, to: fromViewController.view)
+        let movieItemOrigin = movieItemView.convert(posterImageView.frame.origin, to: rootViewController.view)
 
         let movieImageFrame = CGRect.init(origin: movieItemOrigin, size: posterImageView.frame.size)
 
