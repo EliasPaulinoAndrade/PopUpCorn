@@ -19,6 +19,10 @@ class PUExpandedMovieCollectionViewCell: UICollectionViewCell, PUMovieCollection
     @IBOutlet weak var containerView: PURadiusView!
     @IBOutlet weak var headerContainerView: PUTMDBImageView!
 
+    lazy var moviePosterImageView: UIImageView = {
+        return posterImageView
+    }()
+
     private var genresRequesterController = GenreRequesterController.init()
 
     override func awakeFromNib() {

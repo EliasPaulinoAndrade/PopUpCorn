@@ -99,10 +99,11 @@
 		E38268FD22163C63001C792E /* PUTMDBPreviewableImageQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38268FC22163C63001C792E /* PUTMDBPreviewableImageQuery.swift */; };
 		E38268FF221657AB001C792E /* PUTMDBServiceData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38268FE221657AB001C792E /* PUTMDBServiceData.swift */; };
 		E3826901221659E7001C792E /* Array+nameArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3826900221659E7001C792E /* Array+nameArray.swift */; };
-		E38FB6962273C2F700EB4985 /* FadePushAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38FB6952273C2F700EB4985 /* FadePushAnimator.swift */; };
-		E38FB6982273C35B00EB4985 /* FadePopAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38FB6972273C35B00EB4985 /* FadePopAnimator.swift */; };
+		E38FB6962273C2F700EB4985 /* ImageFrameToMovieDetailTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38FB6952273C2F700EB4985 /* ImageFrameToMovieDetailTransitioning.swift */; };
+		E38FB6982273C35B00EB4985 /* MovieDetailToImageFrameTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38FB6972273C35B00EB4985 /* MovieDetailToImageFrameTransitioning.swift */; };
 		E38FB69A2273C8CF00EB4985 /* MovieListUserProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38FB6992273C8CF00EB4985 /* MovieListUserProtocol.swift */; };
 		E38FB69C2273D0AE00EB4985 /* CGPoint+sum.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38FB69B2273D0AE00EB4985 /* CGPoint+sum.swift */; };
+		E38FB69E2273F78200EB4985 /* TransitioningDelegateForDetailMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38FB69D2273F78200EB4985 /* TransitioningDelegateForDetailMovie.swift */; };
 		F61E6669CE03F25FC7476E66 /* Pods_PopUpCorn.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A41B9FC352158C247928E54 /* Pods_PopUpCorn.framework */; };
 /* End PBXBuildFile section */
 
@@ -228,10 +229,11 @@
 		E38268FC22163C63001C792E /* PUTMDBPreviewableImageQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PUTMDBPreviewableImageQuery.swift; sourceTree = "<group>"; };
 		E38268FE221657AB001C792E /* PUTMDBServiceData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PUTMDBServiceData.swift; sourceTree = "<group>"; };
 		E3826900221659E7001C792E /* Array+nameArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+nameArray.swift"; sourceTree = "<group>"; };
-		E38FB6952273C2F700EB4985 /* FadePushAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FadePushAnimator.swift; sourceTree = "<group>"; };
-		E38FB6972273C35B00EB4985 /* FadePopAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FadePopAnimator.swift; sourceTree = "<group>"; };
+		E38FB6952273C2F700EB4985 /* ImageFrameToMovieDetailTransitioning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFrameToMovieDetailTransitioning.swift; sourceTree = "<group>"; };
+		E38FB6972273C35B00EB4985 /* MovieDetailToImageFrameTransitioning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailToImageFrameTransitioning.swift; sourceTree = "<group>"; };
 		E38FB6992273C8CF00EB4985 /* MovieListUserProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListUserProtocol.swift; sourceTree = "<group>"; };
 		E38FB69B2273D0AE00EB4985 /* CGPoint+sum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGPoint+sum.swift"; sourceTree = "<group>"; };
+		E38FB69D2273F78200EB4985 /* TransitioningDelegateForDetailMovie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitioningDelegateForDetailMovie.swift; sourceTree = "<group>"; };
 		FC65AD63EA2D65B43D250D38 /* Pods_PopUpCornUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PopUpCornUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -333,8 +335,8 @@
 				E329957922187108002AA3E3 /* MovieDetailViewController.xib */,
 				E329957B22187786002AA3E3 /* DetailableMovie.swift */,
 				E381C38522736B8F00530F3C /* MovieDetailViewControllerDelegate.swift */,
-				E38FB6952273C2F700EB4985 /* FadePushAnimator.swift */,
-				E38FB6972273C35B00EB4985 /* FadePopAnimator.swift */,
+				E38FB6952273C2F700EB4985 /* ImageFrameToMovieDetailTransitioning.swift */,
+				E38FB6972273C35B00EB4985 /* MovieDetailToImageFrameTransitioning.swift */,
 			);
 			path = "Movie Detail";
 			sourceTree = "<group>";
@@ -571,6 +573,7 @@
 				E38268E722160577001C792E /* MovieListControllerState.swift */,
 				E304298F22182EE9009A22E5 /* ListableMovie.swift */,
 				E38FB6992273C8CF00EB4985 /* MovieListUserProtocol.swift */,
+				E38FB69D2273F78200EB4985 /* TransitioningDelegateForDetailMovie.swift */,
 			);
 			path = "Movie List";
 			sourceTree = "<group>";
@@ -972,7 +975,7 @@
 				E381C382227251C500530F3C /* SearchMoviesCoordinator.swift in Sources */,
 				E3374C742212239700D2C02C /* PUTMDBService.swift in Sources */,
 				E3374CA82214319500D2C02C /* UpComingMoviesViewController.swift in Sources */,
-				E38FB6962273C2F700EB4985 /* FadePushAnimator.swift in Sources */,
+				E38FB6962273C2F700EB4985 /* ImageFrameToMovieDetailTransitioning.swift in Sources */,
 				E3374C8422124D2600D2C02C /* MovieListViewController.swift in Sources */,
 				E329957C22187786002AA3E3 /* DetailableMovie.swift in Sources */,
 				E30429A622184133009A22E5 /* ReloaderAlertBuilderDelegate.swift in Sources */,
@@ -981,12 +984,13 @@
 				E3374CA2221390D300D2C02C /* UIColor+pucolors.swift in Sources */,
 				E381C37222710D8E00530F3C /* PUTMDBMovieType.swift in Sources */,
 				E329959522198F06002AA3E3 /* SearchSuggestionsViewContorllerDelegate.swift in Sources */,
-				E38FB6982273C35B00EB4985 /* FadePopAnimator.swift in Sources */,
+				E38FB6982273C35B00EB4985 /* MovieDetailToImageFrameTransitioning.swift in Sources */,
 				E329959B2219C50A002AA3E3 /* SuggestionsController.swift in Sources */,
 				E3374C8A2212518900D2C02C /* Page.swift in Sources */,
 				E38268E02215FFFE001C792E /* PUToggleButtonState.swift in Sources */,
 				E3042994221837F4009A22E5 /* AlertBuilderProtocol.swift in Sources */,
 				E3374C992213844400D2C02C /* UIImage+initFromURL.swift in Sources */,
+				E38FB69E2273F78200EB4985 /* TransitioningDelegateForDetailMovie.swift in Sources */,
 				E329959E2219C7BD002AA3E3 /* Queue.swift in Sources */,
 				E381C3842272963B00530F3C /* SearchMoviesViewControllerDelegate.swift in Sources */,
 				E30429AA221842C6009A22E5 /* ClosableViewControllerProtocol.swift in Sources */,

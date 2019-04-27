@@ -9,6 +9,9 @@
 import UIKit
 
 class PUNormalMovieCollectionViewCell: UICollectionViewCell, PUMovieCollectionViewCellProtocol {
+    lazy var moviePosterImageView: UIImageView = {
+        return movieImageView
+    }()
 
     @IBOutlet weak var containerView: UIView! {
         didSet {

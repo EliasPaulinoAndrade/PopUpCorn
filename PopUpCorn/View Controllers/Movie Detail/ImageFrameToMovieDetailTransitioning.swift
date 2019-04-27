@@ -9,21 +9,34 @@
 import Foundation
 import UIKit
 
-open class FadePushAnimator: NSObject, UIViewControllerAnimatedTransitioning {
+open class ImageFrameToMovieDetailTransitioning: NSObject, UIViewControllerAnimatedTransitioning {
 
-    var movieItemPosition: Int
+    var placeHolderImage: UIImage?
+
+    var placeHolderFrame: CGRect?
 
     lazy var transitionPlaceHolderImageView: UIImageView = {
         let transitionPlaceHolderImageView = UIImageView.init()
 
         transitionPlaceHolderImageView.backgroundColor = UIColor.blue
         transitionPlaceHolderImageView.contentMode = .scaleAspectFill
+        transitionPlaceHolderImageView.image = placeHolderImage
+        transitionPlaceHolderImageView.frame = placeHolderFrame ?? CGRect.zero
 
         return transitionPlaceHolderImageView
     }()
 
-    public init(withMovieItemPosition movieItemPosition: Int) {
-        self.movieItemPosition = movieItemPosition
+    lazy var transitionBackgroundView: UIView = {
+        let transitionBackgroundView = UIView.init()
+
+        transitionBackgroundView.backgroundColor = UIColor.black
+
+        return transitionBackgroundView
+    }()
+
+    public init(withPlaceHolderImage placeHolderImage: UIImage?, andFrame placeHolderFrame: CGRect?) {
+        self.placeHolderImage = placeHolderImage
+        self.placeHolderFrame = placeHolderFrame
     }
 
     public func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
@@ -31,28 +44,21 @@ open class FadePushAnimator: NSObject, UIViewControllerAnimatedTransitioning {
     }
 
     public func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
-        guard let toViewController = transitionContext.viewController(forKey: .to) as? MovieDetailViewController,
-              let fromViewController = transitionContext.viewController(forKey: .from) as? UINavigationController,
-              let movieListUser = fromViewController.topViewController as? MovieListUserProtocol,
-              let movieItemView = movieListUser.movieListViewController.viewForMovieAt(position: movieItemPosition) as? PUExpandedMovieCollectionViewCell,
-              let movieItemSuperView = movieItemView.superview else {
+        guard let toViewController = transitionContext.viewController(forKey: .to) as? MovieDetailViewController else {
                 return
         }
 
-        let movieItemOrigin = movieItemView.convert(movieItemView.posterImageView.frame.origin, to: fromViewController.view)
+        transitionBackgroundView.frame = toViewController.view.frame
 
-        transitionPlaceHolderImageView.frame.origin = movieItemOrigin
-        transitionPlaceHolderImageView.frame.size = movieItemView.posterImageView.frame.size
-        transitionPlaceHolderImageView.image = movieItemView.posterImageView.image
-
-        transitionContext.containerView.addSubview(toViewController.view)
+        transitionContext.containerView.addSubview(transitionBackgroundView)
         transitionContext.containerView.addSubview(transitionPlaceHolderImageView)
+        transitionContext.containerView.addSubview(toViewController.view)
 
+        let oldToControllerBackground = toViewController.view.backgroundColor
+        toViewController.view.backgroundColor = UIColor.clear
         toViewController.view.alpha = 0
         toViewController.detailImageView.alpha = 0
         toViewController.view.frame.origin.y = toViewController.view.frame.size.height
-
-        movieItemView.posterImageView.alpha = 0
 
         let duration = self.transitionDuration(using: transitionContext)
 
@@ -69,9 +75,9 @@ open class FadePushAnimator: NSObject, UIViewControllerAnimatedTransitioning {
 
         }, completion: { _ in
             toViewController.detailImageView.alpha = 1
-            movieItemSuperView.addSubview(movieItemView)
+            toViewController.view.backgroundColor = oldToControllerBackground
             self.transitionPlaceHolderImageView.removeFromSuperview()
-            movieItemView.posterImageView.alpha = 1
+            self.transitionBackgroundView.removeFromSuperview()
             transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
         })
     }

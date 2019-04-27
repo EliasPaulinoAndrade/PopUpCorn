@@ -12,6 +12,8 @@ import UIKit
 class MovieDetailCoordinator: NSObject, CoordinatorProtocol {
     var rootViewController: UINavigationController
 
+    lazy var transitioningDelegate = TransitioningDelegateForDetailMovie.init(withTargetMoviePosition: moviePosition, rootViewController: rootViewController)
+
     var movie: DetailableMovie? {
         didSet {
             movieDetailViewController.title = movie?.title ?? MoviePlaceholder.title
@@ -19,7 +21,11 @@ class MovieDetailCoordinator: NSObject, CoordinatorProtocol {
         }
     }
 
-    var moviePosition: Int?
+    var moviePosition: Int? {
+        didSet {
+            transitioningDelegate.moviePosition = moviePosition
+        }
+    }
 
     lazy private var movieDetailViewController: MovieDetailViewController = {
         let movieDetailViewController = MovieDetailViewController.init()
@@ -38,9 +44,12 @@ class MovieDetailCoordinator: NSObject, CoordinatorProtocol {
             return
         }
 
-        movieDetailViewController.transitioningDelegate = self
-        movieDetailViewController.modalPresentationStyle = .custom
-        movieDetailViewController.modalPresentationCapturesStatusBarAppearance = false
+        if moviePosition != nil {
+            movieDetailViewController.transitioningDelegate = transitioningDelegate
+            movieDetailViewController.modalPresentationStyle = .custom
+            movieDetailViewController.modalPresentationCapturesStatusBarAppearance = false
+        }
+
         previousController.present(movieDetailViewController, animated: true, completion: nil)
     }
 }
@@ -48,16 +57,5 @@ class MovieDetailCoordinator: NSObject, CoordinatorProtocol {
 extension MovieDetailCoordinator: MovieDetailViewControllerDelegate {
     func closeButtonTapped() {
         movieDetailViewController.dismiss(animated: true, completion: nil)
-    }
-}
-
-extension MovieDetailCoordinator: UIViewControllerTransitioningDelegate {
-
-    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return FadePushAnimator(withMovieItemPosition: moviePosition ?? 0)
-    }
-
-    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return FadePopAnimator()
     }
 }
