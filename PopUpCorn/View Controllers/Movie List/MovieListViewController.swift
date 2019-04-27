@@ -23,6 +23,14 @@ class MovieListViewController: UIViewController {
 
     var state = MovieListControllerState.expanded
 
+    var scrollDirection = UICollectionView.ScrollDirection.vertical {
+        didSet {
+            if let flowLayout = moviesCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+                flowLayout.scrollDirection = .horizontal
+            }
+        }
+    }
+
     private var movies: [ListableMovie] = []
 
     private var loadIndicatorController = LoadIndicatorViewController.init()
@@ -38,6 +46,7 @@ class MovieListViewController: UIViewController {
         toggleButton.delegate = self
 
         registerMovieCells()
+
     }
 
     func registerMovieCells() {
@@ -99,33 +108,45 @@ extension MovieListViewController: UICollectionViewDelegateFlowLayout, UICollect
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 
+        var cellHeight: CGFloat
+        var cellWidth: CGFloat
         switch state {
         case .expanded:
             if collectionView.isStanding {
-                let cellWidth = collectionView.bounds.width
-                let cellHeight = cellWidth * 1.1
-
-                return CGSize.init(width: cellWidth, height: cellHeight)
+                switch scrollDirection {
+                case .horizontal:
+                    cellWidth = collectionView.bounds.width * 0.8
+                    cellHeight = cellWidth * 1.1
+                case .vertical:
+                    cellWidth = collectionView.bounds.width
+                    cellHeight = cellWidth * 1.1
+                }
             } else {
-                let cellWidth = collectionView.bounds.width/2 - 10
-                let cellHeight = cellWidth * 1.1
-
-                return CGSize.init(width: cellWidth, height: cellHeight)
+                cellWidth = collectionView.bounds.width/2 - 10
+                cellHeight = cellWidth * 1.1
             }
-
         case .normal:
             if collectionView.isStanding {
-                let cellWidth = collectionView.bounds.width/3 - 10
-                let cellHeight = cellWidth * 1.7
-
-                return CGSize.init(width: cellWidth, height: cellHeight)
+                switch scrollDirection {
+                case .horizontal:
+                    cellHeight = collectionView.bounds.height/2 - 10
+                    cellWidth = cellHeight * 0.5
+                case .vertical:
+                    cellWidth = collectionView.bounds.width/3 - 10
+                    cellHeight = cellWidth * 1.7
+                }
             } else {
-                let cellWidth = collectionView.bounds.width/5 - 10
-                let cellHeight = cellWidth * 1.7
-
-                return CGSize.init(width: cellWidth, height: cellHeight)
+                switch scrollDirection {
+                case .horizontal:
+                    cellHeight = collectionView.bounds.height/2 - 10
+                    cellWidth = cellHeight * 0.5
+                case .vertical:
+                    cellWidth = collectionView.bounds.width/5 - 10
+                    cellHeight = cellWidth * 1.7
+                }
             }
         }
+        return CGSize.init(width: cellWidth, height: cellHeight)
     }
 
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {

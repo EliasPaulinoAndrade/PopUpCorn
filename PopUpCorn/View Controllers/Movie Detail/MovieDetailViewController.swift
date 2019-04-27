@@ -55,9 +55,7 @@ class MovieDetailViewController: UIViewController, MovieListUserProtocol {
         movieListViewController.delegate = self
 
         self.addChild(movieListViewController, inView: self.moviesListPlaceView)
-        if let flowLayout = movieListViewController.moviesCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
-            flowLayout.scrollDirection = .horizontal
-        }
+        movieListViewController.scrollDirection = .horizontal
 
         scrollView.delegate = self
         formatGestures()
