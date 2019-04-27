@@ -13,6 +13,15 @@ open class FadePushAnimator: NSObject, UIViewControllerAnimatedTransitioning {
 
     var movieItemPosition: Int
 
+    lazy var transitionPlaceHolderImageView: UIImageView = {
+        let transitionPlaceHolderImageView = UIImageView.init()
+
+        transitionPlaceHolderImageView.backgroundColor = UIColor.blue
+        transitionPlaceHolderImageView.contentMode = .scaleAspectFill
+
+        return transitionPlaceHolderImageView
+    }()
+
     public init(withMovieItemPosition movieItemPosition: Int) {
         self.movieItemPosition = movieItemPosition
     }
@@ -30,44 +39,39 @@ open class FadePushAnimator: NSObject, UIViewControllerAnimatedTransitioning {
                 return
         }
 
-        let itemOldFrame = movieItemView.frame
-        let itemOldColor = movieItemView.containerView.backgroundColor
-        let itemOldRadius = movieItemView.containerView.radius
+        let movieItemOrigin = movieItemView.convert(movieItemView.posterImageView.frame.origin, to: fromViewController.view)
 
-        movieItemView.frame.origin = movieItemView.convert(movieItemView.frame.origin, to: fromViewController.view)
+        transitionPlaceHolderImageView.frame.origin = movieItemOrigin
+        transitionPlaceHolderImageView.frame.size = movieItemView.posterImageView.frame.size
+        transitionPlaceHolderImageView.image = movieItemView.posterImageView.image
 
         transitionContext.containerView.addSubview(toViewController.view)
-        transitionContext.containerView.addSubview(movieItemView)
+        transitionContext.containerView.addSubview(transitionPlaceHolderImageView)
 
         toViewController.view.alpha = 0
         toViewController.detailImageView.alpha = 0
         toViewController.view.frame.origin.y = toViewController.view.frame.size.height
 
-        movieItemView.containerView.backgroundColor = UIColor.clear
+        movieItemView.posterImageView.alpha = 0
 
         let duration = self.transitionDuration(using: transitionContext)
 
         UIView.animate(withDuration: duration, animations: {
-            toViewController.view.alpha = 1
+
             toViewController.view.frame.origin.y = 0
+            toViewController.view.alpha = 1
 
-            movieItemView.containerView.radius = 0
-            movieItemView.frame.size.width = toViewController.view.frame.width
-            movieItemView.frame.origin.x = 0
-//            movieItemView.headerContainerView.layer.opacity = 0
-//            movieItemView.headerImageView.layer.opacity = 0
+            self.transitionPlaceHolderImageView.frame.size.width = toViewController.view.frame.width
+            self.transitionPlaceHolderImageView.frame.origin.x = 0
+            self.transitionPlaceHolderImageView.frame.size.height = 350
 
-            movieItemView.frame.origin.y = -movieItemView.headerContainerView.frame.height
+            self.transitionPlaceHolderImageView.frame.origin.y = 0
 
-            //                movieItemView.posterImageView.frame.size.height = 400
         }, completion: { _ in
-            movieItemSuperView.addSubview(movieItemView)
-            movieItemView.frame = itemOldFrame
-            movieItemView.headerContainerView.layer.opacity = 1
-            movieItemView.headerImageView.layer.opacity = 1
-            movieItemView.containerView.backgroundColor = itemOldColor
             toViewController.detailImageView.alpha = 1
-            movieItemView.containerView.radius = itemOldRadius
+            movieItemSuperView.addSubview(movieItemView)
+            self.transitionPlaceHolderImageView.removeFromSuperview()
+            movieItemView.posterImageView.alpha = 1
             transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
         })
     }
