@@ -13,24 +13,26 @@ class TransitioningDelegateForDetailMovie: NSObject, UIViewControllerTransitioni
 
     var moviePosition: Int?
     var rootViewController: UIViewController
+    var interactionController: UIViewControllerInteractiveTransitioning?
 
-    init(withTargetMoviePosition targetMoviePosition: Int?, rootViewController: UIViewController) {
+    init(withTargetMoviePosition targetMoviePosition: Int?, rootViewController: UIViewController, andInteractionController interactionController: UIViewControllerInteractiveTransitioning? = nil) {
         self.moviePosition = targetMoviePosition
         self.rootViewController = rootViewController
+        self.interactionController = interactionController
     }
 
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
 
         let (movieImageFrame, movieImage) = movieItemViewInfo(parentController: presenting)
 
-        return ImageFrameToMovieDetailTransitioning.init(withPlaceHolderImage: movieImage, andFrame: movieImageFrame)
+        return ImageFrameToMovieDetailTransitioning.init(withPlaceHolderImage: movieImage, andFrame: movieImageFrame, duration: 0.5)
     }
 
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
 
         let (movieImageFrame, movieImage) = movieItemViewInfo(parentController: rootViewController)
 
-        return MovieDetailToImageFrameTransitioning(withPlaceHolderImage: movieImage, andFrame: movieImageFrame)
+        return MovieDetailToImageFrameTransitioning(withPlaceHolderImage: movieImage, andFrame: movieImageFrame, duration: 0.5)
     }
 
     func movieItemViewInfo(parentController: UIViewController) -> (frmae: CGRect?, image: UIImage?) {
@@ -49,5 +51,10 @@ class TransitioningDelegateForDetailMovie: NSObject, UIViewControllerTransitioni
         let movieImageFrame = CGRect.init(origin: movieItemOrigin, size: posterImageView.frame.size)
 
         return (movieImageFrame, posterImageView.image)
+    }
+
+    func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+
+        return self.interactionController
     }
 }

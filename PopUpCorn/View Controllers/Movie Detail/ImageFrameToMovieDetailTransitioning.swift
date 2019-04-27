@@ -9,11 +9,13 @@
 import Foundation
 import UIKit
 
-open class ImageFrameToMovieDetailTransitioning: NSObject, UIViewControllerAnimatedTransitioning {
+class ImageFrameToMovieDetailTransitioning: NSObject, UIViewControllerAnimatedTransitioning {
 
     var placeHolderImage: UIImage?
 
     var placeHolderFrame: CGRect?
+
+    var duration: TimeInterval
 
     lazy var transitionPlaceHolderImageView: UIImageView = {
         let transitionPlaceHolderImageView = UIImageView.init()
@@ -29,18 +31,23 @@ open class ImageFrameToMovieDetailTransitioning: NSObject, UIViewControllerAnima
     lazy var transitionBackgroundView: UIView = {
         let transitionBackgroundView = UIView.init()
 
-        transitionBackgroundView.backgroundColor = UIColor.black
+        let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.dark)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = transitionBackgroundView.bounds
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        transitionBackgroundView.addSubview(blurEffectView)
 
         return transitionBackgroundView
     }()
 
-    public init(withPlaceHolderImage placeHolderImage: UIImage?, andFrame placeHolderFrame: CGRect?) {
+    public init(withPlaceHolderImage placeHolderImage: UIImage?, andFrame placeHolderFrame: CGRect?, duration: TimeInterval) {
         self.placeHolderImage = placeHolderImage
         self.placeHolderFrame = placeHolderFrame
+        self.duration = duration
     }
 
     public func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
-        return 0.5
+        return duration
     }
 
     public func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {

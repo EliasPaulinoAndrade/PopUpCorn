@@ -104,6 +104,7 @@
 		E38FB69A2273C8CF00EB4985 /* MovieListUserProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38FB6992273C8CF00EB4985 /* MovieListUserProtocol.swift */; };
 		E38FB69C2273D0AE00EB4985 /* CGPoint+sum.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38FB69B2273D0AE00EB4985 /* CGPoint+sum.swift */; };
 		E38FB69E2273F78200EB4985 /* TransitioningDelegateForDetailMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38FB69D2273F78200EB4985 /* TransitioningDelegateForDetailMovie.swift */; };
+		E38FB6A022748D7900EB4985 /* PanGestureInteractiveTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38FB69F22748D7900EB4985 /* PanGestureInteractiveTransition.swift */; };
 		F61E6669CE03F25FC7476E66 /* Pods_PopUpCorn.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A41B9FC352158C247928E54 /* Pods_PopUpCorn.framework */; };
 /* End PBXBuildFile section */
 
@@ -234,6 +235,7 @@
 		E38FB6992273C8CF00EB4985 /* MovieListUserProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListUserProtocol.swift; sourceTree = "<group>"; };
 		E38FB69B2273D0AE00EB4985 /* CGPoint+sum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGPoint+sum.swift"; sourceTree = "<group>"; };
 		E38FB69D2273F78200EB4985 /* TransitioningDelegateForDetailMovie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitioningDelegateForDetailMovie.swift; sourceTree = "<group>"; };
+		E38FB69F22748D7900EB4985 /* PanGestureInteractiveTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanGestureInteractiveTransition.swift; sourceTree = "<group>"; };
 		FC65AD63EA2D65B43D250D38 /* Pods_PopUpCornUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PopUpCornUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -574,6 +576,7 @@
 				E304298F22182EE9009A22E5 /* ListableMovie.swift */,
 				E38FB6992273C8CF00EB4985 /* MovieListUserProtocol.swift */,
 				E38FB69D2273F78200EB4985 /* TransitioningDelegateForDetailMovie.swift */,
+				E38FB69F22748D7900EB4985 /* PanGestureInteractiveTransition.swift */,
 			);
 			path = "Movie List";
 			sourceTree = "<group>";
@@ -978,6 +981,7 @@
 				E38FB6962273C2F700EB4985 /* ImageFrameToMovieDetailTransitioning.swift in Sources */,
 				E3374C8422124D2600D2C02C /* MovieListViewController.swift in Sources */,
 				E329957C22187786002AA3E3 /* DetailableMovie.swift in Sources */,
+				E38FB6A022748D7900EB4985 /* PanGestureInteractiveTransition.swift in Sources */,
 				E30429A622184133009A22E5 /* ReloaderAlertBuilderDelegate.swift in Sources */,
 				E381C3782272443A00530F3C /* CoordinatorProtocol.swift in Sources */,
 				E37C777522171C310075D8D8 /* MovieCell.swift in Sources */,

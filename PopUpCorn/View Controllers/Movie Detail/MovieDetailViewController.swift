@@ -47,6 +47,7 @@ class MovieDetailViewController: UIViewController {
 
         genresRequesterController.delegate = self
         scrollView.delegate = self
+        formatGestures()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -70,6 +71,21 @@ class MovieDetailViewController: UIViewController {
                 self.scrollView.contentOffset.y = 0.0
             }
         }
+    }
+
+    func formatGestures() {
+        let edgePanGestureRecognizer = UIScreenEdgePanGestureRecognizer.init(
+            target: self,
+            action: #selector(edgePanned(recognizer:))
+        )
+
+        edgePanGestureRecognizer.edges = .left
+
+        self.view.addGestureRecognizer(edgePanGestureRecognizer)
+    }
+
+    @objc func edgePanned(recognizer: UIScreenEdgePanGestureRecognizer) {
+        delegate?.edgeInteractionHappend(recognizer: recognizer)
     }
 
     @objc func closeTapped(recognizer: UITapGestureRecognizer) {

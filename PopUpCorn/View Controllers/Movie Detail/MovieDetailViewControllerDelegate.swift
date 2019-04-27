@@ -7,7 +7,9 @@
 //
 
 import Foundation
+import UIKit
 
 protocol MovieDetailViewControllerDelegate: AnyObject {
     func closeButtonTapped()
+    func edgeInteractionHappend(recognizer: UIPanGestureRecognizer)
 }

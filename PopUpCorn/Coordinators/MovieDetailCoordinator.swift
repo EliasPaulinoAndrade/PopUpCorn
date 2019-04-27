@@ -12,7 +12,13 @@ import UIKit
 class MovieDetailCoordinator: NSObject, CoordinatorProtocol {
     var rootViewController: UINavigationController
 
-    lazy var transitioningDelegate = TransitioningDelegateForDetailMovie.init(withTargetMoviePosition: moviePosition, rootViewController: rootViewController)
+    lazy var transitioning = TransitioningDelegateForDetailMovie.init(withTargetMoviePosition: moviePosition, rootViewController: rootViewController, andInteractionController: interactiveTransision)
+
+    lazy var interactiveTransision: PanGestureInteractiveTransition = {
+        let interactiveTransision = PanGestureInteractiveTransition.init(viewController: movieDetailViewController)
+
+        return interactiveTransision
+    }()
 
     var movie: DetailableMovie? {
         didSet {
@@ -23,7 +29,8 @@ class MovieDetailCoordinator: NSObject, CoordinatorProtocol {
 
     var moviePosition: Int? {
         didSet {
-            transitioningDelegate.moviePosition = moviePosition
+            transitioning.interactionController = interactiveTransision
+            transitioning.moviePosition = moviePosition
         }
     }
 
@@ -45,7 +52,8 @@ class MovieDetailCoordinator: NSObject, CoordinatorProtocol {
         }
 
         if moviePosition != nil {
-            movieDetailViewController.transitioningDelegate = transitioningDelegate
+
+            movieDetailViewController.transitioningDelegate = transitioning
             movieDetailViewController.modalPresentationStyle = .custom
             movieDetailViewController.modalPresentationCapturesStatusBarAppearance = false
         }
@@ -55,7 +63,14 @@ class MovieDetailCoordinator: NSObject, CoordinatorProtocol {
 }
 
 extension MovieDetailCoordinator: MovieDetailViewControllerDelegate {
+    func edgeInteractionHappend(recognizer: UIPanGestureRecognizer) {
+        if let totalTranslation = recognizer.view?.bounds.size.width {
+            self.interactiveTransision.update(recognizer: recognizer, totalTranslation: totalTranslation)
+        }
+    }
+
     func closeButtonTapped() {
+        transitioning.interactionController = nil
         movieDetailViewController.dismiss(animated: true, completion: nil)
     }
 }
