@@ -9,10 +9,13 @@
 import Foundation
 import UIKit
 
+/// a custom transition that animates a imageview from a target frame to the movie detail image rect
 class ImageFrameToMovieDetailTransitioning: NSObject, UIViewControllerAnimatedTransitioning {
 
+    /// the animating imageview image
     var placeHolderImage: UIImage?
 
+    /// the inital imageview frame
     var placeHolderFrame: CGRect?
 
     var duration: TimeInterval
@@ -29,6 +32,7 @@ class ImageFrameToMovieDetailTransitioning: NSObject, UIViewControllerAnimatedTr
         return transitionPlaceHolderImageView
     }()
 
+    /// a background showed while the image is animating
     lazy var transitionBackgroundView: UIView = {
         let transitionBackgroundView = UIView.init()
 

@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+/// a interactive controller to transition with user pan gesture
 class PanGestureInteractiveTransition: UIPercentDrivenInteractiveTransition {
 
     private weak var viewController: UIViewController!

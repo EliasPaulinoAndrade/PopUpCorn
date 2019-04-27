@@ -22,6 +22,28 @@ struct PUTMDBService {
         self.credentials = plistService.tmdbAtributtes
     }
 
+    func similarMovies(
+        movieId: String,
+        inPageNumber pageNumber: Int = 1,
+        sucessCompletion: @escaping (Page) -> Void,
+        errorCompletion: @escaping (Error?) -> Void) {
+
+        guard let credentials = self.credentials else {
+                errorCompletion(nil)
+                return
+        }
+
+        if let similarMoviesUrl = PUTTMDBEndPoint.movieSilimilar(
+            credentials: credentials,
+            language: "en-US",
+            pageNumber: "\(pageNumber)",
+            movieId: movieId
+        ).formatted() {
+            let modelQuery = PUTMDBModelQuery<Page>()
+            modelQuery.run(fromURL: similarMoviesUrl, sucessCompletion: sucessCompletion, errorCompletion: errorCompletion)
+        }
+    }
+
     /// Get movies from the API
     ///
     /// - Parameters:
@@ -48,7 +70,7 @@ struct PUTMDBService {
         if let query = stringQuery {
             moviesUrl = PUTTMDBEndPoint.movieSearch(
                 credentials: credentials,
-                type: type, language: "en-US",
+                language: "en-US",
                 pageNumber: "\(pageNumber)",
                 query: query
             ).formatted()

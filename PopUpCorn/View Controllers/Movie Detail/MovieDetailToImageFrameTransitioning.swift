@@ -9,10 +9,13 @@
 import Foundation
 import UIKit
 
+/// a custom transition that shows a animating image begining in the movie detail image
 class MovieDetailToImageFrameTransitioning: NSObject, UIViewControllerAnimatedTransitioning {
 
+    /// the animating imageview image
     var placeHolderImage: UIImage?
 
+    /// the target frame
     var placeHolderFrame: CGRect?
 
     var duration: TimeInterval
@@ -41,6 +44,7 @@ class MovieDetailToImageFrameTransitioning: NSObject, UIViewControllerAnimatedTr
         return transitionBackgroundView
     }()
 
+    /// if the target rect is nil the defaultRect is used
     lazy var defaultPlaceHolderTargetRect = CGRect.init(origin: CGPoint.init(x: 0, y: UIScreen.main.bounds.height), size: CGSize.init(width: UIScreen.main.bounds.width, height: 350))
 
     public init(withPlaceHolderImage placeHolderImage: UIImage?, andFrame placeHolderFrame: CGRect?, duration: TimeInterval) {

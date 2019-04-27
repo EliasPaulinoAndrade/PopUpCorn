@@ -9,10 +9,14 @@
 import Foundation
 import UIKit
 
+/// a transitioning delegate to setup the custom transitions between a movie listing and a movie detail view controller
 class TransitioningDelegateForDetailMovie: NSObject, UIViewControllerTransitioningDelegate {
 
+    /// the movie position in the movies lisiting
     var moviePosition: Int?
+
     var rootViewController: UIViewController
+
     var interactionController: UIViewControllerInteractiveTransitioning?
 
     init(withTargetMoviePosition targetMoviePosition: Int?, rootViewController: UIViewController, andInteractionController interactionController: UIViewControllerInteractiveTransitioning? = nil) {
@@ -35,6 +39,10 @@ class TransitioningDelegateForDetailMovie: NSObject, UIViewControllerTransitioni
         return MovieDetailToImageFrameTransitioning(withPlaceHolderImage: movieImage, andFrame: movieImageFrame, duration: 0.5)
     }
 
+    /// get the movie image and rect in the movies listing
+    ///
+    /// - Parameter parentController: the movie listing parent view controller, must be a UINavigationController
+    /// - Returns: the movie info
     func movieItemViewInfo(parentController: UIViewController) -> (frame: CGRect?, image: UIImage?) {
         guard let fromViewController = parentController as? UINavigationController,
             let movieListUser = fromViewController.topViewController as? MovieListUserProtocol,
