@@ -26,7 +26,7 @@ class SearchMoviesCoordinator: CoordinatorProtocol {
         self.rootViewController = rootViewController
     }
 
-    func start() {
+    func start(previousController: UIViewController? = nil) {
         searchMoviesViewController.title = Constants.title
         rootViewController.pushViewController(searchMoviesViewController, animated: true)
     }
@@ -36,7 +36,7 @@ extension SearchMoviesCoordinator: SearchMoviesViewControllerDelegate {
     func searchMovieWasSelected(movie: DetailableMovie) {
 
         movieDetailCoordinator.movie = movie
-        movieDetailCoordinator.start()
+        movieDetailCoordinator.start(previousController: searchMoviesViewController)
     }
 }
 

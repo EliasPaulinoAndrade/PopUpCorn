@@ -28,17 +28,18 @@ class UpComingMoviesCoordinator: CoordinatorProtocol {
         self.rootViewController = rootViewController
     }
 
-    func start() {
+    func start(previousController: UIViewController? = nil) {
         upComingMoviesController.title = Constants.title
         rootViewController.pushViewController(upComingMoviesController, animated: true)
     }
 }
 
 extension UpComingMoviesCoordinator: UpComingMoviesViewControllerDelegate {
-    func upComingMovieWasSelected(movie: DetailableMovie) {
+    func upComingMovieWasSelected(movie: DetailableMovie, atPosition position: Int) {
         movieDetailCoordinator.movie = movie
+        movieDetailCoordinator.moviePosition = position
 
-        movieDetailCoordinator.start()
+        movieDetailCoordinator.start(previousController: upComingMoviesController)
     }
 
     func searchButtonWasSelected() {

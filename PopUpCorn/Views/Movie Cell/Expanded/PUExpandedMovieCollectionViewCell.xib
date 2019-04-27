@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -94,6 +94,7 @@
             <connections>
                 <outlet property="containerView" destination="ZiB-N4-UP2" id="h7d-Ly-N3p"/>
                 <outlet property="genresLabel" destination="Qrp-kC-0pt" id="ctU-IR-jrP"/>
+                <outlet property="headerContainerView" destination="vh4-uC-Wk4" id="YLs-fb-Axj"/>
                 <outlet property="headerImageView" destination="kCU-6k-PG5" id="zbH-mj-wgV"/>
                 <outlet property="posterImageView" destination="m6k-w4-dNc" id="GJG-uv-hep"/>
                 <outlet property="releaseLabel" destination="LXd-cP-4Hh" id="EaK-be-w3h"/>

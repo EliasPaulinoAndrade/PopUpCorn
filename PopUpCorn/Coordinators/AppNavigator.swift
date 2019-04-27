@@ -24,7 +24,7 @@ class AppCoordinator: CoordinatorProtocol {
 
     lazy var firstControllerCoordinator = UpComingMoviesCoordinator(withRootViewController: rootViewController)
 
-    func start() {
+    func start(previousController: UIViewController? = nil) {
 
         guard let window = UIApplication.shared.delegate?.window else {
             return

@@ -11,5 +11,5 @@ import UIKit
 
 protocol CoordinatorProtocol {
     var rootViewController: UINavigationController { get set }
-    func start()
+    func start(previousController: UIViewController?)
 }

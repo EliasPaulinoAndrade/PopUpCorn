@@ -56,6 +56,10 @@ class MovieListViewController: UIViewController {
         self.moviesCollectionView.reloadData()
     }
 
+    func viewForMovieAt(position: Int) -> UIView? {
+        return moviesCollectionView?.cellForItem(at: IndexPath.init(row: position, section: 0))
+    }
+
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         moviesCollectionView.collectionViewLayout.invalidateLayout()
     }

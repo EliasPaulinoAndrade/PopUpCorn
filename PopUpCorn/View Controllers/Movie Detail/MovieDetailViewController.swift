@@ -25,10 +25,22 @@ class MovieDetailViewController: UIViewController {
     }
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var imageHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var closeImageView: UIImageView! {
+        didSet {
+            closeImageView.isUserInteractionEnabled = true
+            closeImageView.addGestureRecognizer(UITapGestureRecognizer.init(target: self, action: #selector(closeTapped(recognizer:))))
+        }
+    }
+
+    weak var delegate: MovieDetailViewControllerDelegate?
 
     var movie: DetailableMovie?
 
     private var genresRequesterController = GenreRequesterController.init()
+
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,6 +70,10 @@ class MovieDetailViewController: UIViewController {
                 self.scrollView.contentOffset.y = 0.0
             }
         }
+    }
+
+    @objc func closeTapped(recognizer: UITapGestureRecognizer) {
+        delegate?.closeButtonTapped()
     }
 
     func formatMovie() {

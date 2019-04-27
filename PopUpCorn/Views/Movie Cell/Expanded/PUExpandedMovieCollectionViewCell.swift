@@ -17,6 +17,7 @@ class PUExpandedMovieCollectionViewCell: UICollectionViewCell, PUMovieCollection
     @IBOutlet weak var posterImageView: PUTMDBImageView!
     @IBOutlet weak var headerImageView: PUTMDBImageView!
     @IBOutlet weak var containerView: PURadiusView!
+    @IBOutlet weak var headerContainerView: PUTMDBImageView!
 
     private var genresRequesterController = GenreRequesterController.init()
 

@@ -11,9 +11,9 @@ import Foundation
 import UIKit
 
 /// a view controller that shows the search screen.
-class SearchMoviesViewController: UIViewController {
+class SearchMoviesViewController: UIViewController, MovieListUserProtocol {
 
-    private var movieListViewController = MovieListViewController.init()
+    var movieListViewController = MovieListViewController.init()
     private var movieRequesterController = MovieRequesterController.init()
     private var errorPresenterController = ErrorPresenterViewController.init()
     private var movieDetailViewController = MovieDetailViewController.init()

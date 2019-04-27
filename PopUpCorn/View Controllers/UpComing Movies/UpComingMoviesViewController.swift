@@ -9,9 +9,9 @@
 import UIKit
 
 /// a view controller that shows the inical app screen
-class UpComingMoviesViewController: UIViewController {
+class UpComingMoviesViewController: UIViewController, MovieListUserProtocol {
 
-    private var movieListViewController = MovieListViewController.init()
+    var movieListViewController = MovieListViewController.init()
     private var movieRequesterController = MovieRequesterController.init()
     private var errorPresenterController = ErrorPresenterViewController.init()
     private var loadIndicatorViewController = LoadIndicatorViewController.init()
@@ -83,12 +83,12 @@ extension UpComingMoviesViewController: MovieListViewControllerDelegate {
         let detailableMovie = DetailableMovie.init(
             title: movie.title,
             release: movie.releaseDate,
-            image: movie.posterPath ?? movie.backdropPath,
+            image: movie.backdropPath ?? movie.posterPath,
             genres: movie.genreIDs,
             overview: movie.overview
         )
 
-        delegate?.upComingMovieWasSelected(movie: detailableMovie)
+        delegate?.upComingMovieWasSelected(movie: detailableMovie, atPosition: position)
     }
 }
 
