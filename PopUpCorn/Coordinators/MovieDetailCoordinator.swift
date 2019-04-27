@@ -52,13 +52,13 @@ class MovieDetailCoordinator: NSObject, CoordinatorProtocol {
         }
 
         if moviePosition != nil {
-
             movieDetailViewController.transitioningDelegate = transitioning
             movieDetailViewController.modalPresentationStyle = .custom
             movieDetailViewController.modalPresentationCapturesStatusBarAppearance = false
+            previousController.present(movieDetailViewController, animated: true, completion: nil)
+        } else {
+            previousController.present(movieDetailViewController, animated: true, completion: nil)
         }
-
-        previousController.present(movieDetailViewController, animated: true, completion: nil)
     }
 }
 

@@ -24,6 +24,7 @@ class ImageFrameToMovieDetailTransitioning: NSObject, UIViewControllerAnimatedTr
         transitionPlaceHolderImageView.contentMode = .scaleAspectFill
         transitionPlaceHolderImageView.image = placeHolderImage
         transitionPlaceHolderImageView.frame = placeHolderFrame ?? CGRect.zero
+        transitionPlaceHolderImageView.clipsToBounds = true
 
         return transitionPlaceHolderImageView
     }()
@@ -60,6 +61,7 @@ class ImageFrameToMovieDetailTransitioning: NSObject, UIViewControllerAnimatedTr
         transitionContext.containerView.addSubview(transitionBackgroundView)
         transitionContext.containerView.addSubview(transitionPlaceHolderImageView)
         transitionContext.containerView.addSubview(toViewController.view)
+        toViewController.view.frame = UIScreen.main.bounds
 
         let oldToControllerBackground = toViewController.view.backgroundColor
         toViewController.view.backgroundColor = UIColor.clear

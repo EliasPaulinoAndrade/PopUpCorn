@@ -24,6 +24,7 @@ class MovieDetailToImageFrameTransitioning: NSObject, UIViewControllerAnimatedTr
         transitionPlaceHolderImageView.contentMode = .scaleAspectFill
         transitionPlaceHolderImageView.image = placeHolderImage
         transitionPlaceHolderImageView.frame.origin = CGPoint.zero
+        transitionPlaceHolderImageView.clipsToBounds = true
 
         return transitionPlaceHolderImageView
     }()
@@ -40,6 +41,8 @@ class MovieDetailToImageFrameTransitioning: NSObject, UIViewControllerAnimatedTr
         return transitionBackgroundView
     }()
 
+    lazy var defaultPlaceHolderTargetRect = CGRect.init(origin: CGPoint.init(x: 0, y: UIScreen.main.bounds.height), size: CGSize.init(width: UIScreen.main.bounds.width, height: 350))
+
     public init(withPlaceHolderImage placeHolderImage: UIImage?, andFrame placeHolderFrame: CGRect?, duration: TimeInterval) {
         self.placeHolderImage = placeHolderImage
         self.placeHolderFrame = placeHolderFrame
@@ -51,24 +54,39 @@ class MovieDetailToImageFrameTransitioning: NSObject, UIViewControllerAnimatedTr
     }
 
     public func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
-        guard let fromViewController = transitionContext.viewController(forKey: .from) else {
+        guard let fromViewController = transitionContext.viewController(forKey: .from) as? MovieDetailViewController else {
                 return
         }
 
+        let oldFromControllerBackground = fromViewController.view.backgroundColor
+
         transitionPlaceHolderImageView.frame.size = CGSize.init(width: fromViewController.view.frame.width, height: 350)
+        if transitionPlaceHolderImageView.image == nil {
+            transitionPlaceHolderImageView.image = fromViewController.detailImageView.image
+        }
 
         transitionContext.containerView.addSubview(transitionBackgroundView)
         transitionContext.containerView.addSubview(transitionPlaceHolderImageView)
+        transitionContext.containerView.addSubview(fromViewController.view)
 
         transitionBackgroundView.frame = fromViewController.view.frame
 
+        fromViewController.view.layer.opacity = 1
+        fromViewController.detailImageView.layer.opacity = 0
+        fromViewController.view.backgroundColor = UIColor.clear
+
         let duration = self.transitionDuration(using: transitionContext)
         UIView.animate(withDuration: duration, animations: {
-            fromViewController.view.alpha = 0
-            self.transitionPlaceHolderImageView.frame = self.placeHolderFrame ?? CGRect.zero
+            fromViewController.view.layer.opacity = 0
+            self.transitionPlaceHolderImageView.frame = self.placeHolderFrame ?? self.defaultPlaceHolderTargetRect
+            fromViewController.view.frame.origin.y = fromViewController.view.frame.size.height
         }, completion: { _ in
             self.transitionPlaceHolderImageView.removeFromSuperview()
             self.transitionBackgroundView.removeFromSuperview()
+
+            fromViewController.view.backgroundColor = oldFromControllerBackground
+            fromViewController.detailImageView.layer.opacity = 1
+            fromViewController.view.frame.origin.y = 0
             transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
         })
     }

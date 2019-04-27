@@ -33,10 +33,11 @@ class SearchMoviesCoordinator: CoordinatorProtocol {
 }
 
 extension SearchMoviesCoordinator: SearchMoviesViewControllerDelegate {
-    func searchMovieWasSelected(movie: DetailableMovie) {
-
+    func searchMovieWasSelected(movie: DetailableMovie, atPosition position: Int) {
         movieDetailCoordinator.movie = movie
-        movieDetailCoordinator.start(previousController: searchMoviesViewController)
+        movieDetailCoordinator.moviePosition = position
+
+        movieDetailCoordinator.start(previousController: searchMoviesViewController.searchController)
     }
 }
 

@@ -22,7 +22,7 @@ class SearchMoviesViewController: UIViewController, MovieListUserProtocol {
 
     weak var delegate: SearchMoviesViewControllerDelegate?
 
-    private lazy var searchController: UISearchController = {
+    lazy var searchController: UISearchController = {
         let searchController = UISearchController.init(searchResultsController: nil)
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "\(Constants.searchBarPlaceHolder)"
@@ -31,6 +31,7 @@ class SearchMoviesViewController: UIViewController, MovieListUserProtocol {
         searchController.searchBar.delegate = self
         searchController.searchResultsUpdater = self
         searchController.searchBar.tintColor = UIColor.white
+        searchController.searchBar.barStyle = .black
 
         return searchController
     }()
@@ -125,9 +126,9 @@ extension SearchMoviesViewController: MovieListViewControllerDelegate {
         )
 
         movieDetailViewController.movie = detailableMovie
-        searchController.isActive = false
+//        searchController.isActive = false
 
-        delegate?.searchMovieWasSelected(movie: detailableMovie)
+        delegate?.searchMovieWasSelected(movie: detailableMovie, atPosition: position)
     }
 }
 

@@ -23,7 +23,7 @@ class TransitioningDelegateForDetailMovie: NSObject, UIViewControllerTransitioni
 
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
 
-        let (movieImageFrame, movieImage) = movieItemViewInfo(parentController: presenting)
+        let (movieImageFrame, movieImage) = movieItemViewInfo(parentController: rootViewController)
 
         return ImageFrameToMovieDetailTransitioning.init(withPlaceHolderImage: movieImage, andFrame: movieImageFrame, duration: 0.5)
     }
@@ -35,7 +35,7 @@ class TransitioningDelegateForDetailMovie: NSObject, UIViewControllerTransitioni
         return MovieDetailToImageFrameTransitioning(withPlaceHolderImage: movieImage, andFrame: movieImageFrame, duration: 0.5)
     }
 
-    func movieItemViewInfo(parentController: UIViewController) -> (frmae: CGRect?, image: UIImage?) {
+    func movieItemViewInfo(parentController: UIViewController) -> (frame: CGRect?, image: UIImage?) {
         guard let fromViewController = parentController as? UINavigationController,
             let movieListUser = fromViewController.topViewController as? MovieListUserProtocol,
             let movieItem = movieListUser.movieListViewController.viewForMovieAt(position: moviePosition ?? 0) as? PUMovieCollectionViewCellProtocol,
