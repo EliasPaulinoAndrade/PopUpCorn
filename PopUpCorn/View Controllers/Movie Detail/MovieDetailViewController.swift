@@ -9,9 +9,10 @@
 import UIKit
 
 /// a view controller that shows the detail view of a detailableMovie
-class MovieDetailViewController: UIViewController, MovieListUserProtocol {
+class MovieDetailViewController: UIViewController, MovieListUserProtocol, MovieFormatterProtocol {
 
     @IBOutlet weak var detailImageView: PUTMDBImageView!
+    @IBOutlet weak var similarMoviesTitleLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var releaseLabel: UILabel!
     @IBOutlet weak var genresLabel: UILabel!
@@ -154,11 +155,10 @@ extension MovieDetailViewController: GenreRequesterControllerDelegate {
 extension MovieDetailViewController: SimilarMovieRequesterControllerDelegate {
     func moviesHaveArrived(_ requester: SimilarMovieRequesterController) {
         movieListViewController.reloadData()
-//        loadIndicatorViewController.stopAnimating()
     }
 
     func errorHappend(_ requester: SimilarMovieRequesterController, error: Error?) {
-
+        similarMoviesTitleLabel.isHidden = false
     }
 }
 
@@ -166,19 +166,21 @@ extension MovieDetailViewController: MovieListViewControllerDelegate {
     func movieList(_ movieList: MovieListViewController, movieForPositon position: Int) -> ListableMovie {
         let movie = similarMoviesRequesterController.movies[position]
 
-        let listableMovie = ListableMovie.init(
-            title: movie.title ?? MoviePlaceholder.title,
-            release: movie.releaseDate ?? MoviePlaceholder.release,
-            posterPath: movie.posterPath,
-            backdropPath: movie.backdropPath,
-            genresIDs: movie.genreIDs
-        )
+        let listableMovie: ListableMovie = format(movie: movie)
 
         return listableMovie
     }
 
     func numberOfMovies(_ movieList: MovieListViewController) -> Int {
-        return similarMoviesRequesterController.numberOfMovies
+        let numberOfMovies = similarMoviesRequesterController.numberOfMovies
+
+        if numberOfMovies == 0 {
+            similarMoviesTitleLabel.isHidden = true
+        } else {
+            similarMoviesTitleLabel.isHidden = false
+        }
+
+        return numberOfMovies
     }
 
     func movies(_ movieList: MovieListViewController) -> [Movie] {
@@ -192,14 +194,7 @@ extension MovieDetailViewController: MovieListViewControllerDelegate {
     func movieList(_ movieList: MovieListViewController, didSelectItemAt position: Int) {
         let movie = similarMoviesRequesterController.movies[position]
 
-        let detailableMovie = DetailableMovie.init(
-            title: movie.title,
-            release: movie.releaseDate,
-            image: movie.backdropPath ?? movie.posterPath,
-            genres: movie.genreIDs,
-            overview: movie.overview,
-            id: "\(movie.id ?? -1)"
-        )
+        let detailableMovie: DetailableMovie = format(movie: movie)
 
         delegate?.similarMovieWasSelected(movie: detailableMovie, atPosition: position)
     }

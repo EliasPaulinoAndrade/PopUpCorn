@@ -21,7 +21,15 @@ class MovieListViewController: UIViewController {
 
     weak var delegate: MovieListViewControllerDelegate?
 
-    var state = MovieListControllerState.expanded
+    var state = MovieListControllerState.expanded {
+        didSet {
+            if state == .expanded {
+                toggleButton.change(toState: .first)
+            } else {
+                toggleButton.change(toState: .second)
+            }
+        }
+    }
 
     var scrollDirection = UICollectionView.ScrollDirection.vertical {
         didSet {
@@ -81,7 +89,14 @@ class MovieListViewController: UIViewController {
 extension MovieListViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 
-        return delegate?.numberOfMovies(self) ?? 0
+        if let numberOfMovies = delegate?.numberOfMovies(self), numberOfMovies > 0 {
+
+            toggleButton.isHidden = false
+            return numberOfMovies
+        }
+
+        toggleButton.isHidden = true
+        return 0
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

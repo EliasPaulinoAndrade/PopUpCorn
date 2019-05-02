@@ -22,6 +22,7 @@
                 <outlet property="overviewLabel" destination="42a-Uy-nyJ" id="kIm-4z-wh5"/>
                 <outlet property="releaseLabel" destination="laI-na-tRi" id="z5r-vD-e35"/>
                 <outlet property="scrollView" destination="l7Q-sl-zDg" id="TXB-oj-1PJ"/>
+                <outlet property="similarMoviesTitleLabel" destination="RWB-d9-cWU" id="owO-C0-cIr"/>
                 <outlet property="titleLabel" destination="irI-Ew-vEu" id="E82-i7-iaO"/>
                 <outlet property="view" destination="iN0-l3-epB" id="I4L-Rv-vY4"/>
             </connections>
@@ -172,7 +173,7 @@
                     </constraints>
                 </imageView>
             </subviews>
-            <color key="backgroundColor" name="black"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="Iyx-sj-fhY" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="4KD-wX-lVX"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="l7Q-sl-zDg" secondAttribute="bottom" id="7QG-PK-i8D"/>

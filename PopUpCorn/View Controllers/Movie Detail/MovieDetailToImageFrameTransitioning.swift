@@ -64,7 +64,7 @@ class MovieDetailToImageFrameTransitioning: NSObject, UIViewControllerAnimatedTr
 
         let oldFromControllerBackground = fromViewController.view.backgroundColor
 
-        transitionPlaceHolderImageView.frame.size = CGSize.init(width: fromViewController.view.frame.width, height: 350)
+        transitionPlaceHolderImageView.frame.size = fromViewController.detailImageView.frame.size
         if transitionPlaceHolderImageView.image == nil {
             transitionPlaceHolderImageView.image = fromViewController.detailImageView.image
         }

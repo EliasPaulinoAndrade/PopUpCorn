@@ -66,6 +66,7 @@
 		E3374CB422149D5500D2C02C /* PUToggleButtonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3374CB322149D5500D2C02C /* PUToggleButtonView.xib */; };
 		E3374CB822149EF100D2C02C /* PUToggleButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3374CB722149EF100D2C02C /* PUToggleButtonView.swift */; };
 		E3374CBB22149FEC00D2C02C /* PUBaseZibOwnerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3374CBA22149FEC00D2C02C /* PUBaseZibOwnerView.swift */; };
+		E353E648227BAEFD00E8F8FE /* MovieFormatterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E353E647227BAEFD00E8F8FE /* MovieFormatterProtocol.swift */; };
 		E37C777522171C310075D8D8 /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37C777422171C310075D8D8 /* MovieCell.swift */; };
 		E37C777B221720570075D8D8 /* Dimens.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37C777A221720570075D8D8 /* Dimens.swift */; };
 		E37C777D221722020075D8D8 /* UICollectionView+register.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37C777C221722020075D8D8 /* UICollectionView+register.swift */; };
@@ -199,6 +200,7 @@
 		E3374CB322149D5500D2C02C /* PUToggleButtonView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PUToggleButtonView.xib; sourceTree = "<group>"; };
 		E3374CB722149EF100D2C02C /* PUToggleButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PUToggleButtonView.swift; sourceTree = "<group>"; };
 		E3374CBA22149FEC00D2C02C /* PUBaseZibOwnerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PUBaseZibOwnerView.swift; sourceTree = "<group>"; };
+		E353E647227BAEFD00E8F8FE /* MovieFormatterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieFormatterProtocol.swift; sourceTree = "<group>"; };
 		E37C777422171C310075D8D8 /* MovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
 		E37C777A221720570075D8D8 /* Dimens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dimens.swift; sourceTree = "<group>"; };
 		E37C777C221722020075D8D8 /* UICollectionView+register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+register.swift"; sourceTree = "<group>"; };
@@ -529,6 +531,7 @@
 		E3374C8122124CC000D2C02C /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				E353E647227BAEFD00E8F8FE /* MovieFormatterProtocol.swift */,
 				E32995A1221A2A4F002AA3E3 /* Load Indicator */,
 				E329958F2218F9E0002AA3E3 /* Search Suggestions */,
 				E304298E22182CC1009A22E5 /* Error Presenter */,
@@ -1029,6 +1032,7 @@
 				E329958222188061002AA3E3 /* PURadiusView.swift in Sources */,
 				E38FB69A2273C8CF00EB4985 /* MovieListUserProtocol.swift in Sources */,
 				E37C777D221722020075D8D8 /* UICollectionView+register.swift in Sources */,
+				E353E648227BAEFD00E8F8FE /* MovieFormatterProtocol.swift in Sources */,
 				E3374C442212220600D2C02C /* AppDelegate.swift in Sources */,
 				E381C37422710DB400530F3C /* PUTMDBImageType.swift in Sources */,
 				E3374CB822149EF100D2C02C /* PUToggleButtonView.swift in Sources */,

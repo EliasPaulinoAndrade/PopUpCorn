@@ -60,12 +60,12 @@ class ImageFrameToMovieDetailTransitioning: NSObject, UIViewControllerAnimatedTr
                 return
         }
 
+        toViewController.view.frame = UIScreen.main.bounds
         transitionBackgroundView.frame = toViewController.view.frame
 
         transitionContext.containerView.addSubview(transitionBackgroundView)
         transitionContext.containerView.addSubview(transitionPlaceHolderImageView)
         transitionContext.containerView.addSubview(toViewController.view)
-        toViewController.view.frame = UIScreen.main.bounds
 
         let oldToControllerBackground = toViewController.view.backgroundColor
         toViewController.view.backgroundColor = UIColor.clear
@@ -80,9 +80,9 @@ class ImageFrameToMovieDetailTransitioning: NSObject, UIViewControllerAnimatedTr
             toViewController.view.frame.origin.y = 0
             toViewController.view.alpha = 1
 
-            self.transitionPlaceHolderImageView.frame.size.width = toViewController.view.frame.width
+            self.transitionPlaceHolderImageView.frame.size.height = toViewController.detailImageView.frame.size.height
+            self.transitionPlaceHolderImageView.frame.size.width = toViewController.view.frame.size.width
             self.transitionPlaceHolderImageView.frame.origin.x = 0
-            self.transitionPlaceHolderImageView.frame.size.height = 350
 
             self.transitionPlaceHolderImageView.frame.origin.y = 0
 

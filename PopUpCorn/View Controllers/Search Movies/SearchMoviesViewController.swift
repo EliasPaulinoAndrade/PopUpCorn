@@ -11,7 +11,7 @@ import Foundation
 import UIKit
 
 /// a view controller that shows the search screen.
-class SearchMoviesViewController: UIViewController, MovieListUserProtocol {
+class SearchMoviesViewController: UIViewController, MovieListUserProtocol, MovieFormatterProtocol {
 
     var movieListViewController = MovieListViewController.init()
     private var movieRequesterController = MovieRequesterController.init()
@@ -91,13 +91,7 @@ extension SearchMoviesViewController: MovieListViewControllerDelegate {
     func movieList(_ movieList: MovieListViewController, movieForPositon position: Int) -> ListableMovie {
         let movie = movieRequesterController.movies[position]
 
-        let listableMovie = ListableMovie.init(
-            title: movie.title ?? MoviePlaceholder.title,
-            release: movie.releaseDate ?? MoviePlaceholder.release,
-            posterPath: movie.posterPath,
-            backdropPath: movie.backdropPath,
-            genresIDs: movie.genreIDs
-        )
+        let listableMovie: ListableMovie = format(movie: movie)
 
         return listableMovie
     }
@@ -117,14 +111,7 @@ extension SearchMoviesViewController: MovieListViewControllerDelegate {
     func movieList(_ movieList: MovieListViewController, didSelectItemAt position: Int) {
         let movie = movieRequesterController.movies[position]
 
-        let detailableMovie = DetailableMovie.init(
-            title: movie.title,
-            release: movie.releaseDate,
-            image: movie.backdropPath ?? movie.posterPath,
-            genres: movie.genreIDs,
-            overview: movie.overview,
-            id: "\(movie.id ?? -1)"
-        )
+        let detailableMovie: DetailableMovie = format(movie: movie)
 
         movieDetailViewController.movie = detailableMovie
 

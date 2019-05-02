@@ -39,7 +39,11 @@ class SimilarMovieRequesterController: NSObject {
             return
         }
 
-        tmdbService.similarMovies(movieId: movieID, sucessCompletion: { (newMoviePage) in
+        tmdbService.similarMovies(
+            movieId: movieID,
+            inPageNumber: moviePage?.nextPageNumber ?? 1,
+            sucessCompletion: { (newMoviePage) in
+
             if self.moviePage != nil {
                 self.moviePage?.conformTo(page: newMoviePage)
             } else {
