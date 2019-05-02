@@ -8,19 +8,19 @@
 
 import UIKit
 
+/// a view controller that shows the inical app screen
 class UpComingMoviesViewController: UIViewController {
 
-    private var searchMoviesViewControler = SearchMoviesViewController.init()
     private var movieListViewController = MovieListViewController.init()
     private var movieRequesterController = MovieRequesterController.init()
     private var errorPresenterController = ErrorPresenterViewController.init()
-    private var movieDetailViewController = MovieDetailViewController.init()
     private var loadIndicatorViewController = LoadIndicatorViewController.init()
+
+    weak var delegate: UpComingMoviesViewControllerDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.title = Constants.title
         movieListViewController.delegate = self
         movieRequesterController.delegate = self
         errorPresenterController.reloadDelegate = self
@@ -46,7 +46,7 @@ class UpComingMoviesViewController: UIViewController {
     }
 
     @objc func searchButtonWasTapped(sender: UIBarButtonItem) {
-        navigationController?.pushViewController(searchMoviesViewControler, animated: true)
+        delegate?.searchButtonWasSelected()
     }
 }
 
@@ -88,8 +88,7 @@ extension UpComingMoviesViewController: MovieListViewControllerDelegate {
             overview: movie.overview
         )
 
-        movieDetailViewController.movie = detailableMovie
-        navigationController?.pushViewController(movieDetailViewController, animated: true)
+        delegate?.upComingMovieWasSelected(movie: detailableMovie)
     }
 }
 
@@ -113,8 +112,4 @@ extension UpComingMoviesViewController: ReloaderAlertBuilderDelegate {
         loadIndicatorViewController.startAnimating()
         movieRequesterController.needMoreMovies()
     }
-}
-
-private enum Constants {
-    static let title = "UpComing"
 }

@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// a view controller that shows the detail view of a detailableMovie
 class MovieDetailViewController: UIViewController {
 
     @IBOutlet weak var detailImageView: PUTMDBImageView!
@@ -34,7 +35,6 @@ class MovieDetailViewController: UIViewController {
 
         genresRequesterController.delegate = self
         scrollView.delegate = self
-
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -66,12 +66,6 @@ class MovieDetailViewController: UIViewController {
         }
 
         let placeHolderImage = UIImage.init(named: Constants.placeHolderImageName)
-
-        if let movieTitle = movie.title, !movieTitle.isEmpty {
-            title = movie.title
-        } else {
-            title = MoviePlaceholder.title
-        }
 
         titleLabel.set(unsafeText: movie.title, placeHolder: MoviePlaceholder.title)
         releaseLabel.set(unsafeText: movie.release, placeHolder: MoviePlaceholder.release)

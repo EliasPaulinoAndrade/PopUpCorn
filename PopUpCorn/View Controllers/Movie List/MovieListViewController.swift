@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// a view controller resposible by listing movies in expanded and normal way.
 class MovieListViewController: UIViewController {
 
     @IBOutlet weak var moviesCollectionView: UICollectionView!
