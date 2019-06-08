@@ -132,21 +132,26 @@ struct PUTMDBService {
         }
     }
 
+    func imageUrls(forImageName imageName: String) -> (preview: URL?, detail: URL?) {
+        guard let imageBaseUrl = self.credentials?.imageBaseUrl else {
+            return (nil, nil)
+        }
+
+        let previewImageUrl = PUTTMDBEndPoint.image(type: .littleImage, baseURL: imageBaseUrl, imageName: imageName).formatted()
+        let imageUrl = PUTTMDBEndPoint.image(type: .bigImage, baseURL: imageBaseUrl, imageName: imageName).formatted()
+
+        return (previewImageUrl, imageUrl)
+    }
+
     @discardableResult
     func image(
         fromMovieWithPath imagePath: String,
         progressCompletion: @escaping (UIImage, PUTMDBImageState) -> Void,
         errorCompletion: @escaping (Error?, PUTMDBImageState) -> Void) -> PUTMDBPreviewableImageQuery? {
 
-        guard let imageBaseUrl = self.credentials?.imageBaseUrl else {
-                errorCompletion(nil, .none)
-                return nil
-        }
+        let (previewUrl, detailUrl) = imageUrls(forImageName: imagePath)
 
-        let previewImageUrl = PUTTMDBEndPoint.image(type: .littleImage, baseURL: imageBaseUrl, imageName: imagePath).formatted()
-        let imageUrl = PUTTMDBEndPoint.image(type: .bigImage, baseURL: imageBaseUrl, imageName: imagePath).formatted()
-
-        if let previewImageUrl = previewImageUrl, let detailImageUrl = imageUrl {
+        if let previewImageUrl = previewUrl, let detailImageUrl = detailUrl {
 
             let imageQuery = PUTMDBPreviewableImageQuery.init()
 

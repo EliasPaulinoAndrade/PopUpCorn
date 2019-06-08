@@ -67,6 +67,16 @@
 		E3374CB822149EF100D2C02C /* PUToggleButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3374CB722149EF100D2C02C /* PUToggleButtonView.swift */; };
 		E3374CBB22149FEC00D2C02C /* PUBaseZibOwnerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3374CBA22149FEC00D2C02C /* PUBaseZibOwnerView.swift */; };
 		E353E648227BAEFD00E8F8FE /* MovieFormatterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E353E647227BAEFD00E8F8FE /* MovieFormatterProtocol.swift */; };
+		E353E64C227BB77500E8F8FE /* ImageChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = E353E64B227BB77500E8F8FE /* ImageChain.swift */; };
+		E353E64E227C573F00E8F8FE /* NSCacheImageChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = E353E64D227C573F00E8F8FE /* NSCacheImageChain.swift */; };
+		E353E650227C595600E8F8FE /* NetworkRequestImageChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = E353E64F227C595600E8F8FE /* NetworkRequestImageChain.swift */; };
+		E37544C422ABDF81004D5ADB /* DAOProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37544C322ABDF81004D5ADB /* DAOProtocol.swift */; };
+		E37544C822ABDFDA004D5ADB /* movies.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E37544C622ABDFDA004D5ADB /* movies.xcdatamodeld */; };
+		E37544CE22ABE1FC004D5ADB /* MovieCoreDataDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37544CD22ABE1FC004D5ADB /* MovieCoreDataDAO.swift */; };
+		E37544D022ABE4B6004D5ADB /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37544CF22ABE4B6004D5ADB /* CoreDataStack.swift */; };
+		E37544D222ABE865004D5ADB /* Array+cdMovieToMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37544D122ABE865004D5ADB /* Array+cdMovieToMovie.swift */; };
+		E37544DB22ABF065004D5ADB /* CDMovie+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37544D922ABF065004D5ADB /* CDMovie+CoreDataProperties.swift */; };
+		E37544DC22ABF065004D5ADB /* CDMovie+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37544DA22ABF065004D5ADB /* CDMovie+CoreDataClass.swift */; };
 		E37C777522171C310075D8D8 /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37C777422171C310075D8D8 /* MovieCell.swift */; };
 		E37C777B221720570075D8D8 /* Dimens.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37C777A221720570075D8D8 /* Dimens.swift */; };
 		E37C777D221722020075D8D8 /* UICollectionView+register.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37C777C221722020075D8D8 /* UICollectionView+register.swift */; };
@@ -201,6 +211,17 @@
 		E3374CB722149EF100D2C02C /* PUToggleButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PUToggleButtonView.swift; sourceTree = "<group>"; };
 		E3374CBA22149FEC00D2C02C /* PUBaseZibOwnerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PUBaseZibOwnerView.swift; sourceTree = "<group>"; };
 		E353E647227BAEFD00E8F8FE /* MovieFormatterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieFormatterProtocol.swift; sourceTree = "<group>"; };
+		E353E64B227BB77500E8F8FE /* ImageChain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageChain.swift; sourceTree = "<group>"; };
+		E353E64D227C573F00E8F8FE /* NSCacheImageChain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSCacheImageChain.swift; sourceTree = "<group>"; };
+		E353E64F227C595600E8F8FE /* NetworkRequestImageChain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequestImageChain.swift; sourceTree = "<group>"; };
+		E36997A322A698A100D84D8A /* PopUpCorn.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PopUpCorn.entitlements; sourceTree = "<group>"; };
+		E37544C322ABDF81004D5ADB /* DAOProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DAOProtocol.swift; sourceTree = "<group>"; };
+		E37544C722ABDFDA004D5ADB /* movies.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = movies.xcdatamodel; sourceTree = "<group>"; };
+		E37544CD22ABE1FC004D5ADB /* MovieCoreDataDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCoreDataDAO.swift; sourceTree = "<group>"; };
+		E37544CF22ABE4B6004D5ADB /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		E37544D122ABE865004D5ADB /* Array+cdMovieToMovie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+cdMovieToMovie.swift"; sourceTree = "<group>"; };
+		E37544D922ABF065004D5ADB /* CDMovie+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDMovie+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		E37544DA22ABF065004D5ADB /* CDMovie+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDMovie+CoreDataClass.swift"; sourceTree = "<group>"; };
 		E37C777422171C310075D8D8 /* MovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
 		E37C777A221720570075D8D8 /* Dimens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dimens.swift; sourceTree = "<group>"; };
 		E37C777C221722020075D8D8 /* UICollectionView+register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+register.swift"; sourceTree = "<group>"; };
@@ -440,6 +461,8 @@
 		E3374C422212220600D2C02C /* PopUpCorn */ = {
 			isa = PBXGroup;
 			children = (
+				E36997A322A698A100D84D8A /* PopUpCorn.entitlements */,
+				E37544C222ABDF4A004D5ADB /* DAO */,
 				E329959C2219C7B0002AA3E3 /* Classes */,
 				E32995962219BC7F002AA3E3 /* Lists */,
 				E37C777322171B680075D8D8 /* Constants */,
@@ -490,6 +513,7 @@
 		E3374C722212231900D2C02C /* TMDB */ = {
 			isa = PBXGroup;
 			children = (
+				E353E64A227BB6D700E8F8FE /* Image Chain */,
 				E381C37022710CEB00530F3C /* Endpoint */,
 				E38268FB22163951001C792E /* Queries */,
 				E381C36E2270F21F00530F3C /* URLComponents+init.swift */,
@@ -625,6 +649,46 @@
 				E3374CBA22149FEC00D2C02C /* PUBaseZibOwnerView.swift */,
 			);
 			path = defaults;
+			sourceTree = "<group>";
+		};
+		E353E64A227BB6D700E8F8FE /* Image Chain */ = {
+			isa = PBXGroup;
+			children = (
+				E353E64B227BB77500E8F8FE /* ImageChain.swift */,
+				E353E64D227C573F00E8F8FE /* NSCacheImageChain.swift */,
+				E353E64F227C595600E8F8FE /* NetworkRequestImageChain.swift */,
+			);
+			path = "Image Chain";
+			sourceTree = "<group>";
+		};
+		E37544C222ABDF4A004D5ADB /* DAO */ = {
+			isa = PBXGroup;
+			children = (
+				E37544C522ABDF9F004D5ADB /* Movie with CoreData */,
+				E37544C322ABDF81004D5ADB /* DAOProtocol.swift */,
+			);
+			path = DAO;
+			sourceTree = "<group>";
+		};
+		E37544C522ABDF9F004D5ADB /* Movie with CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				E37544DD22ABF47A004D5ADB /* Models */,
+				E37544CD22ABE1FC004D5ADB /* MovieCoreDataDAO.swift */,
+				E37544CF22ABE4B6004D5ADB /* CoreDataStack.swift */,
+				E37544D122ABE865004D5ADB /* Array+cdMovieToMovie.swift */,
+			);
+			path = "Movie with CoreData";
+			sourceTree = "<group>";
+		};
+		E37544DD22ABF47A004D5ADB /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E37544C622ABDFDA004D5ADB /* movies.xcdatamodeld */,
+				E37544D922ABF065004D5ADB /* CDMovie+CoreDataProperties.swift */,
+				E37544DA22ABF065004D5ADB /* CDMovie+CoreDataClass.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		E37C777322171B680075D8D8 /* Constants */ = {
@@ -801,6 +865,14 @@
 				TargetAttributes = {
 					E3374C3F2212220600D2C02C = {
 						CreatedOnToolsVersion = 10.1;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+							com.apple.iCloud = {
+								enabled = 0;
+							};
+						};
 					};
 					E3374C532212220900D2C02C = {
 						CreatedOnToolsVersion = 10.1;
@@ -960,6 +1032,7 @@
 			files = (
 				E32995922218FA20002AA3E3 /* SearchSuggestionsViewController.swift in Sources */,
 				E38268F6221630F0001C792E /* PUTMDBModelQuery.swift in Sources */,
+				E37544DC22ABF065004D5ADB /* CDMovie+CoreDataClass.swift in Sources */,
 				E38268F222161E0F001C792E /* UIViewController+addChild.swift in Sources */,
 				E30429A522184133009A22E5 /* AlertBuilderDecorator.swift in Sources */,
 				E329957622186193002AA3E3 /* MovieDetailViewController.swift in Sources */,
@@ -967,6 +1040,7 @@
 				E37C777B221720570075D8D8 /* Dimens.swift in Sources */,
 				E32995A02219C999002AA3E3 /* Suggestions.swift in Sources */,
 				E329958D2218E527002AA3E3 /* PUPlaceHolderMovieCollectionViewCell.swift in Sources */,
+				E37544D222ABE865004D5ADB /* Array+cdMovieToMovie.swift in Sources */,
 				E38268DE2215FF57001C792E /* PUToggleButtonViewDelegate.swift in Sources */,
 				E3374C9522137EEA00D2C02C /* PUCacheCenter.swift in Sources */,
 				E38268FD22163C63001C792E /* PUTMDBPreviewableImageQuery.swift in Sources */,
@@ -984,6 +1058,7 @@
 				E3374C7C2212248F00D2C02C /* PUListType.swift in Sources */,
 				E304299622183851009A22E5 /* AlertBuilder.swift in Sources */,
 				E30429AF22185195009A22E5 /* GenreRequesterController.swift in Sources */,
+				E37544C422ABDF81004D5ADB /* DAOProtocol.swift in Sources */,
 				E38268E52216022F001C792E /* PUNormalMovieCollectionViewCell.swift in Sources */,
 				E30429A422184133009A22E5 /* ReloaderAlertBuilder.swift in Sources */,
 				E3374C7A2212247300D2C02C /* PUPlistService.swift in Sources */,
@@ -1008,28 +1083,34 @@
 				E381C37222710D8E00530F3C /* PUTMDBMovieType.swift in Sources */,
 				E329959522198F06002AA3E3 /* SearchSuggestionsViewContorllerDelegate.swift in Sources */,
 				E38FB6982273C35B00EB4985 /* MovieDetailToImageFrameTransitioning.swift in Sources */,
+				E353E650227C595600E8F8FE /* NetworkRequestImageChain.swift in Sources */,
 				E329959B2219C50A002AA3E3 /* SuggestionsController.swift in Sources */,
 				E3374C8A2212518900D2C02C /* Page.swift in Sources */,
 				E38268E02215FFFE001C792E /* PUToggleButtonState.swift in Sources */,
 				E3042994221837F4009A22E5 /* AlertBuilderProtocol.swift in Sources */,
 				E3374C992213844400D2C02C /* UIImage+initFromURL.swift in Sources */,
+				E37544DB22ABF065004D5ADB /* CDMovie+CoreDataProperties.swift in Sources */,
 				E38FB69E2273F78200EB4985 /* TransitioningDelegateForDetailMovie.swift in Sources */,
 				E329959E2219C7BD002AA3E3 /* Queue.swift in Sources */,
 				E381C3842272963B00530F3C /* SearchMoviesViewControllerDelegate.swift in Sources */,
 				E30429AA221842C6009A22E5 /* ClosableViewControllerProtocol.swift in Sources */,
 				E3374CAA221431C200D2C02C /* MovieListViewControllerDelegate.swift in Sources */,
 				E381C37E22724C4600530F3C /* UpComingMoviesViewControllerDelegate.swift in Sources */,
+				E37544D022ABE4B6004D5ADB /* CoreDataStack.swift in Sources */,
 				E381C37C227247F900530F3C /* UpComingMoviesCoordinator.swift in Sources */,
 				E32995892218E22A002AA3E3 /* MoviePlaceholder.swift in Sources */,
 				E3374C9322137E5D00D2C02C /* PUCacheService.swift in Sources */,
 				E38268FA22163449001C792E /* PUTMDBCredentials.swift in Sources */,
 				E381C37622710DCE00530F3C /* PUTMDBQueryProperty.swift in Sources */,
+				E37544CE22ABE1FC004D5ADB /* MovieCoreDataDAO.swift in Sources */,
 				E381C38622736B8F00530F3C /* MovieDetailViewControllerDelegate.swift in Sources */,
 				E32995842218AAE4002AA3E3 /* PUTMDBImageState.swift in Sources */,
 				E32995872218C0DE002AA3E3 /* UIView+isStanding.swift in Sources */,
+				E353E64E227C573F00E8F8FE /* NSCacheImageChain.swift in Sources */,
 				E38268E822160577001C792E /* MovieListControllerState.swift in Sources */,
 				E32995A4221A2A7A002AA3E3 /* LoadIndicatorViewController.swift in Sources */,
 				E329958222188061002AA3E3 /* PURadiusView.swift in Sources */,
+				E353E64C227BB77500E8F8FE /* ImageChain.swift in Sources */,
 				E38FB69A2273C8CF00EB4985 /* MovieListUserProtocol.swift in Sources */,
 				E37C777D221722020075D8D8 /* UICollectionView+register.swift in Sources */,
 				E353E648227BAEFD00E8F8FE /* MovieFormatterProtocol.swift in Sources */,
@@ -1041,6 +1122,7 @@
 				E381C3802272510500530F3C /* MovieDetailCoordinator.swift in Sources */,
 				E3374C802212455100D2C02C /* Bundle+plistPath.swift in Sources */,
 				E37C778322177CA90075D8D8 /* MovieRequesterControllerDelegate.swift in Sources */,
+				E37544C822ABDFDA004D5ADB /* movies.xcdatamodeld in Sources */,
 				E30429B12218520E009A22E5 /* GenreRequesterControllerDelegate.swift in Sources */,
 				E3374C8C221252B400D2C02C /* Genre.swift in Sources */,
 				E30429AC221849A2009A22E5 /* Errors.swift in Sources */,
@@ -1141,7 +1223,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1196,7 +1278,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -1211,6 +1293,7 @@
 			baseConfigurationReference = BB9F10A9C44249B8F3FDA82D /* Pods-PopUpCorn.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = PopUpCorn/PopUpCorn.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Z8P97P3QB4;
 				INFOPLIST_FILE = PopUpCorn/Info.plist;
@@ -1221,7 +1304,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = paulino.elias.PopUpCorn;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1230,6 +1313,7 @@
 			baseConfigurationReference = 0F97EAEF1132CC2A1237B7EF /* Pods-PopUpCorn.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = PopUpCorn/PopUpCorn.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Z8P97P3QB4;
 				INFOPLIST_FILE = PopUpCorn/Info.plist;
@@ -1240,7 +1324,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = paulino.elias.PopUpCorn;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -1370,6 +1454,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		E37544C622ABDFDA004D5ADB /* movies.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				E37544C722ABDFDA004D5ADB /* movies.xcdatamodel */,
+			);
+			currentVersion = E37544C722ABDFDA004D5ADB /* movies.xcdatamodel */;
+			path = movies.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = E3374C382212220600D2C02C /* Project object */;
 }
