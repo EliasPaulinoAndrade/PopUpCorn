@@ -19,7 +19,7 @@ public class CDMovie: NSManagedObject {
                 return Int(genre)
             })
         }
-        let movie = Movie.init(id: Int(self.id ?? "nil"), title: self.title, posterPath: self.poster, backdropPath: self.backDrop, isAdult: nil, overview: self.overview, releaseDate: "", genreIDs: genresArray)
+        let movie = Movie.init(id: Int(self.id ?? "nil"), title: self.title, posterPath: self.poster, backdropPath: self.backDrop, isAdult: nil, overview: self.overview, releaseDate: self.releaseDate, genreIDs: genresArray)
 
         return movie
     }
@@ -46,5 +46,6 @@ public class CDMovie: NSManagedObject {
             return String(genreID)
             }
         ).joined(separator: " ")
+        self.releaseDate = movie.releaseDate
     }
 }

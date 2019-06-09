@@ -9,7 +9,7 @@
 import UIKit
 import MetalPerformanceShaders
 
-class PUExpandedMovieCollectionViewCell: UICollectionViewCell, PUMovieCollectionViewCellProtocol {
+class PUExpandedMovieCollectionViewCell: UICollectionViewCell, PUMovieCollectionViewCellProtocol, MovieFormatterProtocol {
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var genresLabel: UILabel!
@@ -34,7 +34,7 @@ class PUExpandedMovieCollectionViewCell: UICollectionViewCell, PUMovieCollection
 
     func setup(withMovie movie: ListableMovie) {
         titleLabel.text = movie.title
-        releaseLabel.text = "\(Constants.releaseSufix) \(movie.release)"
+        releaseLabel.text = "\(releaseString(fromDate: movie.release) ?? "No Release Date")"
         releaseLabel.isHidden = false
 
         let placeHolderImage = UIImage.init(named: Constants.placeHolderImageName)

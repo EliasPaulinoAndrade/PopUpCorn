@@ -17,7 +17,7 @@ class ErrorPresenterViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        view.isUserInteractionEnabled = false
     }
 
     private func alertMiddleware(

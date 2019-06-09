@@ -22,7 +22,9 @@ protocol DAOProtocol {
     /// - Returns: if the the element was saved it return the element the id already set. Returns nil if not.
     func save(element: Element) -> Element?
 
-    func delete(element: Element)
+    func delete(element: Element) -> Bool
+
+    func delete(elementWithID daoID: String) -> Bool
     func get(elementWithID daoID: String) -> Element?
 
     /// updates a element in the database

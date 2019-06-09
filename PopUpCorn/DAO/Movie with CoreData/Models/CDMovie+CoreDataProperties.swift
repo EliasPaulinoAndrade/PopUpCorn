@@ -20,7 +20,7 @@ extension CDMovie {
     @NSManaged public var id: String?
     @NSManaged public var overview: String?
     @NSManaged public var poster: String?
-    @NSManaged public var releaseDate: NSDate?
+    @NSManaged public var releaseDate: String?
     @NSManaged public var title: String?
 
 }

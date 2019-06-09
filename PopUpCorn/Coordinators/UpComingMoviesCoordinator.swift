@@ -10,9 +10,9 @@ import Foundation
 import UIKit
 
 class UpComingMoviesCoordinator: CoordinatorProtocol {
-    var rootViewController: UINavigationController
+    var rootViewController: RootViewControllerProtocol
 
-    lazy var searchMoviesCoordinator = SearchMoviesCoordinator.init(withRootViewController: rootViewController)
+    lazy var searchMoviesCoordinator = SearchMoviesCoordinator(withRootViewController: rootViewController)
 
     lazy var movieDetailCoordinator = MovieDetailCoordinator.init(withRootViewController: rootViewController)
 
@@ -24,13 +24,13 @@ class UpComingMoviesCoordinator: CoordinatorProtocol {
         return upComingMoviesController
     }()
 
-    init(withRootViewController rootViewController: UINavigationController) {
+    init(withRootViewController rootViewController: RootViewControllerProtocol) {
         self.rootViewController = rootViewController
     }
 
     func start(previousController: UIViewController? = nil) {
         upComingMoviesController.title = Constants.title
-        rootViewController.pushViewController(upComingMoviesController, animated: true)
+        rootViewController.start(viewController: upComingMoviesController)
     }
 }
 

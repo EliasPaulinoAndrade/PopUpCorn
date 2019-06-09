@@ -11,6 +11,7 @@ import UIKit
 /// a view controller that shows the detail view of a detailableMovie
 class MovieDetailViewController: UIViewController, MovieListUserProtocol, MovieFormatterProtocol {
 
+    @IBOutlet weak var reminderImageView: UIImageView!
     @IBOutlet weak var detailImageView: PUTMDBImageView!
     @IBOutlet weak var similarMoviesTitleLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
@@ -43,6 +44,8 @@ class MovieDetailViewController: UIViewController, MovieListUserProtocol, MovieF
 
     private var genresRequesterController = GenreRequesterController.init()
     private var similarMoviesRequesterController = SimilarMovieRequesterController()
+    private var movieReminderController = MovieReminderController()
+    private var errorPresenter = ErrorPresenterViewController()
 
     override var prefersStatusBarHidden: Bool {
         return true
@@ -54,8 +57,10 @@ class MovieDetailViewController: UIViewController, MovieListUserProtocol, MovieF
         genresRequesterController.delegate = self
         similarMoviesRequesterController.delegate = self
         movieListViewController.delegate = self
+        movieReminderController.delegate = self
 
         self.addChild(movieListViewController, inView: self.moviesListPlaceView)
+        self.addChild(errorPresenter, inView: self.view)
         movieListViewController.scrollDirection = .horizontal
 
         scrollView.delegate = self
@@ -72,6 +77,7 @@ class MovieDetailViewController: UIViewController, MovieListUserProtocol, MovieF
         navigationController?.navigationBar.prefersLargeTitles = false
         formatMovie()
         similarMoviesRequesterController.needMoreMovies()
+        movieReminderController.controllerWillAppear()
     }
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -94,7 +100,11 @@ class MovieDetailViewController: UIViewController, MovieListUserProtocol, MovieF
 
         edgePanGestureRecognizer.edges = .left
 
+        let reminderTapGesture = UITapGestureRecognizer(target: self, action: #selector(reminderTapped(recognizer:)))
+
         self.view.addGestureRecognizer(edgePanGestureRecognizer)
+        self.reminderImageView.isUserInteractionEnabled = true
+        self.reminderImageView.addGestureRecognizer(reminderTapGesture)
     }
 
     @objc func edgePanned(recognizer: UIScreenEdgePanGestureRecognizer) {
@@ -105,6 +115,14 @@ class MovieDetailViewController: UIViewController, MovieListUserProtocol, MovieF
         delegate?.closeButtonTapped()
     }
 
+    @objc func reminderTapped(recognizer: UITapGestureRecognizer) {
+        guard let movie = self.movie else {
+            return
+        }
+
+        movieReminderController.needRemindMovie(movie)
+    }
+
     func formatMovie() {
         guard let movie = self.movie else {
             return
@@ -113,7 +131,7 @@ class MovieDetailViewController: UIViewController, MovieListUserProtocol, MovieF
         let placeHolderImage = UIImage.init(named: Constants.placeHolderImageName)
 
         titleLabel.set(unsafeText: movie.title, placeHolder: MoviePlaceholder.title)
-        releaseLabel.set(unsafeText: movie.release, placeHolder: MoviePlaceholder.release)
+        releaseLabel.set(unsafeText: releaseString(fromDate: movie.release), placeHolder: MoviePlaceholder.release)
         overviewLabel.set(unsafeText: movie.overview, placeHolder: MoviePlaceholder.overview)
 
         detailImageView.image = placeHolderImage
@@ -125,6 +143,11 @@ class MovieDetailViewController: UIViewController, MovieListUserProtocol, MovieF
         }
 
         genresRequesterController.needGenres(withIDs: movie.genres)
+        if movieReminderController.mustShowReminderButton(forMovie: movie) {
+            reminderImageView.isHidden = false
+        } else {
+            reminderImageView.isHidden = true
+        }
     }
 
     func resetSimilarMovies(toMovieId movieId: String?) {
@@ -212,8 +235,32 @@ extension MovieDetailViewController: UIScrollViewDelegate {
     }
 }
 
+extension MovieDetailViewController: MovieReminderControllerDelegate {
+    func needRemoveMovie(movie: DetailableMovie) {
+        self.delegate?.movieWasRemoved(movie)
+    }
+
+    func reloadReminderButton() {
+        guard let movie = self.movie else {
+            return
+        }
+
+        if movieReminderController.movieHasReminder(movie) {
+            self.reminderImageView.image = UIImage(named: Constants.removeReminderImage)
+        } else {
+            self.reminderImageView.image = UIImage(named: Constants.addReminderImage)
+        }
+    }
+
+    func needShowError(message: String) {
+        errorPresenter.showSimpleError(withTitle: "Error", andMessage: message)
+    }
+}
+
 private enum Constants {
     static let placeHolderImageName = "placeholderImage"
+    static let addReminderImage = "addReminder"
+    static let removeReminderImage = "removeReminder"
     static let imageDefaultHeight: CGFloat = 350
     static let scrollOffSetAnimationDuration = 0.3
 }

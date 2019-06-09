@@ -10,7 +10,6 @@ import Foundation
 import CoreData
 
 class MovieCoreDataDAO: DAOProtocol {
-
     typealias Element = Movie
 
     func getAll() -> [Movie] {
@@ -26,6 +25,10 @@ class MovieCoreDataDAO: DAOProtocol {
     }
 
     func save(element: Movie) -> Movie? {
+        guard let elementID = element.id, get(elementWithID: String(elementID)) == nil else {
+            return nil
+        }
+
         do {
             CDMovie(fromMovie: element)
 
@@ -37,8 +40,28 @@ class MovieCoreDataDAO: DAOProtocol {
         }
     }
 
-    func delete(element: Movie) {
+    func delete(element: Movie) -> Bool {
+        guard let elementID = element.id else {
+            return false
+        }
 
+        return delete(elementWithID: String(elementID))
+    }
+
+    func delete(elementWithID daoID: String) -> Bool {
+        let movieRequest: NSFetchRequest<CDMovie> = CDMovie.fetchRequest()
+        movieRequest.predicate = NSPredicate(format: "id == %@", daoID)
+
+        do {
+            guard let cdMovie = try CoreDataStack.persistentContainer.viewContext.fetch(movieRequest).first else {
+                return false
+            }
+            CoreDataStack.persistentContainer.viewContext.delete(cdMovie)
+            try CoreDataStack.persistentContainer.viewContext.save()
+            return true
+        } catch {
+            return false
+        }
     }
 
     func get(elementWithID daoID: String) -> Movie? {
@@ -64,6 +87,7 @@ class MovieCoreDataDAO: DAOProtocol {
         do {
             let cdMovie = try CoreDataStack.persistentContainer.viewContext.fetch(movieRequest).first
             cdMovie?.updateWithMovieValues(movie: element)
+            try CoreDataStack.persistentContainer.viewContext.save()
             return true
         } catch {
             return false

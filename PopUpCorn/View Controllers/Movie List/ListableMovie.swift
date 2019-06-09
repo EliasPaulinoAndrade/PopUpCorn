@@ -10,7 +10,7 @@ import Foundation
 
 struct ListableMovie {
     var title: String
-    var release: String
+    var release: Date?
     var posterPath: String?
     var backdropPath: String?
     var genresIDs: [Int]

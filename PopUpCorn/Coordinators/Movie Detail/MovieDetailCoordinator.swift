@@ -10,9 +10,11 @@ import Foundation
 import UIKit
 
 class MovieDetailCoordinator: NSObject, CoordinatorProtocol {
-    var rootViewController: UINavigationController
+    var rootViewController: RootViewControllerProtocol
 
     var moviesLister: MovieListUserProtocol?
+
+    weak public var delegate: MovieDetailCoordinatorDelegate?
 
     lazy var transitioning = TransitioningDelegateForDetailMovie.init(withTargetMoviePosition: moviePosition, listingMoviesController: moviesLister, rootViewController: rootViewController, andInteractionController: interactiveTransision)
 
@@ -46,8 +48,11 @@ class MovieDetailCoordinator: NSObject, CoordinatorProtocol {
         return movieDetailViewController
     }()
 
-    init(withRootViewController rootViewController: UINavigationController) {
+    var autoDismiss: Bool
+
+    init(withRootViewController rootViewController: RootViewControllerProtocol, autoDismiss: Bool = false) {
         self.rootViewController = rootViewController
+        self.autoDismiss = autoDismiss
     }
 
     func start(previousController: UIViewController?) {
@@ -85,5 +90,16 @@ extension MovieDetailCoordinator: MovieDetailViewControllerDelegate {
     func closeButtonTapped() {
         transitioning.interactionController = nil
         movieDetailViewController.dismiss(animated: true, completion: nil)
+    }
+
+    func movieWasRemoved(_ movie: DetailableMovie) {
+        if autoDismiss {
+            transitioning.interactionController = nil
+            movieDetailViewController.dismiss(animated: true) { [weak self] in
+                self?.delegate?.movieReminderWasRemoved(movie: movie)
+            }
+        } else {
+            self.delegate?.movieReminderWasRemoved(movie: movie)
+        }
     }
 }

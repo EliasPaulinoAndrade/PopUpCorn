@@ -39,22 +39,35 @@ class MovieListViewController: UIViewController {
         }
     }
 
+    var showLoadIndicator: Bool = true
+
     private var movies: [ListableMovie] = []
 
     private var loadIndicatorController = LoadIndicatorViewController.init()
+
+    init(showLoadIndicator: Bool = true) {
+        super.init(nibName: nil, bundle: nil)
+
+        self.showLoadIndicator = showLoadIndicator
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         addChild(loadIndicatorController, inView: loadIndicatorPlace)
-        loadIndicatorController.startAnimating()
+        if showLoadIndicator {
+            loadIndicatorController.startAnimating()
+        }
 
         moviesCollectionView.delegate = self
         moviesCollectionView.dataSource = self
         toggleButton.delegate = self
 
         registerMovieCells()
-
     }
 
     func registerMovieCells() {
@@ -71,6 +84,10 @@ class MovieListViewController: UIViewController {
 
     func reloadData() {
         self.moviesCollectionView.reloadData()
+    }
+
+    func removeMovie(atPosition position: Int) {
+        self.moviesCollectionView.deleteItems(at: [IndexPath.init(row: position, section: 0)])
     }
 
     func viewForMovieAt(position: Int) -> UIView? {

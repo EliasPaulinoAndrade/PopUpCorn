@@ -21,6 +21,7 @@
                 <outlet property="moviesListPlaceView" destination="Fbi-Ei-ZAQ" id="7UG-m3-FEl"/>
                 <outlet property="overviewLabel" destination="42a-Uy-nyJ" id="kIm-4z-wh5"/>
                 <outlet property="releaseLabel" destination="laI-na-tRi" id="z5r-vD-e35"/>
+                <outlet property="reminderImageView" destination="x9d-FY-yrg" id="FeM-ev-xZv"/>
                 <outlet property="scrollView" destination="l7Q-sl-zDg" id="TXB-oj-1PJ"/>
                 <outlet property="similarMoviesTitleLabel" destination="RWB-d9-cWU" id="owO-C0-cIr"/>
                 <outlet property="titleLabel" destination="irI-Ew-vEu" id="E82-i7-iaO"/>
@@ -46,7 +47,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zcC-TL-HVR">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="939.5"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="950"/>
                             <subviews>
                                 <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="CHy-sN-ogL" customClass="PUTMDBImageView" customModule="PopUpCorn" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="350"/>
@@ -56,33 +57,44 @@
                                     </constraints>
                                 </imageView>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nXj-94-PgL" customClass="PURadiusView" customModule="PopUpCorn" customModuleProvider="target">
-                                    <rect key="frame" x="10" y="314.5" width="355" height="71"/>
+                                    <rect key="frame" x="10" y="304" width="355" height="92"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4XW-WN-Y6t">
-                                            <rect key="frame" x="10" y="10" width="335" height="51"/>
+                                            <rect key="frame" x="10" y="10" width="335" height="72"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="loading..." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="irI-Ew-vEu">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Loading..." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="irI-Ew-vEu">
                                                     <rect key="frame" x="0.0" y="0.0" width="335" height="24"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                     <color key="textColor" name="white"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="loading..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="laI-na-tRi">
-                                                    <rect key="frame" x="0.0" y="34" width="335" height="17"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="loading..." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="laI-na-tRi">
+                                                    <rect key="frame" x="0.0" y="55" width="287" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
                                                     <color key="textColor" name="white"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="addReminder" translatesAutoresizingMaskIntoConstraints="NO" id="x9d-FY-yrg">
+                                                    <rect key="frame" x="295" y="32" width="40" height="40"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="40" id="B4q-v5-uO5"/>
+                                                        <constraint firstAttribute="width" constant="40" id="Fpg-7u-ws0"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="laI-na-tRi" secondAttribute="bottom" id="0YT-PE-0jD"/>
-                                                <constraint firstAttribute="trailing" secondItem="laI-na-tRi" secondAttribute="trailing" id="6AY-WO-4Zr"/>
                                                 <constraint firstItem="laI-na-tRi" firstAttribute="leading" secondItem="4XW-WN-Y6t" secondAttribute="leading" id="B5v-oS-kfm"/>
+                                                <constraint firstAttribute="trailing" secondItem="x9d-FY-yrg" secondAttribute="trailing" id="EnO-IP-jMS"/>
                                                 <constraint firstItem="irI-Ew-vEu" firstAttribute="top" secondItem="4XW-WN-Y6t" secondAttribute="top" id="Gt6-CA-TjG"/>
                                                 <constraint firstItem="irI-Ew-vEu" firstAttribute="leading" secondItem="4XW-WN-Y6t" secondAttribute="leading" id="JBn-jC-jC6"/>
                                                 <constraint firstAttribute="trailing" secondItem="irI-Ew-vEu" secondAttribute="trailing" id="Ny7-49-nhu"/>
-                                                <constraint firstItem="laI-na-tRi" firstAttribute="top" secondItem="irI-Ew-vEu" secondAttribute="bottom" constant="10" id="dBC-gT-iDW"/>
+                                                <constraint firstItem="x9d-FY-yrg" firstAttribute="leading" secondItem="laI-na-tRi" secondAttribute="trailing" constant="8" id="PmS-9d-oBK"/>
+                                                <constraint firstAttribute="bottom" secondItem="x9d-FY-yrg" secondAttribute="bottom" id="QFr-BP-h6q"/>
+                                                <constraint firstItem="laI-na-tRi" firstAttribute="top" relation="greaterThanOrEqual" secondItem="irI-Ew-vEu" secondAttribute="bottom" constant="10" id="dBC-gT-iDW"/>
+                                                <constraint firstItem="laI-na-tRi" firstAttribute="bottom" secondItem="x9d-FY-yrg" secondAttribute="bottom" id="wNy-Ms-Evi"/>
+                                                <constraint firstItem="x9d-FY-yrg" firstAttribute="top" secondItem="irI-Ew-vEu" secondAttribute="bottom" constant="8" id="z9w-7Z-23p"/>
                                             </constraints>
                                         </view>
                                     </subviews>
@@ -95,7 +107,7 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mX7-sn-EEf">
-                                    <rect key="frame" x="10" y="395.5" width="355" height="534"/>
+                                    <rect key="frame" x="10" y="406" width="355" height="534"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="loading..." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1E6-WA-tTj">
                                             <rect key="frame" x="0.0" y="0.0" width="355" height="18"/>
@@ -194,6 +206,7 @@
         </view>
     </objects>
     <resources>
+        <image name="addReminder" width="541" height="541"/>
         <image name="closeButton" width="454" height="454"/>
         <image name="placeholderImage" width="897" height="869"/>
         <namedColor name="black">

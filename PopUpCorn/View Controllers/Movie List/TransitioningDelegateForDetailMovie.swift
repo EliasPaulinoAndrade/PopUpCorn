@@ -49,8 +49,7 @@ class TransitioningDelegateForDetailMovie: NSObject, UIViewControllerTransitioni
     func movieItemViewInfo(parentController: MovieListUserProtocol?) -> (frame: CGRect?, image: UIImage?) {
         guard let movieItem = parentController?.movieListViewController.viewForMovieAt(position: moviePosition ?? 0) as? PUMovieCollectionViewCellProtocol,
               let movieItemView = movieItem as? UIView else {
-
-                return (nil, nil)
+            return (nil, nil)
         }
 
         let posterImageView = movieItem.moviePosterImageView

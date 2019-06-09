@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 
 class CoreDataStack {
-    private static let persistenContainerName = "AdorableAvatars"
+    private static let persistenContainerName = "movies"
 
     static var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: persistenContainerName)
