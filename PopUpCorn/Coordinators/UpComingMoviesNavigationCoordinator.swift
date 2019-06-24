@@ -38,4 +38,12 @@ class UpComingMoviesNavigationCoordinator: CoordinatorProtocol {
 
         rootViewController.tabBarItem = UITabBarItem.init(tabBarSystemItem: .bookmarks, tag: 0)
     }
+
+    func willDisappear() {
+        if firstControllerCoordinator.isPresentingSearchCoordinator {
+            firstControllerCoordinator.searchMoviesCoordinator.searchMoviesViewController.searchController.isActive = false
+            firstControllerCoordinator.searchMoviesCoordinator.searchMoviesViewController.navigationController?.popViewController(animated: false)
+            firstControllerCoordinator.upComingMoviesController.navigationItem.searchController = nil
+        }
+    }
 }

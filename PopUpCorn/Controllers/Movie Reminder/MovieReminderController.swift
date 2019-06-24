@@ -8,6 +8,7 @@
 
 import Foundation
 import UserNotifications
+import EventKit
 
 class MovieReminderController: MovieFormatterProtocol {
     weak public var delegate: MovieReminderControllerDelegate? {
@@ -40,6 +41,7 @@ class MovieReminderController: MovieFormatterProtocol {
             delegate?.needShowError(message: "A Error Happend While Saving the Reminder.")
         } else {
             setNotification(forMovie: movie)
+            setCalendarReminder(forMovie: movie)
         }
         delegate?.reloadReminderButton()
     }
@@ -50,6 +52,51 @@ class MovieReminderController: MovieFormatterProtocol {
         }
         let notificationCenter = UNUserNotificationCenter.current()
         notificationCenter.removePendingNotificationRequests(withIdentifiers: [String(movieID)])
+    }
+
+    private func setCalendarReminder(forMovie movie: DetailableMovie) {
+        let eventStore = EKEventStore()
+
+        switch EKEventStore.authorizationStatus(for: .reminder) {
+        case .authorized:
+            addReminderToCalendar(store: eventStore, andMovie: movie)
+        case .notDetermined:
+            eventStore.requestAccess(to: .reminder) { [weak self] (acessPermitted, error) in
+                guard error == nil, acessPermitted else {
+                    return
+                }
+                self?.addReminderToCalendar(store: eventStore, andMovie: movie)
+            }
+        default:
+            break
+        }
+    }
+
+    private func addReminderToCalendar(store: EKEventStore, andMovie movie: DetailableMovie) {
+        let defaultCalendar = store.defaultCalendarForNewReminders() ?? store.calendars(for: .reminder).first
+        let calendarFormatter = Calendar.current
+
+        guard let calendar = defaultCalendar,
+              let movieReleaseDate = movie.release,
+              let startDate = calendarFormatter.date(byAdding: .day, value: -1, to: movieReleaseDate),
+              let endDate = calendarFormatter.date(byAdding: .day, value: 1, to: movieReleaseDate) else {
+            return
+        }
+
+        let reminder = EKReminder(eventStore: store)
+        reminder.calendar = calendar
+        reminder.title = "\(movie.title ?? "movie") Release"
+        reminder.isCompleted = false
+
+        let startDateComponents = calendarFormatter.dateComponents([.minute, .hour, .day, .month, .year], from: startDate)
+        reminder.startDateComponents = startDateComponents
+        reminder.completionDate = endDate
+
+        do {
+            try store.save(reminder, commit: true)
+        } catch {
+            print(error)
+        }
     }
 
     private func setNotification(forMovie movie: DetailableMovie) {

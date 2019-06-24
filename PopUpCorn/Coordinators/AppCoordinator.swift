@@ -66,4 +66,13 @@ extension AppCoordinator: UITabBarControllerDelegate {
 
         reloadableController?.reloadData()
     }
+
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+        if let upComingNavigationController = tabBarController.viewControllers?[tabBarController.selectedIndex] as? UINavigationController,
+            upComingNavigationController.viewControllers.first is UpComingMoviesViewController {
+            firstTabControllerCoordinator.willDisappear()
+        }
+
+        return true
+    }
 }

@@ -24,6 +24,8 @@ class UpComingMoviesCoordinator: CoordinatorProtocol {
         return upComingMoviesController
     }()
 
+    var isPresentingSearchCoordinator: Bool = false
+
     init(withRootViewController rootViewController: RootViewControllerProtocol) {
         self.rootViewController = rootViewController
     }
@@ -45,7 +47,7 @@ extension UpComingMoviesCoordinator: UpComingMoviesViewControllerDelegate {
     }
 
     func searchButtonWasSelected() {
-
+        isPresentingSearchCoordinator = true
         searchMoviesCoordinator.start()
     }
 }
