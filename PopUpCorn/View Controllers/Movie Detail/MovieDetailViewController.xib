@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14810.12" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14766.15"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -129,7 +127,7 @@
                                         </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fbi-Ei-ZAQ">
                                             <rect key="frame" x="0.0" y="104" width="355" height="420"/>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="420" id="Hmi-0X-cdx"/>
                                             </constraints>
@@ -177,7 +175,7 @@
                     </constraints>
                 </scrollView>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="closeButton" translatesAutoresizingMaskIntoConstraints="NO" id="B6l-fV-Qdv">
-                    <rect key="frame" x="320" y="30" width="45" height="45"/>
+                    <rect key="frame" x="320" y="10" width="45" height="45"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="45" id="AIm-Qx-nq8"/>
@@ -188,9 +186,9 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="Iyx-sj-fhY" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="4KD-wX-lVX"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="l7Q-sl-zDg" secondAttribute="bottom" id="7QG-PK-i8D"/>
+                <constraint firstAttribute="bottom" secondItem="l7Q-sl-zDg" secondAttribute="bottom" id="7QG-PK-i8D"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="l7Q-sl-zDg" secondAttribute="trailing" id="7mq-iY-pha"/>
-                <constraint firstItem="Iyx-sj-fhY" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="Btj-rl-ynx"/>
+                <constraint firstItem="Iyx-sj-fhY" firstAttribute="bottom" secondItem="iN0-l3-epB" secondAttribute="bottom" id="Btj-rl-ynx"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="B6l-fV-Qdv" secondAttribute="trailing" constant="10" id="EdO-nP-Gz2"/>
                 <constraint firstItem="9xR-sh-tFp" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="O1i-A9-o99"/>
                 <constraint firstAttribute="trailing" secondItem="Iyx-sj-fhY" secondAttribute="trailing" id="WF0-ML-Ngi"/>
@@ -206,7 +204,7 @@
         </view>
     </objects>
     <resources>
-        <image name="addReminder" width="541" height="541"/>
+        <image name="addReminder" width="250" height="270"/>
         <image name="closeButton" width="454" height="454"/>
         <image name="placeholderImage" width="897" height="869"/>
         <namedColor name="black">

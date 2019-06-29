@@ -186,6 +186,10 @@ extension MovieDetailViewController: SimilarMovieRequesterControllerDelegate {
 }
 
 extension MovieDetailViewController: MovieListViewControllerDelegate {
+    func noMovieTitle(_ movieList: MovieListViewController) -> String {
+        return "No Related Movies."
+    }
+
     func movieList(_ movieList: MovieListViewController, movieForPositon position: Int) -> ListableMovie {
         let movie = similarMoviesRequesterController.movies[position]
 
@@ -217,7 +221,10 @@ extension MovieDetailViewController: MovieListViewControllerDelegate {
     func movieList(_ movieList: MovieListViewController, didSelectItemAt position: Int) {
         let movie = similarMoviesRequesterController.movies[position]
 
-        let detailableMovie: DetailableMovie = format(movie: movie)
+        let detailableMovie: DetailableMovie = format(
+            movie: movie,
+            imageType: movieList.toggleButton.isFistButtonSelected ? .backdrop : .poster
+        )
 
         delegate?.similarMovieWasSelected(movie: detailableMovie, atPosition: position)
     }
@@ -236,6 +243,10 @@ extension MovieDetailViewController: UIScrollViewDelegate {
 }
 
 extension MovieDetailViewController: MovieReminderControllerDelegate {
+    func reminderWasAdded() {
+        showReminderAlert(message: "A reminder was added. You will notified when \(movie?.title ?? "...") be released.")
+    }
+
     func needRemoveMovie(movie: DetailableMovie) {
         self.delegate?.movieWasRemoved(movie)
     }
@@ -254,6 +265,13 @@ extension MovieDetailViewController: MovieReminderControllerDelegate {
 
     func needShowError(message: String) {
         errorPresenter.showSimpleError(withTitle: "Error", andMessage: message)
+    }
+
+    func showReminderAlert(message: String) {
+        let alertController = UIAlertController(title: "Reminder", message: message, preferredStyle: .alert)
+
+        alertController.addAction(UIAlertAction.init(title: "OK", style: .default, handler: nil))
+        present(alertController, animated: true, completion: nil)
     }
 }
 

@@ -34,7 +34,7 @@ class RemindMoviesNavigationCoordinator: CoordinatorProtocol {
         self.parentRootViewController.start(viewController: rootViewController)
         firstControllerCoordinator.start()
 
-        rootViewController.tabBarItem = UITabBarItem.init(tabBarSystemItem: .bookmarks, tag: 0)
+        rootViewController.tabBarItem = UITabBarItem.init(title: "", image: UIImage(named: "reminder"), tag: 1)
 
         if let moviesNavigationController = self.rootViewController as? MoviesNavigationController {
             moviesNavigationController.reloadableChild = firstControllerCoordinator

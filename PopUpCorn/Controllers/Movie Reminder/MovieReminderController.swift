@@ -44,6 +44,7 @@ class MovieReminderController: MovieFormatterProtocol {
             setCalendarReminder(forMovie: movie)
         }
         delegate?.reloadReminderButton()
+        delegate?.reminderWasAdded()
     }
 
     private func removeNotification(forMovie movie: DetailableMovie) {
@@ -78,8 +79,7 @@ class MovieReminderController: MovieFormatterProtocol {
 
         guard let calendar = defaultCalendar,
               let movieReleaseDate = movie.release,
-              let startDate = calendarFormatter.date(byAdding: .day, value: -1, to: movieReleaseDate),
-              let endDate = calendarFormatter.date(byAdding: .day, value: 1, to: movieReleaseDate) else {
+              let startDate = calendarFormatter.date(byAdding: .day, value: -1, to: movieReleaseDate) else {
             return
         }
 
@@ -90,7 +90,6 @@ class MovieReminderController: MovieFormatterProtocol {
 
         let startDateComponents = calendarFormatter.dateComponents([.minute, .hour, .day, .month, .year], from: startDate)
         reminder.startDateComponents = startDateComponents
-        reminder.completionDate = endDate
 
         do {
             try store.save(reminder, commit: true)

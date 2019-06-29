@@ -87,6 +87,9 @@ class SearchMoviesViewController: UIViewController, MovieListUserProtocol, Movie
 }
 
 extension SearchMoviesViewController: MovieListViewControllerDelegate {
+    func noMovieTitle(_ movieList: MovieListViewController) -> String {
+        return "No Results in Search."
+    }
 
     func movieList(_ movieList: MovieListViewController, movieForPositon position: Int) -> ListableMovie {
         let movie = movieRequesterController.movies[position]
@@ -111,7 +114,9 @@ extension SearchMoviesViewController: MovieListViewControllerDelegate {
     func movieList(_ movieList: MovieListViewController, didSelectItemAt position: Int) {
         let movie = movieRequesterController.movies[position]
 
-        let detailableMovie: DetailableMovie = format(movie: movie)
+        let detailableMovie: DetailableMovie = format(
+            movie: movie,
+            imageType: movieList.toggleButton.isFistButtonSelected ? .backdrop : .poster)
 
         movieDetailViewController.movie = detailableMovie
 
@@ -198,6 +203,8 @@ extension SearchMoviesViewController: SearchSuggestionsViewContorllerDelegate {
         searchController.isEditing = true
 
         self.searchController.searchBar.text = suggestion
+
+        searchBarSearchButtonClicked(searchController.searchBar)
     }
 }
 

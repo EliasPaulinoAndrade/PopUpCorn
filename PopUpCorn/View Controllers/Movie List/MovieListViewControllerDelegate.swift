@@ -17,4 +17,6 @@ protocol MovieListViewControllerDelegate: AnyObject {
     func needLoadMoreMovies(_ movieList: MovieListViewController)
 
     func movieList(_ movieList: MovieListViewController, didSelectItemAt position: Int)
+
+    func noMovieTitle(_ movieList: MovieListViewController) -> String
 }

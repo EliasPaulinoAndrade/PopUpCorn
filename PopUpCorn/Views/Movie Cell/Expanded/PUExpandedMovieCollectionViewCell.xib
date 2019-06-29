@@ -62,6 +62,7 @@
                                     <constraint firstAttribute="trailing" secondItem="LXd-cP-4Hh" secondAttribute="trailing" constant="10" id="ds2-Ar-JvR"/>
                                     <constraint firstItem="Qsk-tY-q2J" firstAttribute="top" secondItem="vh4-uC-Wk4" secondAttribute="top" constant="10" id="h7R-Zc-heB"/>
                                     <constraint firstItem="Qrp-kC-0pt" firstAttribute="leading" secondItem="vh4-uC-Wk4" secondAttribute="leading" constant="10" id="hxj-2F-r90"/>
+                                    <constraint firstAttribute="height" constant="105" id="ih9-9H-vfd"/>
                                     <constraint firstAttribute="bottom" secondItem="LXd-cP-4Hh" secondAttribute="bottom" constant="10" id="zYj-F1-QTl"/>
                                 </constraints>
                             </view>

@@ -31,26 +31,14 @@ class UpComingMoviesViewController: UIViewController, MovieListUserProtocol, Mov
 
         loadIndicatorViewController.startAnimating()
         movieRequesterController.needMoreMovies()
-
-        formatNavigationBar()
-    }
-
-    func formatNavigationBar() {
-        let navigationBarButton = UIBarButtonItem.init(
-            barButtonSystemItem: UIBarButtonItem.SystemItem.search,
-            target: self,
-            action: #selector(searchButtonWasTapped(sender:))
-        )
-
-        self.navigationItem.rightBarButtonItem = navigationBarButton
-    }
-
-    @objc func searchButtonWasTapped(sender: UIBarButtonItem) {
-        delegate?.searchButtonWasSelected()
     }
 }
 
 extension UpComingMoviesViewController: MovieListViewControllerDelegate {
+    func noMovieTitle(_ movieList: MovieListViewController) -> String {
+        return "No UpComing Movie"
+    }
+
     func movieList(_ movieList: MovieListViewController, movieForPositon position: Int) -> ListableMovie {
         let movie = movieRequesterController.movies[position]
 
@@ -74,7 +62,9 @@ extension UpComingMoviesViewController: MovieListViewControllerDelegate {
     func movieList(_ movieList: MovieListViewController, didSelectItemAt position: Int) {
         let movie = movieRequesterController.movies[position]
 
-        let detailableMovie: DetailableMovie = format(movie: movie)
+        let detailableMovie: DetailableMovie = format(
+            movie: movie,
+            imageType: movieList.toggleButton.isFistButtonSelected ? .backdrop : .poster)
 
         delegate?.upComingMovieWasSelected(movie: detailableMovie, atPosition: position)
     }

@@ -19,6 +19,8 @@ class MovieListViewController: UIViewController {
 
     @IBOutlet weak var loadIndicatorPlaceHeightConstraint: NSLayoutConstraint!
 
+    @IBOutlet weak var noMovieLabel: UILabel!
+
     weak var delegate: MovieListViewControllerDelegate?
 
     var state = MovieListControllerState.expanded {
@@ -109,10 +111,13 @@ extension MovieListViewController: UICollectionViewDelegateFlowLayout, UICollect
         if let numberOfMovies = delegate?.numberOfMovies(self), numberOfMovies > 0 {
 
             toggleButton.isHidden = false
+            noMovieLabel.isHidden = true
             return numberOfMovies
         }
 
         toggleButton.isHidden = true
+        noMovieLabel.isHidden = false
+        noMovieLabel.text = delegate?.noMovieTitle(self)
         return 0
     }
 

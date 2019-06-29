@@ -10,7 +10,7 @@ import UIKit
 
 class AppCoordinator: NSObject, CoordinatorProtocol {
     lazy var rootViewController: RootViewControllerProtocol = {
-        let tabBarController = UITabBarController()
+        let tabBarController = CustomTabBarController()
         tabBarController.delegate = self
         tabBarController.tabBar.backgroundColor = UIColor.puLightPurple
         tabBarController.tabBar.tintColor = UIColor.white
@@ -21,6 +21,7 @@ class AppCoordinator: NSObject, CoordinatorProtocol {
 
     lazy var firstTabControllerCoordinator = UpComingMoviesNavigationCoordinator(rootViewController: rootViewController)
     lazy var secondTabControllerCoordinator = RemindMoviesNavigationCoordinator(rootViewController: rootViewController)
+    lazy var thirdTabControllerCoordinator = SearchMoviesNavigationCoordinator(rootViewController: rootViewController)
 
     func start(previousController: UIViewController? = nil) {
         guard let window = UIApplication.shared.delegate?.window else {
@@ -30,6 +31,7 @@ class AppCoordinator: NSObject, CoordinatorProtocol {
         window?.rootViewController = rootViewController
         window?.makeKeyAndVisible()
 
+        thirdTabControllerCoordinator.start()
         secondTabControllerCoordinator.start()
         firstTabControllerCoordinator.start()
     }

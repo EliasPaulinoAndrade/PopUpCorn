@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14810.12" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14766.15"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,6 +13,7 @@
                 <outlet property="loadIndicatorPlace" destination="lCe-KM-x7m" id="X0V-Tg-T7C"/>
                 <outlet property="loadIndicatorPlaceHeightConstraint" destination="WMX-5B-mvw" id="Zlk-9f-RGk"/>
                 <outlet property="moviesCollectionView" destination="buT-Er-MlR" id="lUq-yu-pev"/>
+                <outlet property="noMovieLabel" destination="mpY-SM-pBd" id="Fc7-ha-jH3"/>
                 <outlet property="toggleButton" destination="Y4K-0a-9rq" id="1MB-6g-kRl"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -33,7 +31,7 @@
                     </constraints>
                 </view>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="buT-Er-MlR">
-                    <rect key="frame" x="10" y="80" width="355" height="577"/>
+                    <rect key="frame" x="10" y="55" width="355" height="612"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="xsk-5L-4Jh">
                         <size key="itemSize" width="50" height="50"/>
@@ -43,33 +41,37 @@
                     </collectionViewFlowLayout>
                 </collectionView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y4K-0a-9rq" customClass="PUToggleButtonView" customModule="PopUpCorn" customModuleProvider="target">
-                    <rect key="frame" x="215" y="30" width="150" height="40"/>
+                    <rect key="frame" x="255" y="10" width="110" height="35"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="40" id="ahy-Xe-VGc"/>
-                        <constraint firstAttribute="width" constant="150" id="dsf-8v-R8H"/>
+                        <constraint firstAttribute="height" constant="35" id="ahy-Xe-VGc"/>
+                        <constraint firstAttribute="width" constant="110" id="dsf-8v-R8H"/>
                     </constraints>
                 </view>
+                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Movie." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mpY-SM-pBd">
+                    <rect key="frame" x="20" y="65" width="335" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
-            <color key="backgroundColor" name="black"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="lCe-KM-x7m" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="2Jf-sW-oK6"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="mpY-SM-pBd" secondAttribute="trailing" constant="20" id="30S-ik-Pod"/>
+                <constraint firstItem="mpY-SM-pBd" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="6PM-6F-0gn"/>
                 <constraint firstItem="buT-Er-MlR" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="ELi-g3-gTi"/>
                 <constraint firstItem="buT-Er-MlR" firstAttribute="top" secondItem="Y4K-0a-9rq" secondAttribute="bottom" constant="10" id="dyT-hH-LV1"/>
                 <constraint firstItem="lCe-KM-x7m" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="e3x-Wg-sB8"/>
                 <constraint firstItem="lCe-KM-x7m" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="euJ-MC-mox"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="buT-Er-MlR" secondAttribute="bottom" constant="10" id="ofw-Ld-pmf"/>
+                <constraint firstAttribute="bottom" secondItem="buT-Er-MlR" secondAttribute="bottom" id="ofw-Ld-pmf"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="buT-Er-MlR" secondAttribute="trailing" constant="10" id="pyl-pV-iGE"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Y4K-0a-9rq" secondAttribute="trailing" constant="10" id="r1s-p7-ckd"/>
+                <constraint firstItem="mpY-SM-pBd" firstAttribute="top" secondItem="buT-Er-MlR" secondAttribute="top" constant="10" id="rhZ-Xm-Lxq"/>
                 <constraint firstItem="Y4K-0a-9rq" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="10" id="zra-cd-tUS"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="53.600000000000001" y="93.103448275862078"/>
         </view>
     </objects>
-    <resources>
-        <namedColor name="black">
-            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-    </resources>
 </document>

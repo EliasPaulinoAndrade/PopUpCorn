@@ -97,6 +97,8 @@
 		E37C7781221775FF0075D8D8 /* MovieRequesterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37C7780221775FF0075D8D8 /* MovieRequesterController.swift */; };
 		E37C778322177CA90075D8D8 /* MovieRequesterControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37C778222177CA90075D8D8 /* MovieRequesterControllerDelegate.swift */; };
 		E37C7786221787000075D8D8 /* PUTMDBImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37C7785221787000075D8D8 /* PUTMDBImageView.swift */; };
+		E3816F6122C1119600882A0F /* SearchMoviesNavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3816F6022C1119600882A0F /* SearchMoviesNavigationCoordinator.swift */; };
+		E3816F6322C12CB300882A0F /* UITabBarViewController+custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3816F6222C12CB300882A0F /* UITabBarViewController+custom.swift */; };
 		E381C36F2270F21F00530F3C /* URLComponents+init.swift in Sources */ = {isa = PBXBuildFile; fileRef = E381C36E2270F21F00530F3C /* URLComponents+init.swift */; };
 		E381C37222710D8E00530F3C /* PUTMDBMovieType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E381C37122710D8E00530F3C /* PUTMDBMovieType.swift */; };
 		E381C37422710DB400530F3C /* PUTMDBImageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E381C37322710DB400530F3C /* PUTMDBImageType.swift */; };
@@ -256,6 +258,8 @@
 		E37C7780221775FF0075D8D8 /* MovieRequesterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieRequesterController.swift; sourceTree = "<group>"; };
 		E37C778222177CA90075D8D8 /* MovieRequesterControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieRequesterControllerDelegate.swift; sourceTree = "<group>"; };
 		E37C7785221787000075D8D8 /* PUTMDBImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PUTMDBImageView.swift; sourceTree = "<group>"; };
+		E3816F6022C1119600882A0F /* SearchMoviesNavigationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMoviesNavigationCoordinator.swift; sourceTree = "<group>"; };
+		E3816F6222C12CB300882A0F /* UITabBarViewController+custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITabBarViewController+custom.swift"; sourceTree = "<group>"; };
 		E381C36E2270F21F00530F3C /* URLComponents+init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLComponents+init.swift"; sourceTree = "<group>"; };
 		E381C37122710D8E00530F3C /* PUTMDBMovieType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PUTMDBMovieType.swift; sourceTree = "<group>"; };
 		E381C37322710DB400530F3C /* PUTMDBImageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PUTMDBImageType.swift; sourceTree = "<group>"; };
@@ -577,6 +581,7 @@
 				E32995A6221A440F002AA3E3 /* UILabel+setText.swift */,
 				E38FB69B2273D0AE00EB4985 /* CGPoint+sum.swift */,
 				E37544E322AC0CEE004D5ADB /* UINavigationController and UITabBarViewController+show.swift */,
+				E3816F6222C12CB300882A0F /* UITabBarViewController+custom.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -851,6 +856,7 @@
 				E37544E722AC0F69004D5ADB /* AppCoordinator.swift */,
 				E37544F122AC15C5004D5ADB /* RemindMoviesCoordinator.swift */,
 				E37544F322AC16A0004D5ADB /* RemindMoviesNavigationCoordinator.swift */,
+				E3816F6022C1119600882A0F /* SearchMoviesNavigationCoordinator.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -1193,9 +1199,11 @@
 				E381C37E22724C4600530F3C /* UpComingMoviesViewControllerDelegate.swift in Sources */,
 				E37544E822AC0F6A004D5ADB /* AppCoordinator.swift in Sources */,
 				E37544D022ABE4B6004D5ADB /* CoreDataStack.swift in Sources */,
+				E3816F6122C1119600882A0F /* SearchMoviesNavigationCoordinator.swift in Sources */,
 				E381C37C227247F900530F3C /* UpComingMoviesCoordinator.swift in Sources */,
 				E32995892218E22A002AA3E3 /* MoviePlaceholder.swift in Sources */,
 				E3374C9322137E5D00D2C02C /* PUCacheService.swift in Sources */,
+				E3816F6322C12CB300882A0F /* UITabBarViewController+custom.swift in Sources */,
 				E38268FA22163449001C792E /* PUTMDBCredentials.swift in Sources */,
 				E381C37622710DCE00530F3C /* PUTMDBQueryProperty.swift in Sources */,
 				E37544CE22ABE1FC004D5ADB /* MovieCoreDataDAO.swift in Sources */,

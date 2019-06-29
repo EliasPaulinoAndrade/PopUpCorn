@@ -12,4 +12,5 @@ protocol MovieReminderControllerDelegate: AnyObject {
     func needShowError(message: String)
     func reloadReminderButton()
     func needRemoveMovie(movie: DetailableMovie)
+    func reminderWasAdded()
 }

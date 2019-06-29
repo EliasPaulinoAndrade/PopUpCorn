@@ -10,7 +10,11 @@ import Foundation
 
 protocol MovieFormatterProtocol {
     func format(movie: Movie) -> ListableMovie
-    func format(movie: Movie) -> DetailableMovie
+    func format(movie: Movie, imageType: MovieFormatter) -> DetailableMovie
+}
+
+enum MovieFormatter {
+    case backdrop, poster
 }
 
 extension MovieFormatterProtocol {
@@ -27,11 +31,11 @@ extension MovieFormatterProtocol {
         return listableMovie
     }
 
-    func format(movie: Movie) -> DetailableMovie {
+    func format(movie: Movie, imageType: MovieFormatter) -> DetailableMovie {
         let detailableMovie = DetailableMovie.init(
             title: movie.title,
             release: dateFormatter().date(from: movie.releaseDate ?? ""),
-            image: movie.backdropPath ?? movie.posterPath,
+            image: imageType == .backdrop ? movie.backdropPath ?? movie.posterPath : movie.posterPath ?? movie.backdropPath,
             genres: movie.genreIDs,
             overview: movie.overview,
             id: "\(movie.id ?? -1)"
@@ -47,7 +51,7 @@ extension MovieFormatterProtocol {
         return dateFormatter
     }
 
-    func toMovie(from detailableMobie: DetailableMovie)  -> Movie {
+    func toMovie(from detailableMobie: DetailableMovie) -> Movie {
         let movie = Movie.init(
             id: Int(detailableMobie.id ?? "-1"),
             title: detailableMobie.title,

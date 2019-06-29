@@ -20,6 +20,10 @@ extension UIColor {
         return UIColor.init(named: "red") ?? defaultColor
     }
 
+    static var puExtraLightRed: UIColor {
+        return UIColor.init(named: "light_extra_red") ?? defaultColor
+    }
+
     static var puLightRed: UIColor {
         return UIColor.init(named: "light_red") ?? defaultColor
     }

@@ -12,8 +12,6 @@ import UIKit
 class UpComingMoviesCoordinator: CoordinatorProtocol {
     var rootViewController: RootViewControllerProtocol
 
-    lazy var searchMoviesCoordinator = SearchMoviesCoordinator(withRootViewController: rootViewController)
-
     lazy var movieDetailCoordinator = MovieDetailCoordinator.init(withRootViewController: rootViewController)
 
     lazy var upComingMoviesController: UpComingMoviesViewController = {
@@ -44,11 +42,6 @@ extension UpComingMoviesCoordinator: UpComingMoviesViewControllerDelegate {
         movieDetailCoordinator.moviePosition = position
 
         movieDetailCoordinator.start(previousController: upComingMoviesController)
-    }
-
-    func searchButtonWasSelected() {
-        isPresentingSearchCoordinator = true
-        searchMoviesCoordinator.start()
     }
 }
 

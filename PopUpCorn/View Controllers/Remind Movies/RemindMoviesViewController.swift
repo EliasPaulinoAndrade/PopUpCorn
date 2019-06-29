@@ -28,6 +28,10 @@ class RemindMoviesViewController: UIViewController, MovieListUserProtocol, Movie
 }
 
 extension RemindMoviesViewController: MovieListViewControllerDelegate {
+    func noMovieTitle(_ movieList: MovieListViewController) -> String {
+        return "No Movies to Remind."
+    }
+
     func movieList(_ movieList: MovieListViewController, movieForPositon position: Int) -> ListableMovie {
         let movie = movieReminderListController.movies[position]
 
@@ -49,7 +53,10 @@ extension RemindMoviesViewController: MovieListViewControllerDelegate {
     func movieList(_ movieList: MovieListViewController, didSelectItemAt position: Int) {
         let movie = movieReminderListController.movies[position]
 
-        let detailableMovie: DetailableMovie = format(movie: movie)
+        let detailableMovie: DetailableMovie = format(
+            movie: movie,
+            imageType: movieList.toggleButton.isFistButtonSelected ? .backdrop : .poster
+        )
 
         delegate?.remindMovieWasSelected(movie: detailableMovie, atPosition: position)
     }

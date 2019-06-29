@@ -39,7 +39,12 @@ class RemindMoviesCoordinator: CoordinatorProtocol, ReloadableChildProtocol {
         }
 
         let movie = self.remindMoviesViewController.movieReminderListController.movies[moviePosition]
-        let detailableMovie: DetailableMovie = self.remindMoviesViewController.format(movie: movie)
+        let detailableMovie: DetailableMovie = self.remindMoviesViewController.format(
+            movie: movie,
+            imageType: remindMoviesViewController
+                       .movieListViewController
+                       .toggleButton.isFistButtonSelected ? .backdrop : .poster
+        )
         movieDetailCoordinator.moviesLister = remindMoviesViewController
         movieDetailCoordinator.movie = detailableMovie
         movieDetailCoordinator.moviePosition = moviePosition
@@ -63,5 +68,5 @@ extension RemindMoviesCoordinator: MovieDetailCoordinatorDelegate {
 }
 
 private enum Constants {
-    static let title = "Reminder"
+    static let title = "Reminders"
 }
