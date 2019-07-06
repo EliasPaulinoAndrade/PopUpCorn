@@ -21,7 +21,8 @@ class MovieReminderController: MovieFormatterProtocol {
     func needRemindMovie(_ movie: DetailableMovie) {
         let realMovie = toMovie(from: movie)
 
-        guard realMovie.id != nil && realMovie.releaseDate != nil else {
+        guard realMovie.id != nil && realMovie.releaseDate != nil,
+              let releaseDate = movie.release else {
             return
         }
 
@@ -39,12 +40,15 @@ class MovieReminderController: MovieFormatterProtocol {
 
         if movieDAO.save(element: realMovie) == nil {
             delegate?.needShowError(message: "A Error Happend While Saving the Reminder.")
-        } else {
+        } else if releaseDate > Date() {
             setNotification(forMovie: movie)
             setCalendarReminder(forMovie: movie)
+            delegate?.reminderWasAdded(inReminders: true)
+        } else {
+            delegate?.reminderWasAdded(inReminders: false)
         }
         delegate?.reloadReminderButton()
-        delegate?.reminderWasAdded()
+
     }
 
     private func removeNotification(forMovie movie: DetailableMovie) {
@@ -137,11 +141,7 @@ class MovieReminderController: MovieFormatterProtocol {
     }
 
     func mustShowReminderButton(forMovie movie: DetailableMovie) -> Bool {
-        guard let movieRelease = movie.release else {
-            return false
-        }
-
-        return movieRelease > Date()
+        return true
     }
 
     private func releaseToDate(_ release: String) -> Date? {

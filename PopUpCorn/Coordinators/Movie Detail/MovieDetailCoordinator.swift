@@ -74,7 +74,7 @@ class MovieDetailCoordinator: NSObject, CoordinatorProtocol {
 
 extension MovieDetailCoordinator: MovieDetailViewControllerDelegate {
     func scrollInteractionEnded(withTranslation translation: CGFloat, beganLimit: CGFloat) {
-        
+
         self.interactiveTransision.finish(currentTranslation: translation - beganLimit, totalTranslation: 700)
     }
 

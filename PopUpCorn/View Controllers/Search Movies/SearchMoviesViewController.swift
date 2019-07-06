@@ -90,7 +90,7 @@ extension SearchMoviesViewController: MovieListViewControllerDelegate {
     func mustShowToggleBackground(_ movieList: MovieListViewController) -> Bool {
         return true
     }
-    
+
     func noMovieTitle(_ movieList: MovieListViewController) -> String {
         return "No Results in Search."
     }

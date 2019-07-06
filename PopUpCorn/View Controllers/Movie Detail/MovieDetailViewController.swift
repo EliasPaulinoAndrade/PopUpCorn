@@ -256,8 +256,12 @@ extension MovieDetailViewController: UIScrollViewDelegate {
 }
 
 extension MovieDetailViewController: MovieReminderControllerDelegate {
-    func reminderWasAdded() {
-        showReminderAlert(message: "A reminder was added. You will notified when \(movie?.title ?? "...") be released.")
+    func reminderWasAdded(inReminders: Bool) {
+        if inReminders {
+            showReminderAlert(message: "A reminder was added. You will notified when \(movie?.title ?? "...") be released.")
+        } else {
+            showReminderAlert(message: "A reminder was added. You can see it in the reminders tab.")
+        }
     }
 
     func needRemoveMovie(movie: DetailableMovie) {
