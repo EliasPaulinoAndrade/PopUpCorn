@@ -63,7 +63,7 @@ extension PUExpandedMovieCollectionViewCell: GenreRequesterControllerDelegate {
     func genresHasArrived(_ requester: GenreRequesterController, genres: [String]) {
         genresLabel.isHidden = false
         genresLabel.text = genres.reduce("") { (currentValue, currentString) -> String in
-            return "\(currentValue) \(currentString.lowercased())"
+            return "\(currentValue) \(currentString.capitalized)"
         }
     }
 

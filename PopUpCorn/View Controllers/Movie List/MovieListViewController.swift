@@ -21,6 +21,9 @@ class MovieListViewController: UIViewController {
 
     @IBOutlet weak var noMovieLabel: UILabel!
 
+    @IBOutlet weak var toggleBackgroundView: UIVisualEffectView!
+
+    @IBOutlet weak var toggleBackgroundContainer: UIView!
     weak var delegate: MovieListViewControllerDelegate?
 
     var state = MovieListControllerState.expanded {
@@ -70,6 +73,23 @@ class MovieListViewController: UIViewController {
         toggleButton.delegate = self
 
         registerMovieCells()
+
+        setupToggleBackground()
+    }
+
+    func setupToggleBackground() {
+        guard let mustShowToggleBackground = delegate?.mustShowToggleBackground(self),
+              mustShowToggleBackground else {
+            toggleBackgroundContainer.isHidden = true
+            toggleBackgroundView.isHidden = true
+            return
+        }
+        toggleBackgroundContainer.layer.shadowOpacity = 1
+        toggleBackgroundContainer.layer.shadowOffset = CGSize.zero
+        toggleBackgroundContainer.layer.shadowRadius = 10
+        toggleBackgroundContainer.layer.shadowColor = UIColor.black.cgColor
+        toggleBackgroundView.clipsToBounds = true
+        toggleBackgroundView.layer.cornerRadius = 20
     }
 
     func registerMovieCells() {
@@ -110,11 +130,13 @@ extension MovieListViewController: UICollectionViewDelegateFlowLayout, UICollect
 
         if let numberOfMovies = delegate?.numberOfMovies(self), numberOfMovies > 0 {
 
+            toggleBackgroundContainer.isHidden = false
             toggleButton.isHidden = false
             noMovieLabel.isHidden = true
             return numberOfMovies
         }
 
+        toggleBackgroundContainer.isHidden = true
         toggleButton.isHidden = true
         noMovieLabel.isHidden = false
         noMovieLabel.text = delegate?.noMovieTitle(self)
@@ -145,6 +167,10 @@ extension MovieListViewController: UICollectionViewDelegateFlowLayout, UICollect
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 
+        guard let collectionFlowLayout = collectionViewLayout as? UICollectionViewFlowLayout else {
+            return CGSize.zero
+        }
+
         var cellHeight: CGFloat
         var cellWidth: CGFloat
         switch state {
@@ -166,7 +192,7 @@ extension MovieListViewController: UICollectionViewDelegateFlowLayout, UICollect
             if collectionView.isStanding {
                 switch scrollDirection {
                 case .horizontal:
-                    cellHeight = collectionView.bounds.height/2 - 10
+                    cellHeight = (collectionView.bounds.height - collectionFlowLayout.sectionInset.top)/2 - 10
                     cellWidth = cellHeight * 0.5
                 case .vertical:
                     cellWidth = collectionView.bounds.width/3 - 10
@@ -175,7 +201,7 @@ extension MovieListViewController: UICollectionViewDelegateFlowLayout, UICollect
             } else {
                 switch scrollDirection {
                 case .horizontal:
-                    cellHeight = collectionView.bounds.height/2 - 10
+                    cellHeight = (collectionView.bounds.height - collectionFlowLayout.sectionInset.top)/2 - 10
                     cellWidth = cellHeight * 0.5
                 case .vertical:
                     cellWidth = collectionView.bounds.width/5 - 10

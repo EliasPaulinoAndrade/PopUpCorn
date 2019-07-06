@@ -19,4 +19,6 @@ protocol MovieListViewControllerDelegate: AnyObject {
     func movieList(_ movieList: MovieListViewController, didSelectItemAt position: Int)
 
     func noMovieTitle(_ movieList: MovieListViewController) -> String
+
+    func mustShowToggleBackground(_ movieList: MovieListViewController) -> Bool
 }

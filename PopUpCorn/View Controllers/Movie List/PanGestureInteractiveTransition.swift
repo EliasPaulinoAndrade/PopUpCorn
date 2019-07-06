@@ -14,6 +14,8 @@ class PanGestureInteractiveTransition: UIPercentDrivenInteractiveTransition {
 
     private weak var viewController: UIViewController!
 
+    private var wasFinished: Bool = false
+
     public init(viewController: UIViewController) {
         super.init()
 
@@ -40,5 +42,20 @@ class PanGestureInteractiveTransition: UIPercentDrivenInteractiveTransition {
         default:
             break
         }
+    }
+
+    func update(currentTranslation: CGFloat, totalTranslation: CGFloat) {
+        if !viewController.isBeingDismissed {
+            viewController.dismiss(animated: true, completion: nil)
+        }
+
+        if !wasFinished {
+            self.update(currentTranslation/totalTranslation)
+        }
+    }
+
+    func finish(currentTranslation: CGFloat, totalTranslation: CGFloat) {
+        wasFinished = true
+        self.finish()
     }
 }

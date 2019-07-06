@@ -166,7 +166,7 @@ extension MovieDetailViewController: GenreRequesterControllerDelegate {
     func genresHasArrived(_ requester: GenreRequesterController, genres: [String]) {
         genresLabel.isHidden = false
         genresLabel.text = genres.reduce("") { (currentValue, currentString) -> String in
-            return "\(currentValue) \(currentString.lowercased())"
+            return "\(currentValue) \(currentString.capitalized)"
         }
     }
 
@@ -186,6 +186,10 @@ extension MovieDetailViewController: SimilarMovieRequesterControllerDelegate {
 }
 
 extension MovieDetailViewController: MovieListViewControllerDelegate {
+    func mustShowToggleBackground(_ movieList: MovieListViewController) -> Bool {
+        return true
+    }
+
     func noMovieTitle(_ movieList: MovieListViewController) -> String {
         return "No Related Movies."
     }
@@ -236,9 +240,18 @@ extension MovieDetailViewController: UIScrollViewDelegate {
         let currentOffSet = scrollView.contentOffset
 
         if currentOffSet.y < 0.0 {
+            let translation = Constants.imageDefaultHeight - currentOffSet.y
             detailImageView.translatesAutoresizingMaskIntoConstraints = false
-            imageHeightConstraint.constant = Constants.imageDefaultHeight - currentOffSet.y
+            imageHeightConstraint.constant = translation
+
+//            delegate?.scrollInteractionHappend(withTranslation: translation, beganLimit: 500)
         }
+    }
+
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+//        let currentOffSet = scrollView.contentOffset
+//        let translation = Constants.imageDefaultHeight - currentOffSet.y
+//        delegate?.scrollInteractionEnded(withTranslation: translation, beganLimit: 500)
     }
 }
 

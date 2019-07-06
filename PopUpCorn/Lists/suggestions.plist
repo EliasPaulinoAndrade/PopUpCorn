@@ -4,5 +4,9 @@
 <array>
 	<string>Family</string>
 	<string>Adventure</string>
+    <string>Animation</string>
+    <string>Children's</string>
+    <string>Comedy</string>
+    <string>Drama</string>
 </array>
 </plist>

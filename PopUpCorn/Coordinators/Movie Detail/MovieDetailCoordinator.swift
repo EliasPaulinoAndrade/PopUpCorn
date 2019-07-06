@@ -73,6 +73,17 @@ class MovieDetailCoordinator: NSObject, CoordinatorProtocol {
 }
 
 extension MovieDetailCoordinator: MovieDetailViewControllerDelegate {
+    func scrollInteractionEnded(withTranslation translation: CGFloat, beganLimit: CGFloat) {
+        
+        self.interactiveTransision.finish(currentTranslation: translation - beganLimit, totalTranslation: 700)
+    }
+
+    func scrollInteractionHappend(withTranslation translation: CGFloat, beganLimit: CGFloat) {
+        if translation > beganLimit {
+            self.interactiveTransision.update(currentTranslation: translation - beganLimit, totalTranslation: 700)
+        }
+    }
+
     func similarMovieWasSelected(movie: DetailableMovie, atPosition position: Int) {
         movieDetailCoordinator.moviesLister = movieDetailViewController
         movieDetailCoordinator.movie = movie
