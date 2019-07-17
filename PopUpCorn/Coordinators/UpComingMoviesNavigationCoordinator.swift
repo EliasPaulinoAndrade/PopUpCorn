@@ -9,8 +9,11 @@
 import Foundation
 import UIKit
 
-class AppCoordinator: CoordinatorProtocol {
-    var rootViewController: UINavigationController = {
+class UpComingMoviesNavigationCoordinator: CoordinatorProtocol {
+
+    var parentRootViewController: RootViewControllerProtocol
+
+    var rootViewController: RootViewControllerProtocol = {
         let navigationViewController = UINavigationController.init()
 
         navigationViewController.navigationBar.isTranslucent = false
@@ -24,15 +27,17 @@ class AppCoordinator: CoordinatorProtocol {
 
     lazy var firstControllerCoordinator = UpComingMoviesCoordinator(withRootViewController: rootViewController)
 
-    func start() {
+    init(rootViewController: RootViewControllerProtocol) {
+        self.parentRootViewController = rootViewController
+    }
 
-        guard let window = UIApplication.shared.delegate?.window else {
-            return
-        }
-
-        window?.rootViewController = rootViewController
-        window?.makeKeyAndVisible()
+    func start(previousController: UIViewController? = nil) {
+        self.parentRootViewController.start(viewController: rootViewController)
 
         firstControllerCoordinator.start()
+
+        rootViewController.tabBarItem = UITabBarItem.init(title: "", image: UIImage(named: "home"), tag: 0)
     }
+
+    func willDisappear() { }
 }

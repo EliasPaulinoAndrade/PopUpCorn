@@ -11,4 +11,5 @@ import UIKit
 
 protocol PUMovieCollectionViewCellProtocol {
     func setup(withMovie movie: ListableMovie)
+    var moviePosterImageView: UIImageView { get set }
 }

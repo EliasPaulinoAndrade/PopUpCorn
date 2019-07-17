@@ -9,7 +9,7 @@
 import Foundation
 
 /// A controller to control the movies request
-class MovieRequesterController {
+class MovieRequesterController: NSObject {
 
     weak var delegate: MovieRequesterControllerDelegate?
 
@@ -27,7 +27,7 @@ class MovieRequesterController {
     /// tells the controller to retrieve new movies
     func needMoreMovies() {
 
-        guard let moviesEndPoint = delegate?.moviesEndPoint(self) else {
+        guard let moviesEndPoint = delegate?.moviesEndPoint(self)  else {
             return
         }
 

@@ -15,5 +15,5 @@ enum PUTMDBImageType: String, CustomStringConvertible {
     }
 
     case littleImage = "w92"
-    case bigImage = "w500"
+    case bigImage = "w780"
 }

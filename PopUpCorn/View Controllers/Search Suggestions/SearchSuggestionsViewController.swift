@@ -97,6 +97,10 @@ extension SearchSuggestionsViewController: UITableViewDelegate, UITableViewDataS
 
         delegate?.userDidSelectSuggestion(self, suggestion: suggestion)
     }
+
+    func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+        print(indexPath.row)
+    }
 }
 
 private enum Constants {

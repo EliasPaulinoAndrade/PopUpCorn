@@ -11,8 +11,9 @@ import UIKit
 
 struct DetailableMovie {
     var title: String?
-    var release: String?
+    var release: Date?
     var image: String?
     var genres: [Int]
     var overview: String?
+    var id: String?
 }

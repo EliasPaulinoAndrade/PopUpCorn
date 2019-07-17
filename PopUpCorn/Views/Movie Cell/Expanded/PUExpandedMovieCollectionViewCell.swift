@@ -9,7 +9,7 @@
 import UIKit
 import MetalPerformanceShaders
 
-class PUExpandedMovieCollectionViewCell: UICollectionViewCell, PUMovieCollectionViewCellProtocol {
+class PUExpandedMovieCollectionViewCell: UICollectionViewCell, PUMovieCollectionViewCellProtocol, MovieFormatterProtocol {
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var genresLabel: UILabel!
@@ -17,6 +17,11 @@ class PUExpandedMovieCollectionViewCell: UICollectionViewCell, PUMovieCollection
     @IBOutlet weak var posterImageView: PUTMDBImageView!
     @IBOutlet weak var headerImageView: PUTMDBImageView!
     @IBOutlet weak var containerView: PURadiusView!
+    @IBOutlet weak var headerContainerView: PUTMDBImageView!
+
+    lazy var moviePosterImageView: UIImageView = {
+        return posterImageView
+    }()
 
     private var genresRequesterController = GenreRequesterController.init()
 
@@ -29,7 +34,7 @@ class PUExpandedMovieCollectionViewCell: UICollectionViewCell, PUMovieCollection
 
     func setup(withMovie movie: ListableMovie) {
         titleLabel.text = movie.title
-        releaseLabel.text = "\(Constants.releaseSufix) \(movie.release)"
+        releaseLabel.text = "\(releaseString(fromDate: movie.release) ?? "No Release Date")"
         releaseLabel.isHidden = false
 
         let placeHolderImage = UIImage.init(named: Constants.placeHolderImageName)
@@ -58,7 +63,7 @@ extension PUExpandedMovieCollectionViewCell: GenreRequesterControllerDelegate {
     func genresHasArrived(_ requester: GenreRequesterController, genres: [String]) {
         genresLabel.isHidden = false
         genresLabel.text = genres.reduce("") { (currentValue, currentString) -> String in
-            return "\(currentValue) \(currentString.lowercased())"
+            return "\(currentValue) \(currentString.capitalized)"
         }
     }
 

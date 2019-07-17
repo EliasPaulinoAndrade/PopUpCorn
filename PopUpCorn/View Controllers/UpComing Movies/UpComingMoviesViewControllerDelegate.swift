@@ -9,7 +9,5 @@
 import Foundation
 
 protocol UpComingMoviesViewControllerDelegate: AnyObject {
-
-    func upComingMovieWasSelected(movie: DetailableMovie)
-    func searchButtonWasSelected()
+    func upComingMovieWasSelected(movie: DetailableMovie, atPosition position: Int)
 }

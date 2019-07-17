@@ -9,9 +9,9 @@
 import UIKit
 
 /// a view controller that shows the inical app screen
-class UpComingMoviesViewController: UIViewController {
+class UpComingMoviesViewController: UIViewController, MovieListUserProtocol, MovieFormatterProtocol {
 
-    private var movieListViewController = MovieListViewController.init()
+    var movieListViewController = MovieListViewController.init()
     private var movieRequesterController = MovieRequesterController.init()
     private var errorPresenterController = ErrorPresenterViewController.init()
     private var loadIndicatorViewController = LoadIndicatorViewController.init()
@@ -31,36 +31,22 @@ class UpComingMoviesViewController: UIViewController {
 
         loadIndicatorViewController.startAnimating()
         movieRequesterController.needMoreMovies()
-
-        formatNavigationBar()
-    }
-
-    func formatNavigationBar() {
-        let navigationBarButton = UIBarButtonItem.init(
-            barButtonSystemItem: UIBarButtonItem.SystemItem.search,
-            target: self,
-            action: #selector(searchButtonWasTapped(sender:))
-        )
-
-        self.navigationItem.rightBarButtonItem = navigationBarButton
-    }
-
-    @objc func searchButtonWasTapped(sender: UIBarButtonItem) {
-        delegate?.searchButtonWasSelected()
     }
 }
 
 extension UpComingMoviesViewController: MovieListViewControllerDelegate {
+    func mustShowToggleBackground(_ movieList: MovieListViewController) -> Bool {
+        return true
+    }
+
+    func noMovieTitle(_ movieList: MovieListViewController) -> String {
+        return "No UpComing Movie"
+    }
+
     func movieList(_ movieList: MovieListViewController, movieForPositon position: Int) -> ListableMovie {
         let movie = movieRequesterController.movies[position]
 
-        let listableMovie = ListableMovie.init(
-            title: movie.title ?? MoviePlaceholder.title,
-            release: movie.releaseDate ?? MoviePlaceholder.release,
-            posterPath: movie.posterPath,
-            backdropPath: movie.backdropPath,
-            genresIDs: movie.genreIDs
-        )
+        let listableMovie: ListableMovie = format(movie: movie)
 
         return listableMovie
     }
@@ -80,15 +66,11 @@ extension UpComingMoviesViewController: MovieListViewControllerDelegate {
     func movieList(_ movieList: MovieListViewController, didSelectItemAt position: Int) {
         let movie = movieRequesterController.movies[position]
 
-        let detailableMovie = DetailableMovie.init(
-            title: movie.title,
-            release: movie.releaseDate,
-            image: movie.posterPath ?? movie.backdropPath,
-            genres: movie.genreIDs,
-            overview: movie.overview
-        )
+        let detailableMovie: DetailableMovie = format(
+            movie: movie,
+            imageType: movieList.toggleButton.isFistButtonSelected ? .backdrop : .poster)
 
-        delegate?.upComingMovieWasSelected(movie: detailableMovie)
+        delegate?.upComingMovieWasSelected(movie: detailableMovie, atPosition: position)
     }
 }
 

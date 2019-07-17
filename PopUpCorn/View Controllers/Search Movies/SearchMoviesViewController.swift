@@ -11,16 +11,18 @@ import Foundation
 import UIKit
 
 /// a view controller that shows the search screen.
-class SearchMoviesViewController: UIViewController {
+class SearchMoviesViewController: UIViewController, MovieListUserProtocol, MovieFormatterProtocol {
 
-    private var movieListViewController = MovieListViewController.init()
+    var movieListViewController = MovieListViewController.init()
     private var movieRequesterController = MovieRequesterController.init()
     private var errorPresenterController = ErrorPresenterViewController.init()
     private var movieDetailViewController = MovieDetailViewController.init()
     private var searchSuggestionsViewController = SearchSuggestionsViewController.init()
     private var loadIndicatorController = LoadIndicatorViewController.init()
 
-    private lazy var searchController: UISearchController = {
+    weak var delegate: SearchMoviesViewControllerDelegate?
+
+    lazy var searchController: UISearchController = {
         let searchController = UISearchController.init(searchResultsController: nil)
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "\(Constants.searchBarPlaceHolder)"
@@ -29,6 +31,7 @@ class SearchMoviesViewController: UIViewController {
         searchController.searchBar.delegate = self
         searchController.searchResultsUpdater = self
         searchController.searchBar.tintColor = UIColor.white
+        searchController.searchBar.barStyle = .black
 
         return searchController
     }()
@@ -46,6 +49,8 @@ class SearchMoviesViewController: UIViewController {
         movieListViewController.delegate = self
         movieRequesterController.delegate = self
         errorPresenterController.reloadDelegate = self
+
+        NotificationCenter.default.addObserver(self, selector: #selector(appMoveToBackground), name: UIApplication.willResignActiveNotification, object: nil)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -53,6 +58,10 @@ class SearchMoviesViewController: UIViewController {
     }
 
     override func viewWillDisappear(_ animated: Bool) {
+        searchSuggestionsViewController.saveSuggestions()
+    }
+
+    @objc func appMoveToBackground() {
         searchSuggestionsViewController.saveSuggestions()
     }
 
@@ -78,17 +87,18 @@ class SearchMoviesViewController: UIViewController {
 }
 
 extension SearchMoviesViewController: MovieListViewControllerDelegate {
+    func mustShowToggleBackground(_ movieList: MovieListViewController) -> Bool {
+        return true
+    }
+
+    func noMovieTitle(_ movieList: MovieListViewController) -> String {
+        return "No Results in Search."
+    }
 
     func movieList(_ movieList: MovieListViewController, movieForPositon position: Int) -> ListableMovie {
         let movie = movieRequesterController.movies[position]
 
-        let listableMovie = ListableMovie.init(
-            title: movie.title ?? MoviePlaceholder.title,
-            release: movie.releaseDate ?? MoviePlaceholder.release,
-            posterPath: movie.posterPath,
-            backdropPath: movie.backdropPath,
-            genresIDs: movie.genreIDs
-        )
+        let listableMovie: ListableMovie = format(movie: movie)
 
         return listableMovie
     }
@@ -108,17 +118,13 @@ extension SearchMoviesViewController: MovieListViewControllerDelegate {
     func movieList(_ movieList: MovieListViewController, didSelectItemAt position: Int) {
         let movie = movieRequesterController.movies[position]
 
-        let detailableMovie = DetailableMovie.init(
-            title: movie.title,
-            release: movie.releaseDate,
-            image: movie.backdropPath ?? movie.posterPath,
-            genres: movie.genreIDs,
-            overview: movie.overview
-        )
+        let detailableMovie: DetailableMovie = format(
+            movie: movie,
+            imageType: movieList.toggleButton.isFistButtonSelected ? .backdrop : .poster)
 
         movieDetailViewController.movie = detailableMovie
-        searchController.isActive = false
-        navigationController?.pushViewController(movieDetailViewController, animated: true)
+
+        delegate?.searchMovieWasSelected(movie: detailableMovie, atPosition: position)
     }
 }
 
@@ -197,8 +203,12 @@ extension SearchMoviesViewController: ReloaderAlertBuilderDelegate {
 
 extension SearchMoviesViewController: SearchSuggestionsViewContorllerDelegate {
     func userDidSelectSuggestion(_ controller: SearchSuggestionsViewController, suggestion: String) {
-        self.searchController.isActive = true
+        searchController.isActive = true
+        searchController.isEditing = true
+
         self.searchController.searchBar.text = suggestion
+
+        searchBarSearchButtonClicked(searchController.searchBar)
     }
 }
 

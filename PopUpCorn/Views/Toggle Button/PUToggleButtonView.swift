@@ -15,7 +15,7 @@ class PUToggleButtonView: PUBaseZibOwnerView {
     @IBOutlet weak var selectedIndicatorView: UIView! {
         didSet {
             selectedIndicatorView.clipsToBounds = true
-            selectedIndicatorView.layer.cornerRadius = 10
+            selectedIndicatorView.layer.cornerRadius = 5
         }
     }
 

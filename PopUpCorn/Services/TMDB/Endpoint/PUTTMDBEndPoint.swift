@@ -15,7 +15,9 @@ enum PUTTMDBEndPoint {
 
     case movie(credentials: PUTMDBCredentials, type: PUTMDBMovieType, language: String, pageNumber: String)
 
-    case movieSearch(credentials: PUTMDBCredentials, type: PUTMDBMovieType, language: String, pageNumber: String, query: String)
+    case movieSearch(credentials: PUTMDBCredentials, language: String, pageNumber: String, query: String)
+
+    case movieSilimilar(credentials: PUTMDBCredentials, language: String, pageNumber: String, movieId: String)
 
     case image(type: PUTMDBImageType, baseURL: String, imageName: String)
 
@@ -36,8 +38,8 @@ enum PUTTMDBEndPoint {
                 .includeAdult: "false",
                 .pageNumber: pageNumber
             ])
-        case .movieSearch(let credentials, let type, let language, let pageNumber, let query):
-            urlComponents = URLComponents.init(withCredentials: credentials, path: "\(type)", withItems: [
+        case .movieSearch(let credentials, let language, let pageNumber, let query):
+            urlComponents = URLComponents.init(withCredentials: credentials, path: "\(PUTMDBMovieType.search)", withItems: [
                 .language: language,
                 .includeAdult: "false",
                 .pageNumber: pageNumber,
@@ -47,6 +49,12 @@ enum PUTTMDBEndPoint {
             let urlString = "\(baseURL)\(type)/\(imageName)"
 
             urlComponents = URLComponents.init(string: urlString)
+        case .movieSilimilar(let credentials, let language, let pageNumber, let movieId):
+            urlComponents = URLComponents.init(withCredentials: credentials, path: "movie/\(movieId)/similar", withItems: [
+                .language: language,
+                .includeAdult: "false",
+                .pageNumber: pageNumber
+            ])
         }
 
         return urlComponents?.url

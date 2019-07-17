@@ -29,7 +29,7 @@ class Queue<Element: Equatable> {
     }
 
     func add(array: [Element]) {
-        if array.count + list.count < limit {
+        if array.count + list.count <= limit {
             list.append(contentsOf: array)
         }
     }

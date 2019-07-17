@@ -9,5 +9,5 @@
 import Foundation
 
 enum Suggestions {
-    static let limitOfSuggestions = 20
+    static let limitOfSuggestions = 15
 }

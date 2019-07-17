@@ -10,9 +10,7 @@ import Foundation
 import UIKit
 
 class UpComingMoviesCoordinator: CoordinatorProtocol {
-    var rootViewController: UINavigationController
-
-    lazy var searchMoviesCoordinator = SearchMoviesCoordinator.init(withRootViewController: rootViewController)
+    var rootViewController: RootViewControllerProtocol
 
     lazy var movieDetailCoordinator = MovieDetailCoordinator.init(withRootViewController: rootViewController)
 
@@ -24,26 +22,25 @@ class UpComingMoviesCoordinator: CoordinatorProtocol {
         return upComingMoviesController
     }()
 
-    init(withRootViewController rootViewController: UINavigationController) {
+    var isPresentingSearchCoordinator: Bool = false
+
+    init(withRootViewController rootViewController: RootViewControllerProtocol) {
         self.rootViewController = rootViewController
     }
 
-    func start() {
+    func start(previousController: UIViewController? = nil) {
         upComingMoviesController.title = Constants.title
-        rootViewController.pushViewController(upComingMoviesController, animated: true)
+        rootViewController.start(viewController: upComingMoviesController)
     }
 }
 
 extension UpComingMoviesCoordinator: UpComingMoviesViewControllerDelegate {
-    func upComingMovieWasSelected(movie: DetailableMovie) {
+    func upComingMovieWasSelected(movie: DetailableMovie, atPosition position: Int) {
+        movieDetailCoordinator.moviesLister = upComingMoviesController
         movieDetailCoordinator.movie = movie
+        movieDetailCoordinator.moviePosition = position
 
-        movieDetailCoordinator.start()
-    }
-
-    func searchButtonWasSelected() {
-
-        searchMoviesCoordinator.start()
+        movieDetailCoordinator.start(previousController: upComingMoviesController)
     }
 }
 

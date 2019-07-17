@@ -18,16 +18,29 @@ struct PUTMDBService {
     /// initialize the service getting the api atributtes from TMDB plist
     init() {
         let plistService = PUPlistService.init()
-        let tmdbAtributtes = plistService.tmdbAtributtes
 
-        if let apiKey = tmdbAtributtes.apiKey,
-           let baseUrl = tmdbAtributtes.baseUrl.normal,
-           let imageBaseUrl = tmdbAtributtes.baseUrl.image {
-            self.credentials = PUTMDBCredentials.init(
-                withApiKey: apiKey,
-                baseUrl: baseUrl,
-                andImageBaseUrl: imageBaseUrl
-            )
+        self.credentials = plistService.tmdbAtributtes
+    }
+
+    func similarMovies(
+        movieId: String,
+        inPageNumber pageNumber: Int = 1,
+        sucessCompletion: @escaping (Page) -> Void,
+        errorCompletion: @escaping (Error?) -> Void) {
+
+        guard let credentials = self.credentials else {
+                errorCompletion(nil)
+                return
+        }
+
+        if let similarMoviesUrl = PUTTMDBEndPoint.movieSilimilar(
+            credentials: credentials,
+            language: "en-US",
+            pageNumber: "\(pageNumber)",
+            movieId: movieId
+        ).formatted() {
+            let modelQuery = PUTMDBModelQuery<Page>()
+            modelQuery.run(fromURL: similarMoviesUrl, sucessCompletion: sucessCompletion, errorCompletion: errorCompletion)
         }
     }
 
@@ -57,7 +70,7 @@ struct PUTMDBService {
         if let query = stringQuery {
             moviesUrl = PUTTMDBEndPoint.movieSearch(
                 credentials: credentials,
-                type: type, language: "en-US",
+                language: "en-US",
                 pageNumber: "\(pageNumber)",
                 query: query
             ).formatted()
@@ -119,21 +132,26 @@ struct PUTMDBService {
         }
     }
 
+    func imageUrls(forImageName imageName: String) -> (preview: URL?, detail: URL?) {
+        guard let imageBaseUrl = self.credentials?.imageBaseUrl else {
+            return (nil, nil)
+        }
+
+        let previewImageUrl = PUTTMDBEndPoint.image(type: .littleImage, baseURL: imageBaseUrl, imageName: imageName).formatted()
+        let imageUrl = PUTTMDBEndPoint.image(type: .bigImage, baseURL: imageBaseUrl, imageName: imageName).formatted()
+
+        return (previewImageUrl, imageUrl)
+    }
+
     @discardableResult
     func image(
         fromMovieWithPath imagePath: String,
         progressCompletion: @escaping (UIImage, PUTMDBImageState) -> Void,
         errorCompletion: @escaping (Error?, PUTMDBImageState) -> Void) -> PUTMDBPreviewableImageQuery? {
 
-        guard let imageBaseUrl = self.credentials?.imageBaseUrl else {
-                errorCompletion(nil, .none)
-                return nil
-        }
+        let (previewUrl, detailUrl) = imageUrls(forImageName: imagePath)
 
-        let previewImageUrl = PUTTMDBEndPoint.image(type: .littleImage, baseURL: imageBaseUrl, imageName: imagePath).formatted()
-        let imageUrl = PUTTMDBEndPoint.image(type: .bigImage, baseURL: imageBaseUrl, imageName: imagePath).formatted()
-
-        if let previewImageUrl = previewImageUrl, let detailImageUrl = imageUrl {
+        if let previewImageUrl = previewUrl, let detailImageUrl = detailUrl {
 
             let imageQuery = PUTMDBPreviewableImageQuery.init()
 

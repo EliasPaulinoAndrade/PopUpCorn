@@ -10,17 +10,35 @@ import Foundation
 import UIKit
 
 class SearchMoviesCoordinator: CoordinatorProtocol {
-    var rootViewController: UINavigationController
+    var rootViewController: RootViewControllerProtocol
 
-    var searchMoviesViewController = SearchMoviesViewController.init()
+    lazy var searchMoviesViewController: SearchMoviesViewController = {
+        let searchMoviesViewController = SearchMoviesViewController.init()
 
-    init(withRootViewController rootViewController: UINavigationController) {
+        searchMoviesViewController.delegate = self
+
+        return searchMoviesViewController
+    }()
+
+    lazy var movieDetailCoordinator = MovieDetailCoordinator.init(withRootViewController: rootViewController)
+
+    init(withRootViewController rootViewController: RootViewControllerProtocol) {
         self.rootViewController = rootViewController
     }
 
-    func start() {
+    func start(previousController: UIViewController? = nil) {
         searchMoviesViewController.title = Constants.title
-        rootViewController.pushViewController(searchMoviesViewController, animated: true)
+        rootViewController.start(viewController: searchMoviesViewController)
+    }
+}
+
+extension SearchMoviesCoordinator: SearchMoviesViewControllerDelegate {
+    func searchMovieWasSelected(movie: DetailableMovie, atPosition position: Int) {
+        movieDetailCoordinator.moviesLister = searchMoviesViewController
+        movieDetailCoordinator.movie = movie
+        movieDetailCoordinator.moviePosition = position
+
+        movieDetailCoordinator.start(previousController: searchMoviesViewController.searchController)
     }
 }
 
